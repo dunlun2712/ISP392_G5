@@ -10,15 +10,15 @@ import java.util.logging.Logger;
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-
 /**
  *
  * @author FPT University - PRJ30X
  */
 public class DBContext {
+
     protected Connection connection;
-    public DBContext()
-    {
+
+    public DBContext() {
         //@Students: You are allowed to edit user, pass, url variables to fit 
         //your system configuration
         //You can also add more methods for Database Interaction tasks. 
@@ -27,8 +27,8 @@ public class DBContext {
         //where StudentDBContext is located in dal package, 
         try {
             String user = "sa";
-            String pass = "123";
-            String url = "jdbc:sqlserver://DUNLUN2712:1433;databaseName=ISP392";
+            String pass = "sa";
+            String url = "jdbc:sqlserver://localhost\\SQLEXPRESS:1433;databaseName=ISP392";
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
             connection = DriverManager.getConnection(url, user, pass);
         } catch (ClassNotFoundException | SQLException ex) {
@@ -36,7 +36,8 @@ public class DBContext {
         }
     }
 
-   public Connection getConnection() throws SQLException {
-        return DriverManager.getConnection("jdbc:sqlserver://DESKTOP-5HNAFHV\\DOANHUNG:1433;databaseName=ISP392", "sa", "123");
+    public static void main(String[] args) {
+        DBContext db = new DBContext();
+        System.out.println(db);
     }
 }
