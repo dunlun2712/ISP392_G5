@@ -6,6 +6,7 @@ package Controller;
 
 import Dao.AccDao;
 import Dao.StudentDao;
+import Model.Account;
 import Model.Student;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -20,7 +21,7 @@ import jakarta.servlet.http.HttpSession;
  *
  * @author tranm
  */
-
+@WebServlet(name = "Login", urlPatterns = {"/login"})
 public class Login extends HttpServlet {
 
     /**
@@ -70,9 +71,12 @@ public class Login extends HttpServlet {
         StudentDao d = new StudentDao();
         String acc = request.getParameter("account");
         String id = d.getIdByEmail(acc);
+        AccDao accdao = new AccDao();
         Student student = d.getInfoStudent(id);
+        Account account = accdao.getInforAcc(acc);
         HttpSession session = request.getSession();
         session.setAttribute("data", student);
+        session.setAttribute("data2", account);
         String login = request.getParameter("login");
         switch (login) {
             case "Login":
@@ -86,23 +90,24 @@ public class Login extends HttpServlet {
                 }
                 break;
             case "signup":
+                Account test = (Account)session.getAttribute("data2");
                 String acc_name = request.getParameter("newEmail");
                 String acc_pass = request.getParameter("acc_pass");
                 String repass = request.getParameter("repass");
-                AccDao accdao = new AccDao();
-                if(repass.equals(acc_pass)){
-                    accdao.insertAcc(acc_name, acc_pass);
-                    request.getRequestDispatcher("Login.jsp").forward(request, response);
-                }else{
-                    request.setAttribute("mess", "pass and repass not connect");
-                    response.sendRedirect("SignUp.jsp");
-                }         
+                if (acc_name.equals(test.getAcc())){
+                    request.getRequestDispatcher("SignUp.jsp").forward(request, response);
+                } else if (repass.equals(acc_pass)) {
+                    request.getRequestDispatcher("SignUp.jsp").forward(request, response);
+                } else {
+                   accdao.insertAcc(acc_name, acc_pass);
+                   request.getRequestDispatcher("Login.jsp").forward(request, response);
+                }
                 break;
             case "signupPage":
                 request.getRequestDispatcher("SignUp.jsp").forward(request, response);
                 break;
         }
-
     }
-
 }
+
+
