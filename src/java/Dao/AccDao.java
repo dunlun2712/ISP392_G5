@@ -46,4 +46,26 @@ public class AccDao extends DBContext {
         }
     }
 
+    public Account getInforAcc(String acc) {
+        Account account = null;
+        try {
+            String strSQL = "select * from Account where acc_username = ? ";
+            stm = cnn.prepareStatement(strSQL);
+            stm.setString(1, acc);
+            rs = stm.executeQuery();
+            
+            if (rs.next()) {
+                String acc_username = rs.getString(1);
+                String acc_pass = rs.getString(2);
+                String role = rs.getString(3);
+                String acc_email = rs.getString(4);
+                String status = rs.getString(5);
+                
+                account = new Account(acc_username, acc_pass, role, acc_email, status);
+            }
+        } catch (Exception e) {
+            System.out.println("getUsers:" + e.getMessage());
+        }
+        return account;
+    }
 }
