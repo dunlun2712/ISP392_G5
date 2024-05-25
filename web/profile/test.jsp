@@ -12,7 +12,7 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <<form action="viewprofile">
+        <form action="${pageContext.request.contextPath}/viewprofile">
             <input type="text" name="email" value="nguyenvana@example.com">
             <input type="submit"></form>
     </body>
