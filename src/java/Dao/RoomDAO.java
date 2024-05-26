@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package dal;
+package Dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -11,6 +11,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import Model.*;
+import dal.DBContext;
 
 /**
  *
@@ -18,8 +19,8 @@ import Model.*;
  */
 public class RoomDAO extends DBContext {
 
-    public List<Room> searchRoomByName(String txtSearch) {
-        List<Room> list = new ArrayList<>();
+    public List<RoomHome> searchRoomByName(String txtSearch) {
+        List<RoomHome> list = new ArrayList<>();
         String query = """
                        SELECT r.[room_id]
                              ,r.[dorm_id]
@@ -38,7 +39,7 @@ public class RoomDAO extends DBContext {
             ps.setString(2, "%" + txtSearch + "%");
             try (ResultSet rs = ps.executeQuery()) {
                 while (rs.next()) {
-                    Room room = new Room();
+                    RoomHome room = new RoomHome();
                     room.setRoomID(rs.getString("room_id"));
                     room.setFloor(rs.getString("floor"));
                     room.setRoomType(rs.getString("room_type"));
