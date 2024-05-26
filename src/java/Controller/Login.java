@@ -17,10 +17,6 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
-/**
- *
- * @author tranm
- */
 @WebServlet(name = "Login", urlPatterns = {"/login"})
 public class Login extends HttpServlet {
 
@@ -54,7 +50,7 @@ public class Login extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
-        request.getRequestDispatcher("Login.jsp").forward(request, response);
+
     }
 
     /**
@@ -69,38 +65,56 @@ public class Login extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         StudentDao d = new StudentDao();
-        String acc = request.getParameter("account");
-        String id = d.getIdByEmail(acc);
+        String email = request.getParameter("account");
+        String pass = request.getParameter("password");
+        String id = d.getIdByEmail(email);
         AccDao accdao = new AccDao();
         Student student = d.getInfoStudent(id);
-        Account account = accdao.getInforAcc(acc);
+        Account account = accdao.getInforAcc(email);
         HttpSession session = request.getSession();
         session.setAttribute("data", student);
-        session.setAttribute("data2", account);
         String login = request.getParameter("login");
         switch (login) {
             case "Login":
-                if (student != null && acc.equals(student.getEmail())) {                   
-                    session.setAttribute("email", acc);
-                    request.getRequestDispatcher("Profile.jsp").forward(request, response);
-                } else {
-//                    request.setAttribute("mess", "Wrong account or pass");
+                boolean isAuthenticated = false;
+                if (account != null && email.equals(account.getEmail())) {
+                    if (pass.equals(account.getPass())) {
+                        isAuthenticated = true;
+                        session.setAttribute("email", email);
+                        request.getRequestDispatcher("index.jsp").forward(request, response);
+                    }
+                }
+                if (student != null && email.equals(student.getEmail())) {
+                    if (pass.equals(student.getPass())) {
+                        isAuthenticated = true;
+                        session.setAttribute("email", email);
+                        request.getRequestDispatcher("index.jsp").forward(request, response);
+                    }
+                }
+                if (!isAuthenticated) {
+                    request.setAttribute("mess", "Wrong Email or Password");
+                    request.setAttribute("email", email);
                     request.getRequestDispatcher("Login.jsp").forward(request, response);
-//                    response.sendRedirect("Login.jsp");
                 }
                 break;
+            // Thêm các case khác nếu cần
+
             case "signup":
-                Account test = (Account)session.getAttribute("data2");
-                String acc_name = request.getParameter("newEmail");
-                String acc_pass = request.getParameter("acc_pass");
+
+                String acc_name = request.getParameter("name");
+                String acc_email = request.getParameter("email");
+                String acc_pass = request.getParameter("password");
                 String repass = request.getParameter("repass");
-                if (acc_name.equals(test.getAcc())){
+                Account existingAccount = accdao.getInforAcc(acc_email);
+                if (existingAccount != null && acc_email.equals(existingAccount.getEmail())) {
+                    request.setAttribute("mess", "This email has already been registered");
                     request.getRequestDispatcher("SignUp.jsp").forward(request, response);
-                } else if (repass.equals(acc_pass)) {
+                } else if (!repass.equals(acc_pass)) {
+                    request.setAttribute("mess", "Your passwords do not match");
                     request.getRequestDispatcher("SignUp.jsp").forward(request, response);
                 } else {
-                   accdao.insertAcc(acc_name, acc_pass);
-                   request.getRequestDispatcher("Login.jsp").forward(request, response);
+                    accdao.insertAcc(acc_name, acc_email, acc_pass);
+                    request.getRequestDispatcher("index.jsp").forward(request, response);
                 }
                 break;
             case "signupPage":
@@ -109,5 +123,3 @@ public class Login extends HttpServlet {
         }
     }
 }
-
-
