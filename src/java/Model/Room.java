@@ -4,52 +4,55 @@
  */
 package Model;
 
+import java.time.format.DecimalStyle;
+
 /**
  *
- * @author khanh
+ * @author ASUS
  */
 public class Room {
-    private String roomID;
-    private String floor;
-    private String roomType;
+    private String room_id;
+    private int dorm_id;
+    private int floor;
+    private String room_type;
     private int price;
-    private String roomStatus;
-    private Dorm dorm;
+    private String room_status;
 
     public Room() {
     }
 
-    public Room(String roomID, String floor, String roomType, int price, String roomStatus, Dorm dorm) {
-        this.roomID = roomID;
+    public Room(String room_id, int dorm_id, int floor, String room_type, int price, String room_status) {
+        this.room_id = room_id;
+        this.dorm_id = dorm_id;
         this.floor = floor;
-        this.roomType = roomType;
+        this.room_type = room_type;
         this.price = price;
-        this.roomStatus = roomStatus;
-        this.dorm = dorm;
+        this.room_status = room_status;
     }
 
-    public String getRoomID() {
-        return roomID;
+  
+    public String getRoom_id() {
+        return room_id;
     }
 
-    public void setRoomID(String roomID) {
-        this.roomID = roomID;
+    public void setRoom_id(String room_id) {
+        this.room_id = room_id;
     }
 
-    public String getFloor() {
+    public int getFloor() {
         return floor;
     }
 
-    public void setFloor(String floor) {
+    public void setFloor(int floor) {
         this.floor = floor;
     }
 
-    public String getRoomType() {
-        return roomType;
+    public String getRoom_type() {
+        return room_type;
     }
 
-    public void setRoomType(String roomType) {
-        this.roomType = roomType;
+    public void setRoom_type(String room_type) {
+        this.room_type = room_type;
     }
 
     public int getPrice() {
@@ -60,20 +63,20 @@ public class Room {
         this.price = price;
     }
 
-    public String getRoomStatus() {
-        return roomStatus;
+    public String getRoom_status() {
+        return room_status;
     }
 
-    public void setRoomStatus(String roomStatus) {
-        this.roomStatus = roomStatus;
+    public void setRoom_status(String room_status) {
+        this.room_status = room_status;
     }
 
-    public Dorm getDorm() {
-        return dorm;
+    public int getDorm_id() {
+        return dorm_id;
     }
 
-    public void setDorm(Dorm dorm) {
-        this.dorm = dorm;
+    public void setDorm_id(int dorm_id) {
+        this.dorm_id = dorm_id;
     }
     
 }
