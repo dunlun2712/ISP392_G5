@@ -47,7 +47,7 @@ public class ChangePass extends HttpServlet {
         student.setPass(request.getParameter("pass"));
 
         if ("back".equals(update)) {
-            request.getRequestDispatcher("Profile/Profile.jsp").forward(request, response);
+            request.getRequestDispatcher("profile/Profile.jsp").forward(request, response);
             return;
         }
 
