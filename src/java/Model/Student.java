@@ -9,16 +9,15 @@ package Model;
  * @author tranm
  */
 public class Student {
-    String id,acc,pass,name,role,email,dob,cccd,major,course;
+    String id,pass,name,role,email,dob,cccd,major,course;
     String address,gender,ethnicity,nation,phone_num,relative_name;
-    String relative_contact,create_date,update_date;
+    String relative_contact,create_date,update_date,status;
 
     public Student() {
     }
 
-    public Student(String id, String acc, String pass, String name, String role, String email, String dob, String cccd, String major, String course, String address, String gender, String ethnicity, String nation, String phone_num, String relative_name, String relative_contact, String create_date, String update_date) {
+    public Student(String id, String pass, String name, String role, String email, String dob, String cccd, String major, String course, String address, String gender, String ethnicity, String nation, String phone_num, String relative_name, String relative_contact, String create_date, String update_date, String status) {
         this.id = id;
-        this.acc = acc;
         this.pass = pass;
         this.name = name;
         this.role = role;
@@ -36,6 +35,7 @@ public class Student {
         this.relative_contact = relative_contact;
         this.create_date = create_date;
         this.update_date = update_date;
+        this.status = status;
     }
 
     public String getId() {
@@ -44,14 +44,6 @@ public class Student {
 
     public void setId(String id) {
         this.id = id;
-    }
-
-    public String getAcc() {
-        return acc;
-    }
-
-    public void setAcc(String acc) {
-        this.acc = acc;
     }
 
     public String getPass() {
@@ -188,6 +180,14 @@ public class Student {
 
     public void setUpdate_date(String update_date) {
         this.update_date = update_date;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     
