@@ -59,7 +59,7 @@ public class ViewProfile extends HttpServlet {
         // Lưu đối tượng Student vào session
         HttpSession session = request.getSession();
         session.setAttribute("data", student);
-        request.getRequestDispatcher("Profile.jsp").forward(request, response);
+        request.getRequestDispatcher("profile/Profile.jsp").forward(request, response);
     }
 
     @Override
@@ -78,7 +78,7 @@ public class ViewProfile extends HttpServlet {
 
             case "pass_update":
                 
-                request.getRequestDispatcher("ChangePass.jsp").forward(request, response);
+                request.getRequestDispatcher("profile/ChangePass.jsp").forward(request, response);
                 break;
             case "update":
                 student.setName(request.getParameter("name"));
@@ -91,15 +91,15 @@ public class ViewProfile extends HttpServlet {
                 student.setAddress(request.getParameter("address"));
                 StudentDao d = new StudentDao();
                 d.updateStudentInfo(student);
-                request.getRequestDispatcher("Profile.jsp?mess=Update success").forward(request, response);
+                request.getRequestDispatcher("profile/Profile.jsp?mess=Update success").forward(request, response);
                 break;
 
             case "back":
-                request.getRequestDispatcher("Profile.jsp").forward(request, response);
+                request.getRequestDispatcher("profile/Profile.jsp").forward(request, response);
                 break;
             case "profile_update":
 
-                request.getRequestDispatcher("UpdateProfile.jsp").forward(request, response);
+                request.getRequestDispatcher("profile/UpdateProfile.jsp").forward(request, response);
                 break;
         }
     }

@@ -61,20 +61,20 @@ public class ChangePass extends HttpServlet {
                 StudentDao d = new StudentDao();
                 d.updatePass(newPassword, student.getId());
                 request.setAttribute("message", "Password updated successfully");
-                request.getRequestDispatcher("ChangePass.jsp").forward(request, response);
+                request.getRequestDispatcher("profile/ChangePass.jsp").forward(request, response);
             } else if (newPassword != null && !newPassword.equals(confirmPassword)) {
                 request.setAttribute("message", "New passwords do not match");
-                request.getRequestDispatcher("ChangePass.jsp").forward(request, response);
+                request.getRequestDispatcher("profile/ChangePass.jsp").forward(request, response);
             }
 
             if (oldPassword != null && oldPassword.equals(student.getPass())) {
                 request.setAttribute("message", "Old password is correct");
             } else if (oldPassword != null) {
                 request.setAttribute("message", "Old password is incorrect");
-                request.getRequestDispatcher("ChangePass.jsp").forward(request, response);
+                request.getRequestDispatcher("profile/ChangePass.jsp").forward(request, response);
             }
         }
 
-        request.getRequestDispatcher("ChangePass.jsp").forward(request, response);
+        request.getRequestDispatcher("profile/ChangePass.jsp").forward(request, response);
     }
 }
