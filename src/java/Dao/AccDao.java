@@ -29,16 +29,14 @@ public class AccDao extends DBContext {
         }
     }
 
-    public void insertAcc(String acc, String acc_pass) {
+    public void insertAcc(String name, String email, String pass) {
         try {
-            String strSQL = "INSERT INTO [dbo].[Account]\n"
-                    + "           ([acc_username]\n"
-                    + "           ,[acc_pass])\n"
-                    + "     VALUES (?,?) ";
+            String strSQL = "insert into Account (acc_username, acc_pass, acc_email) VALUES(?,?,? )";
             stm = cnn.prepareStatement(strSQL);
 
-            stm.setString(1, acc);
-            stm.setString(2, acc_pass);
+            stm.setString(1, name);
+            stm.setString(2, pass);
+            stm.setString(3, email);
 
             stm.executeUpdate();
         } catch (Exception e) {
@@ -46,12 +44,12 @@ public class AccDao extends DBContext {
         }
     }
 
-    public Account getInforAcc(String acc) {
+    public Account getInforAcc(String email) {
         Account account = null;
         try {
-            String strSQL = "select * from Account where acc_username = ? ";
+            String strSQL = "select * from Account where acc_email = ? ";
             stm = cnn.prepareStatement(strSQL);
-            stm.setString(1, acc);
+            stm.setString(1, email);
             rs = stm.executeQuery();
             
             if (rs.next()) {
