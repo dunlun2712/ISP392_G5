@@ -26,15 +26,18 @@
                 </c:choose>
                 <input name="account" type="email" id="inputEmail" class="form-control" placeholder="Account" value="${email}">
                 <input name="password" type="password" id="inputPassword" class="form-control" placeholder="Password">
-                <div class="form-group form-check">
+                <div class="form-group d-flex justify-content-between align-items-center">
+                <div class="form-check">
                     <input name="remember" value="1" type="checkbox" class="form-check-input" id="exampleCheck1">
                     <label class="form-check-label" for="exampleCheck1">Remember me</label>
                 </div>
-                <button class="btn btn-success btn-block" type="submit" name="login" value="Login"><i class="fas fa-sign-in-alt"></i> Sign in</button>
-                <hr>
-                <button class="btn btn-primary btn-block" type="submit" name="login" value="signupPage"><i class="fas fa-user-plus"></i> Sign up New Account</button>
+                <a href="#" id="forgot_pswd" class="btn btn-link p-0">Forgot password?</a>
             </div>
-        </form>
+            <button class="btn btn-success btn-block" type="submit" name="login" value="Login"><i class="fas fa-sign-in-alt"></i> Sign in</button>
+            <hr>
+            <button class="btn btn-primary btn-block" type="submit" name="login" value="signupPage"><i class="fas fa-user-plus"></i> Sign up New Account</button>
+        </div>
+    </form>
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
@@ -59,6 +62,5 @@
                 $('#logreg-forms #cancel_signup').click(toggleSignUp);
             })
         </script> 
-
     </body>
 </html>
