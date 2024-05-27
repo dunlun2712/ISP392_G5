@@ -121,7 +121,7 @@
             </form>
 
 
-            <p class="report-date">"Available beds" Report (Male only) at 21/05/2024 10:54:14</p>
+           
             <table>
                 <thead>
                     <tr>
