@@ -12,32 +12,7 @@
         <title>Login Form</title>
     </head>
     <body>
-        <form action="login" method="post" class="form-signup">
-            <div id="logreg-forms">
-                <c:choose>
-                    <c:when test="${mess !=null}">
-                        <div class="col-12">
-                            <div class="alert alert-danger" role="alert">
-                                ${mess}
-                            </div>
-                        </div>
-                    </c:when>
-                </c:choose>
-                <h1 class="h3 mb-3 front-weight-normal" style="text-align: center">Sign up</h1>
-                
-                <input name="name" type="text" id="user-name" class="form-control" placeholder="User name" required="" autofocus="">
-                <input name="email" type="email" id="user-email" class="form-control" placeholder="Email" required="" autofocus="">
-                <input name="password" type="password" id="user-pass" class="form-control" placeholder="Password" required="" autofocus="">
-                <input name="repass" type="password" id="user-repeatpass" class="form-control" placeholder="Repeat Password" required="" autofocus="">
-
-                <button class="btn btn-primary btn-block" type="submit" name="login" value="signup"><i class="fas fa-user-plus"></i>Sign up</button>
-
-
-
-            </div>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-            <script>
+        <script>
                 function toggleResetPswd(e) {
                     e.preventDefault();
                     $('#logreg-forms .form-signin').toggle()// display:block or none
@@ -57,7 +32,30 @@
                     $('#logreg-forms #btn-signup').click(toggleSignUp);
                     $('#logreg-forms #cancel_signup').click(toggleSignUp);
                 })
-            </script>  <a href="Login.jsp" id="cancel_signup"><i class="fas fa-angle-left"></i> Back</a>
+            </script>  
+        <form action="login" method="post" class="form-signup">
+            <div id="logreg-forms">
+                <c:choose>
+                    <c:when test="${mess !=null}">
+                        <div class="col-12">
+                            <div class="alert alert-danger" role="alert">
+                                ${mess}
+                            </div>
+                        </div>
+                    </c:when>
+                </c:choose>
+                <h1 class="h3 mb-3 front-weight-normal" style="text-align: center">Sign up</h1>
+
+                <input name="name" type="text" id="user-name" class="form-control" placeholder="User name" required="" autofocus="">
+                <input name="email" type="email" id="user-email" class="form-control" placeholder="Email" required="" autofocus="">
+                <input name="password" type="password" id="user-pass" class="form-control" placeholder="Password" required="" autofocus="">
+                <input name="repass" type="password" id="user-repeatpass" class="form-control" placeholder="Repeat Password" required="" autofocus="">
+
+                <button class="btn btn-primary btn-block" type="submit" name="login" value="signup"><i class="fas fa-user-plus"></i>Sign up</button>
+                <a href="Login.jsp" id="cancel_signup"><i class="fas fa-angle-left"></i> Back</a>
+            </div>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
         </form>
     </body>
 </html>
