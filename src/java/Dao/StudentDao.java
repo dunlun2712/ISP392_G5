@@ -54,24 +54,24 @@ public class StudentDao extends DBContext {
                 String userID = rs.getString(1);
                 String role = rs.getString(2);
                 String name = rs.getString(3);
-                String acc = rs.getString(4);
-                String pass = rs.getString(5);
-                String email = rs.getString(6);
-                String cccd = rs.getString(7);
-                String major = rs.getString(8);
-                String course = rs.getString(9);
-                String address = rs.getString(10);
-                String dob = String.valueOf(rs.getDate(11));
-                String gender = rs.getString(12);
-                String ethnicity = rs.getString(13);
-                String nation = rs.getString(14);
-                String phone_num = rs.getString(15);
-                String relative_name = rs.getString(16);
-                String relative_contact = rs.getString(17);
-                String createDate = String.valueOf(rs.getDate(18));
-                String updateDate = String.valueOf(rs.getDate(19));
+                String pass = rs.getString(4);
+                String email = rs.getString(5);
+                String cccd = rs.getString(6);
+                String major = rs.getString(7);
+                String course = rs.getString(8);
+                String address = rs.getString(9);
+                String dob = String.valueOf(rs.getDate(10));
+                String gender = rs.getString(11);
+                String ethnicity = rs.getString(12);
+                String nation = rs.getString(13);
+                String phone_num = rs.getString(14);
+                String relative_name = rs.getString(15);
+                String relative_contact = rs.getString(16);
+                String createDate = String.valueOf(rs.getDate(17));
+                String updateDate = String.valueOf(rs.getDate(18));
+                String status = rs.getString(19);
 
-                student = new Student(userID, acc, pass, name, role, email, dob, cccd, major, course, address, gender, ethnicity, nation, phone_num, relative_name, relative_contact, createDate, updateDate);
+                student = new Student(userID, pass, name, role, email, dob, cccd, major, course, address, gender, ethnicity, nation, phone_num, relative_name, relative_contact, createDate, updateDate, status);
             }
         } catch (Exception e) {
             System.out.println("getUsers:" + e.getMessage());
@@ -112,19 +112,16 @@ public class StudentDao extends DBContext {
     }
 
     public void updatePass(String newPassword, String id) {
-       try {
+        try {
             String strSQL = "update Users set pass=? WHERE users_id=?";
             stm = cnn.prepareStatement(strSQL);
 
-           stm.setString(1, newPassword);
-           stm.setString(2, id);
+            stm.setString(1, newPassword);
+            stm.setString(2, id);
 
             stm.executeUpdate();
         } catch (Exception e) {
             System.out.println("updateStudentInfo: " + e.getMessage());
         }
     }
-
-
-
 }
