@@ -26,12 +26,7 @@ public class DAO extends DBContext {
 
     public List<Dorminatory> getAllDorm() {
         List<Dorminatory> list = new ArrayList<>();
-        String query = "SELECT \n"
-                + "    d.dorm_id,\n"
-                + "    d.dorm_name\n"
-                + "\n"
-                + "FROM \n"
-                + "    [dbo].[Dormitory] AS d";
+        String query = "SELECT * FROM Dormitory ";
         try {
 
             conn = connection;
