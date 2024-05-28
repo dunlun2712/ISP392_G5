@@ -162,4 +162,17 @@ public class StudentDao extends DBContext {
         return data;
     }
 
+    public void updateStudentStatus(String id, String newStatus) {
+
+        try {
+            String strSQL= "UPDATE Users SET status = ? WHERE users_id = ?";
+            stm = cnn.prepareStatement(strSQL);
+            stm.setString(1, newStatus);
+            stm.setString(2, id);
+            stm.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
 }

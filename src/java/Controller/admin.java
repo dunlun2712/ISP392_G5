@@ -83,7 +83,6 @@ public class admin extends HttpServlet {
                                 return s.getCourse().toLowerCase().contains(searchQuery.toLowerCase());
                             case "address":
                                 return s.getAddress().toLowerCase().contains(searchQuery.toLowerCase());
-
                             case "ethnicity":
                                 return s.getEthnicity().toLowerCase().contains(searchQuery.toLowerCase());
                             case "nation":
@@ -98,6 +97,8 @@ public class admin extends HttpServlet {
                                 return s.getCreate_date().toLowerCase().contains(searchQuery.toLowerCase());
                             case "update_date":
                                 return s.getUpdate_date().toLowerCase().contains(searchQuery.toLowerCase());
+                            case "status":
+                                return s.getStatus().toLowerCase().contains(searchQuery.toLowerCase());
                             default:
                                 return false;
                         }
@@ -113,17 +114,27 @@ public class admin extends HttpServlet {
             case "viewstudent":
                 request.getRequestDispatcher("admin/admin.jsp").forward(request, response);
                 break;
-            case "viewmanager":
-                // Add manager view logic here
+            case "changepass":
+                request.getRequestDispatcher("profile/Profile.jsp").forward(request, response);
                 break;
-            // Add more cases as needed
+           
+       
         }
     }
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        processRequest(request, response);
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        StudentDao dao = new StudentDao();
+        ArrayList<Student> students = dao.getAllStudent();
+
+        for (Student i : students) {
+            String newStatus = request.getParameter("status_" + i.getId());
+            if (newStatus != null && !newStatus.equals(i.getStatus())) {
+                i.setStatus(newStatus);
+                dao.updateStudentStatus(i.getId(), newStatus);
+            }
+        }
+        request.getRequestDispatcher("admin/admin.jsp").forward(request, response);
     }
 
 }
