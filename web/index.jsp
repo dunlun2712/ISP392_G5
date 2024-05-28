@@ -142,8 +142,16 @@
                             <h5>WELCOME HIROTO</h5>
                             <h2>Experience the greatest for you holidays.</h2>
                         </div>
-                        <form action="search" class="filter__form" method="get">
-                            <input   name="txt" type="text" class="form-control" placeholder="What do you choose?" >
+                        <form action="dormdetail" class="filter__form" method="get">
+
+                         
+                                <select id="dormSelect" name="pid" onchange="this.form.submit()">
+                                    <c:forEach items="${ListD}" var="d">
+                                        <option value="${d.dorm_id}" class="${tag == d.dorm_id ? 'active' : ''}">${d.dorm_name}</option>
+                                    </c:forEach>
+                                </select>
+                           
+
 
                             <button type="submit">Search</button>
                         </form>

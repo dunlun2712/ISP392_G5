@@ -3,9 +3,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
 
-package Controller;
+package controller;
 
-import dal.RoomDAO;
+import Dao.DAO;
 import jakarta.servlet.RequestDispatcher;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -14,13 +14,13 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.util.List;
-import Model.Room;
+import Model.Dorminatory;
 
 /**
  *
  * @author khanh
  */
-public class searchServlet extends HttpServlet {
+public class homepage extends HttpServlet {
    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -57,15 +57,9 @@ public class searchServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        String txtSearch = request.getParameter("txt");
-
-        RoomDAO roomDAO = new RoomDAO();
-        List<Room> rooms = roomDAO.searchRoomByName(txtSearch);
-        request.setAttribute("txtS", txtSearch);
-        // Set the search results as a request attribute
-        request.setAttribute("rooms", rooms);
-
-        // Forward the request to the JSP page to display the results
+        DAO dao = new DAO();
+        List<Dorminatory> list = dao.getAllDorm();
+        request.setAttribute("ListD", list);
         request.getRequestDispatcher("index.jsp").forward(request, response);
        
     } 

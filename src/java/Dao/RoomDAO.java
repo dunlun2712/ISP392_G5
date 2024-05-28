@@ -2,8 +2,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package Dao;
+package DAO;
 
+import Model.Dorminatory;
+import dal.DBContext;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -11,7 +13,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import Model.*;
-import dal.DBContext;
 
 /**
  *
@@ -19,45 +20,39 @@ import dal.DBContext;
  */
 public class RoomDAO extends DBContext {
 
-    public List<RoomHome> searchRoomByName(String txtSearch) {
-        List<RoomHome> list = new ArrayList<>();
-        String query = """
-                       SELECT r.[room_id]
-                             ,r.[dorm_id]
-                             ,r.[floor]
-                             ,r.[room_type]
-                             ,r.[price]
-                             ,r.[room_status]
-                             ,d.[dorm_name]
-                         FROM [dbo].[Room] r
-                         JOIN Dormitory d ON r.dorm_id = d.dorm_id
-                         WHERE r.room_type LIKE ? OR d.dorm_name LIKE ?""";
-        try (Connection conn = connection;
-             PreparedStatement ps = conn.prepareStatement(query)) {
+    Connection conn = null;
+    PreparedStatement ps = null;
+    ResultSet rs = null;
 
-            ps.setString(1, "%" + txtSearch + "%");
-            ps.setString(2, "%" + txtSearch + "%");
-            try (ResultSet rs = ps.executeQuery()) {
-                while (rs.next()) {
-                    RoomHome room = new RoomHome();
-                    room.setRoomID(rs.getString("room_id"));
-                    room.setFloor(rs.getString("floor"));
-                    room.setRoomType(rs.getString("room_type"));
-                    room.setPrice(rs.getInt("price"));
-                    room.setRoomStatus(rs.getString("room_status"));
+    public List<Dorminatory> searchRoomByName(String dormName) {
+        List<Dorminatory> list = new ArrayList<>();
+        String query = ("SELECT * FROM [dbo].[Dormitory] WHERE [dorm_name] = ?");
+        try (Connection conn = connection; PreparedStatement ps = conn.prepareStatement(query)) {
 
-                    Dorm dorm = new Dorm();
-                    dorm.setDormName(rs.getString("dorm_name"));
-                    room.setDorm(dorm);
-
-                    list.add(room);
-                }
+            ps.setString(2, dormName);
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                return (List<Dorminatory>) new Dorminatory(rs.getInt("dormID"), rs.getString("dormName"));
             }
         } catch (SQLException e) {
-           
+            // Xử lý ngoại lệ, ví dụ: ghi log hoặc in ra thông báo lỗi
+            e.printStackTrace();
+        } finally {
+            // Đảm bảo các tài nguyên cơ sở dữ liệu được đóng sau khi sử dụng
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (ps != null) {
+                    ps.close();
+                }
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
         }
-        return list;
+        return null;
     }
+
     public static void main(String[] args) {
         RoomDAO r = new RoomDAO();
         System.out.println(r);
