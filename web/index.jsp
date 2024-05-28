@@ -8,7 +8,7 @@
         <meta name="keywords" content="Hiroto, unica, creative, html">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <title>Hiroto | Template</title>
+        <title></title>
 
         <!-- Css Styles -->
         <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
@@ -31,18 +31,13 @@
         <div class="offcanvas-menu-overlay"></div>
         <div class="offcanvas-menu-wrapper">
             <div class="offcanvas__logo">
-                <a href="./index.html"><img src="img/logo.png" alt=""></a>
+                <a href="./index.jsp"><img src="img/logo.png" alt=""></a>
             </div>
             <div id="mobile-menu-wrap"></div>
             <div class="offcanvas__btn__widget">
                 <a href="#">Book Now <span class="arrow_right"></span></a>
             </div>
-            <div class="offcanvas__widget">
-                <ul>
-                    <li><span class="icon_pin_alt"></span> 96 Ernser Vista Suite 437, NY, US</li>
-                    <li><span class="icon_phone"></span> (123) 456-78-910</li>
-                </ul>
-            </div>
+
             <div class="offcanvas__language">
                 <img src="img/lan.png" alt="">
                 <span>English</span>
@@ -67,10 +62,7 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-7">
-                            <ul class="header__top__widget">
-                                <li><span class="icon_pin_alt"></span> 96 Ernser Vista Suite 437, NY, US</li>
-                                <li><span class="icon_phone"></span> (123) 456-78-910</li>
-                            </ul>
+
                         </div>
                         <div class="col-lg-5">
                             <div class="header__top__right">
@@ -99,14 +91,14 @@
                     <div class="row">
                         <div class="col-lg-2">
                             <div class="header__logo">
-                                <a href="./index.html"><img src="img/logo.png" alt=""></a>
+                                <a href="home"><img src="img/logo.png" alt=""></a>
                             </div>
                         </div>
                         <div class="col-lg-10">
                             <div class="header__nav">
                                 <nav class="header__menu">
                                     <ul class="menu__class">
-                                        <li class="active"><a href="./index.html">Home</a></li>
+                                        <li class="active"><a href="home">Home</a></li>
                                         <li><a href="./rooms.html">Rooms</a></li>
                                         <li><a href="./about.html">About Us</a></li>
                                         <li><a href="#">Pages</a>
@@ -140,10 +132,10 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="hero__text">
-                            <h5>WELCOME HIROTO</h5>
-                            <h2>Experience the greatest for you holidays.</h2>
+                            <h5>WELCOME DORMITORY</h5>
+                            <h2>Wishing you wonderful years at university.</h2>
                         </div>
-                        <form action="dormdetail" class="filter__form" method="get">
+                             <form action="dormdetail" class="filter__form" method="get">
 
                          
                                 <select id="dormSelect" name="pid" onchange="this.form.submit()">
@@ -261,6 +253,7 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-3 col-md-6 col-sm-6 p-0">
+                  
                         <div class="home__room__item set-bg" data-setbg="img/home-room/hr-1.jpg">
                             <div class="home__room__title">
                                 <h4>Deluxe Room</h4>
@@ -312,7 +305,7 @@
                     <div class="chooseus__text">
                         <div class="section-title">
                             <h5>WHY CHOOSE US</h5>
-                            <h2>Contact us now to get the latest deals and for the next booking</h2>
+                            <h2>Contact us now to book the most suitable dormitory room</h2>
                         </div>
                         <a href="#" class="primary-btn">Booking Now</a>
                     </div>
@@ -337,9 +330,9 @@
                             <div class="footer__logo">
                                 <a href="#"><img src="img/logo.png" alt=""></a>
                             </div>
-                            <h4>(123) 456-78-91096</h4>
+                            <h4>0941384237</h4>
                             <ul>
-                                <li>Ernser Vista Suite 437, NY</li>
+                                <li>Khu Cong Nghe Cao Hoa Lac, km 29, Dai lo Thang Long, Ha Noi</li>
                                 <li>Info.colorlib@gmail.com</li>
                             </ul>
                             <div class="footer__social">
@@ -389,7 +382,7 @@
                     </div>
                 </div>
             </div>
-            
+
         </div>
     </footer>
     <!-- Footer Section End -->
