@@ -1,0 +1,439 @@
+<%-- 
+    Document   : booking
+    Created on : May 27, 2024, 1:27:23 PM
+    Author     : ASUS
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+<!DOCTYPE html>
+<html lang="zxx">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="description" content="Hiroto Template">
+        <meta name="keywords" content="Hiroto, unica, creative, html">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Hiroto | Template</title>
+
+        <!-- Google Font -->
+        <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700;800;900&display=swap"
+              rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+
+        <!-- Css Styles -->
+        <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
+        <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css">
+        <link rel="stylesheet" href="css/elegant-icons.css" type="text/css">
+        <link rel="stylesheet" href="css/nice-select.css" type="text/css">
+        <link rel="stylesheet" href="css/jquery-ui.min.css" type="text/css">
+        <link rel="stylesheet" href="css/owl.carousel.min.css" type="text/css">
+        <link rel="stylesheet" href="css/slicknav.min.css" type="text/css">
+        <link rel="stylesheet" href="css/style.css" type="text/css">
+        <style>
+            .booking-section {
+                display: flex;
+                justify-content: space-between;
+                align-items: flex-start;
+            }
+
+            .account-balance p {
+                margin: 0;
+                padding: 5px 0;
+                font-size: 18px;
+                color: #0044cc;
+            }
+
+            .booking-form {
+                width: 50%;
+            }
+
+            .booking-form form {
+                display: flex;
+                flex-direction: column;
+            }
+
+            .booking-form label {
+                margin-top: 10px;
+                font-weight: bold;
+            }
+
+            .booking-form select,
+            .booking-form input {
+                margin-top: 5px;
+                padding: 5px;
+                border: 1px solid #ddd;
+                border-radius: 5px;
+            }
+
+            .booking-form button {
+                margin-top: 20px;
+                padding: 10px;
+                background-color: #ff6600;
+                color: white;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+            }
+
+            .booking-form .error-message {
+                color: red;
+                margin-top: 10px;
+            }
+
+            .booking-form button[type="button"] {
+                background-color: #ffcc00;
+            }
+
+            .booking-form button[type="submit"] {
+                background-color: #ff6600;
+            }
+
+            .booking-form button[type="button"]:last-of-type {
+                background-color: #007bff;
+            }
+        </style>
+    </head>
+
+    <body>
+        <!-- Page Preloder -->
+        <div id="preloder">
+            <div class="loader"></div>
+        </div>
+
+        <!-- Offcanvas Menu Begin -->
+        <div class="offcanvas-menu-overlay"></div>
+        <div class="offcanvas-menu-wrapper">
+            <div class="offcanvas__logo">
+                <a href="./index.html"><img src="img/logo.png" alt=""></a>
+            </div>
+            <nav class="offcanvas__menu mobile-menu">
+                <ul>
+                    <li class="active"><a href="./index.html">Home</a></li>
+                    <li><a href="./rooms.html">Rooms</a></li>
+                    <li><a href="./about.html">About Us</a></li>
+                    <li><a href="#">Pages</a>
+                        <ul class="dropdown">
+                            <li><a href="./about.html">About Us</a></li>
+                            <li><a href="./room-details.html">Room Details</a></li>
+                            <li><a href="./blog-details.html">Blog Details</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="./blog.html">News</a></li>
+                    <li><a href="./contact.html">Contact</a></li>
+                </ul>
+            </nav>
+            <div id="mobile-menu-wrap"></div>
+            <div class="offcanvas__btn__widget">
+                <a href="#">Book Now <span class="arrow_right"></span></a>
+            </div>
+            <div class="offcanvas__widget">
+                <ul>
+                    <li><span class="icon_pin_alt"></span> 96 Ernser Vista Suite 437, NY, US</li>
+                    <li><span class="icon_phone"></span> (123) 456-78-910</li>
+                </ul>
+            </div>
+            <div class="offcanvas__language">
+                <img src="img/lan.png" alt="">
+                <span>English</span>
+                <i class="fa fa-angle-down"></i>
+                <ul>
+                    <li>English</li>
+                    <li>Bangla</li>
+                </ul>
+            </div>
+            <div class="offcanvas__auth">
+                <ul>
+                    <li><a href="#">Login</a></li>
+                    <li><a href="#">Register</a></li>
+                </ul>
+            </div>
+        </div>
+        <!-- Offcanvas Menu End -->
+
+        <!-- Header Section Begin -->
+        <header class="header">
+            <div class="header__top">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-7">
+                            <ul class="header__top__widget">
+                                <li><span class="icon_pin_alt"></span> 96 Ernser Vista Suite 437, NY, US</li>
+                                <li><span class="icon_phone"></span> (123) 456-78-910</li>
+                            </ul>
+                        </div>
+                        <div class="col-lg-5">
+                            <div class="header__top__right">
+
+                                <div class="header__top__language">
+                                    <img src="img/lan.png" alt="">
+                                    <span>English</span>
+                                    <i class="fa fa-angle-down"></i>
+                                    <ul>
+                                        <li>English</li>
+                                        <li>Bangla</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="header__nav__option">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-2">
+                            <div class="header__logo">
+                                <a href="./index.html"><img src="img/logo.png" alt=""></a>
+                            </div>
+                        </div>
+                        <div class="col-lg-10">
+                            <div class="header__nav">
+                                <nav class="header__menu">
+                                    <ul>
+                                        <li><a href="./index.html">Home</a></li>
+                                        <li class="active"><a href="./rooms.html">Rooms</a></li>
+                                        <li><a href="./about.html">About Us</a></li>
+                                        <li><a href="#">Pages</a>
+                                            <ul class="dropdown">
+                                                <li><a href="./about.html">About Us</a></li>
+                                                <li><a href="./room-details.html">Room Details</a></li>
+                                                <li><a href="./blog-details.html">Blog Details</a></li>
+                                            </ul>
+                                        </li>
+                                        <li><a href="./blog.html">News</a></li>
+                                        <li><a href="./contact.html">Contact</a></li>
+                                    </ul>
+                                </nav>
+                                <div class="header__nav__widget">
+                                    <a href="#">Book Now <span class="arrow_right"></span></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="canvas__open">
+                        <span class="fa fa-bars"></span>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- Header Section End -->
+
+        <!-- Breadcrumb Begin -->
+        <div class="breadcrumb-option set-bg" data-setbg="img/breadcrumb-bg.jpg">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12 text-center">
+                        <div class="breadcrumb__text">
+                            <h1>Dormitory</h1>
+                            <div class="breadcrumb__links">
+                                <a href="./index.html">Home</a>
+                                <span>Rooms</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Breadcrumb End -->
+
+        <!-- Rooms Section Begin -->
+        <section class="rooms spad">
+            <div class="container">
+                <h1>Booking Bed</h1>
+                <div class="booking-section">
+                    <div class="account-balance">
+
+                        <p> Balance required in VND</p>
+                        <p><strong id="totalCost">0 </strong></p>
+                        
+
+                    </div>
+                    <div class="booking-form">
+                        <form action="booking" method="post">
+
+                            <a href="home">
+                                <button type="button">See available rooms</button>
+                            </a>
+
+                            <label for="dom">Room</label>
+                            <select id="dom" name="dom" onchange="redirectToPage()">
+                                <c:forEach items="${details}" var="d">
+                                    <option data-url="?pid=${d.room_id}" value="${d.room_id}" ${detail.room_id eq d.room_id ? 'selected' : ''}>${d.room_id}</option>
+                                </c:forEach>
+                            </select>
+                            <label for="month">Month</label>
+                            <select id="month" name="floor" onchange="countTotalCost()">
+                                <option data-cost="${detail.price * 1}" value="1">1</option>
+                                <option data-cost="${detail.price * 3}" value="3">3</option>
+                                <option data-cost="${detail.price * 6}" value="6">6</option>
+                                <option data-cost="${detail.price * 9}" value="9">9</option>
+                                <option data-cost="${detail.price * 12}" value="12">12</option>
+
+                            </select>
+                            <label for="room-type">Room Type</label>
+                            <select id="room-type" name="room-type" readonly disabled >
+                                <option value="SVVN">${detail.room_type}</option>
+                            </select>
+                            <label for="semester">Price in Month</label>
+                            <select id="semester" name="semester" readonly disabled>
+
+                                <option value="">${detail.price}</option>
+
+
+                            </select>
+                            <label for="note">Note</label>
+                            <input type="text" id="note" name="note">
+                            <button type="submit">Booking with DNG</button>
+                            <button type="button">Deposit money</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Rooms Section End -->
+
+        <!-- Footer Section Begin -->
+        <footer class="footer set-bg" data-setbg="img/footer-bg.jpg">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="logo__carousel owl-carousel">
+                            <div class="logo__carousel__item">
+                                <a href="#"><img src="img/logo/logo-1.png" alt=""></a>
+                            </div>
+                            <div class="logo__carousel__item">
+                                <a href="#"><img src="img/logo/logo-2.png" alt=""></a>
+                            </div>
+                            <div class="logo__carousel__item">
+                                <a href="#"><img src="img/logo/logo-3.png" alt=""></a>
+                            </div>
+                            <div class="logo__carousel__item">
+                                <a href="#"><img src="img/logo/logo-4.png" alt=""></a>
+                            </div>
+                            <div class="logo__carousel__item">
+                                <a href="#"><img src="img/logo/logo-5.png" alt=""></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="footer__content">
+                    <div class="row">
+                        <div class="col-lg-3 col-md-6 col-sm-6">
+                            <div class="footer__about">
+                                <div class="footer__logo">
+                                    <a href="#"><img src="img/logo.png" alt=""></a>
+                                </div>
+                                <h4>(123) 456-78-91096</h4>
+                                <ul>
+                                    <li>Ernser Vista Suite 437, NY</li>
+                                    <li>Info.colorlib@gmail.com</li>
+                                </ul>
+                                <div class="footer__social">
+                                    <a href="#"><i class="fa fa-facebook"></i></a>
+                                    <a href="#"><i class="fa fa-twitter"></i></a>
+                                    <a href="#"><i class="fa fa-linkedin"></i></a>
+                                    <a href="#"><i class="fa fa-youtube-play"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 offset-lg-1 col-md-5 offset-md-1 col-sm-6">
+                            <div class="footer__widget">
+                                <h4>Quick Link</h4>
+                                <ul>
+                                    <li><a href="#">Home</a></li>
+                                    <li><a href="#">Booking</a></li>
+                                    <li><a href="#">About Us</a></li>
+                                    <li><a href="#">Review</a></li>
+                                    <li><a href="#">Contact</a></li>
+                                </ul>
+                                <ul>
+                                    <li><a href="#">Services</a></li>
+                                    <li><a href="#">Our Room</a></li>
+                                    <li><a href="#">Restaurants</a></li>
+                                    <li><a href="#">Payments</a></li>
+                                    <li><a href="#">Events</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-lg-5 col-md-8 col-sm-12">
+                            <div class="footer__newslatter">
+                                <h4>Subscribe our newlatester</h4>
+                                <form action="#">
+                                    <input type="text" placeholder="Your E-mail Address">
+                                    <button type="submit">Subscribe</button>
+                                </form>
+                                <div class="footer__newslatter__find">
+                                    <h5>Find Us:</h5>
+                                    <div class="footer__newslatter__find__links">
+                                        <a href="#"><i class="fa fa-tripadvisor"></i></a>
+                                        <a href="#"><i class="fa fa-map-o"></i></a>
+                                        <a href="#"><i class="fa fa-dribbble"></i></a>
+                                        <a href="#"><i class="fa fa-forumbee"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer__copyright">
+                    <div class="row">
+                        <div class="col-lg-7 col-md-7">
+                            <div class="footer__copyright__text">
+                                <p>© Copyright 2019 Hotell Hiroto - Theme by Colorlib.</p>
+                            </div>
+                        </div>
+                        <div class="col-lg-5 col-md-5">
+                            <ul class="footer__copyright__links">
+                                <li><a href="#">Terms Of Use</a></li>
+                                <li><a href="#">Privacy Policy</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- Footer Section End -->
+
+        <!-- Js Plugins -->
+        <script src="js/jquery-3.3.1.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/jquery.nice-select.min.js"></script>
+        <script src="js/jquery-ui.min.js"></script>
+        <script src="js/jquery.slicknav.js"></script>
+        <script src="js/owl.carousel.min.js"></script>
+        <script src="js/main.js"></script>
+
+        <script>
+            function redirectToPage() {
+                const selectElement = document.getElementById('dom');
+                const selectedOption = selectElement.options[selectElement.selectedIndex];
+                const url = selectedOption.getAttribute('data-url');
+                if (url) {
+                    window.location.href = url;
+                }
+            }
+        </script>
+
+        <script>
+            function countTotalCost() {
+                const selectElement = document.getElementById('month');
+                const selectedOption = selectElement.options[selectElement.selectedIndex];
+                const cost = selectedOption.getAttribute('data-cost');
+                
+                const totalCost = document.getElementById('totalCost');
+                totalCost.textContent = cost + ' VND';
+            }
+            
+            countTotalCost();
+        </script>
+
+    </body>
+
+</html>
+
