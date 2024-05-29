@@ -53,8 +53,8 @@
         </div>
         <div class="offcanvas__auth">
             <ul>
-                <li><a href="#">Login</a></li>
-                <li><a href="#">Register</a></li>
+                <li><a href="Login.jsp">Login</a></li>
+                <li><a href="SignUp.jsp?login=signup">Register</a></li>
             </ul>
         </div>
     </div>
@@ -75,8 +75,8 @@
                         <div class="header__top__right">
                             <div class="header__top__auth">
                                 <ul>
-                                    <li><a href="#">Login</a></li>
-                                    <li><a href="#">Register</a></li>
+                                    <li><a href="Login.jsp">Login</a></li>
+                <li><a href="SignUp.jsp?login=signup">Register</a></li>
                                 </ul>
                             </div>
                             <div class="header__top__language">

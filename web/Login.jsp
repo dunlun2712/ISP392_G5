@@ -16,7 +16,7 @@
             <div id="logreg-forms">
                 <h1 class="h3 mb-3 font-weight-normal" style="text-align: center">Sign in</h1>
                 <c:choose>
-                    <c:when test="${mess == 'Wrong Email or Password'}">
+                    <c:when test="${mess == 'Wrong Email or Password' || mess == 'Email must be fpt.edu.vn'}">
                         <div class="col-12">
                             <div class="alert alert-danger" role="alert">
                                 ${mess}
