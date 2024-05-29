@@ -77,22 +77,30 @@ public class Login extends HttpServlet {
         switch (login) {
             case "Login":
                 boolean isAuthenticated = false;
-                if (account != null && email.equals(account.getEmail())) {
-                    if (pass.equals(account.getPass())) {
-                        isAuthenticated = true;
-                        session.setAttribute("email", email);
-                        request.getRequestDispatcher("index.jsp").forward(request, response);
+                boolean isEmailValid = email.endsWith("@fpt.edu.vn");
+
+                if (isEmailValid) {
+                    if (account != null && email.equals(account.getEmail())) {
+                        if (pass.equals(account.getPass())) {
+                            isAuthenticated = true;
+                            session.setAttribute("email", email);
+                            request.getRequestDispatcher("index.jsp").forward(request, response);
+                        }
                     }
-                }
-                if (student != null && email.equals(student.getEmail())) {
-                    if (pass.equals(student.getPass())) {
-                        isAuthenticated = true;
-                        session.setAttribute("email", email);
-                        request.getRequestDispatcher("index.jsp").forward(request, response);
+                    if (student != null && email.equals(student.getEmail())) {
+                        if (pass.equals(student.getPass())) {
+                            isAuthenticated = true;
+                            session.setAttribute("email", email);
+                            request.getRequestDispatcher("index.jsp").forward(request, response);
+                        }
                     }
-                }
+                }   
                 if (!isAuthenticated) {
-                    request.setAttribute("mess", "Wrong Email or Password");
+                    if (!isEmailValid) {
+                        request.setAttribute("mess", "Email must be fpt.edu.vn");
+                    } else {
+                        request.setAttribute("mess", "Wrong Email or Password");
+                    }
                     request.setAttribute("email", email);
                     request.getRequestDispatcher("Login.jsp").forward(request, response);
                 }
@@ -100,21 +108,27 @@ public class Login extends HttpServlet {
             // Thêm các case khác nếu cần
 
             case "signup":
-
                 String acc_name = request.getParameter("name");
                 String acc_email = request.getParameter("email");
                 String acc_pass = request.getParameter("password");
                 String repass = request.getParameter("repass");
-                Account existingAccount = accdao.getInforAcc(acc_email);
-                if (existingAccount != null && acc_email.equals(existingAccount.getEmail())) {
-                    request.setAttribute("mess", "This email has already been registered");
-                    request.getRequestDispatcher("SignUp.jsp").forward(request, response);
-                } else if (!repass.equals(acc_pass)) {
-                    request.setAttribute("mess", "Your passwords do not match");
+                boolean isSignupEmailValid = acc_email.endsWith("@fpt.edu.vn");
+
+                if (!isSignupEmailValid) {
+                    request.setAttribute("mess", "Email must be fpt.edu.vn");
                     request.getRequestDispatcher("SignUp.jsp").forward(request, response);
                 } else {
-                    accdao.insertAcc(acc_name, acc_email, acc_pass);
-                    request.getRequestDispatcher("index.jsp").forward(request, response);
+                    Account existingAccount = accdao.getInforAcc(acc_email);
+                    if (existingAccount != null && acc_email.equals(existingAccount.getEmail())) {
+                        request.setAttribute("mess", "This email has already been registered");
+                        request.getRequestDispatcher("SignUp.jsp").forward(request, response);
+                    } else if (!repass.equals(acc_pass)) {
+                        request.setAttribute("mess", "Your passwords do not match");
+                        request.getRequestDispatcher("SignUp.jsp").forward(request, response);
+                    } else {
+                        accdao.insertAcc(acc_name, acc_email, acc_pass);
+                        request.getRequestDispatcher("index.jsp").forward(request, response);
+                    }
                 }
                 break;
             case "signupPage":
