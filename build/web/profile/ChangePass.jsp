@@ -23,23 +23,23 @@
                         <div class="col-xxl-6">
                             <div class="bg-secondary-soft px-4 py-5 rounded">
                                 <div class="row g-3">
-
+                                    <div class="col-md-6">
+                                        <label for="oldPassword" class="form-label">Old password *</label>
+                                        <input type="password" class="form-control" id="oldPassword" name="oldPassword" value="${oldPassword}" required>
+                                    </div>
                                     <c:if test="${message == 'Old password is correct' or message =='New passwords do not match'}">
                                         <div class="col-md-7">
                                             <label for="newPassword" class="form-label">New password *</label>
-                                            <input type="password" class="form-control" id="newPassword" name="newPassword" required>
+                                            <input type="password" class="form-control" id="newPassword" name="newPassword" pattern="(?=.*[A-Z])(?=.*\W).{8,}" title="Mật khẩu phải chứa ít nhất 8 ký tự, bao gồm ít nhất 1 chữ hoa và 1 ký tự đặc biệt." required>
+                                            <div class="invalid-feedback">Mật khẩu phải chứa ít nhất 8 ký tự, bao gồm ít nhất 1 chữ hoa và 1 ký tự đặc biệt.</div>
                                         </div>
                                         <div class="col-md-7">
                                             <label for="confirmPassword" class="form-label">Confirm Password *</label>
-                                            <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" required>
+                                            <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" pattern="(?=.*[A-Z])(?=.*\W).{8,}" title="Mật khẩu phải chứa ít nhất 8 ký tự, bao gồm ít nhất 1 chữ hoa và 1 ký tự đặc biệt." required>
+                                            <div class="invalid-feedback">Mật khẩu phải chứa ít nhất 8 ký tự, bao gồm ít nhất 1 chữ hoa và 1 ký tự đặc biệt.</div>
                                         </div>
                                     </c:if>
-                                    <c:if test="${message == 'Old password is incorrect'  or message =='Password updated successfully' or message == null}">
-                                        <div class="col-md-6">
-                                            <label for="oldPassword" class="form-label">Old password *</label>
-                                            <input type="password" class="form-control" id="oldPassword" name="oldPassword" required>
-                                        </div>
-                                    </c:if>
+
                                     <c:choose>
                                         <c:when test="${message == 'Password updated successfully'}">
                                             <div class="col-12">
@@ -74,7 +74,7 @@
         function submitBack() {
             var form = document.getElementById('changePassForm');
             var inputs = form.querySelectorAll('input[required]');
-            inputs.forEach(function(input) {
+            inputs.forEach(function (input) {
                 input.removeAttribute('required');
             });
             form.querySelector('button[name="update"][value="back"]').type = 'submit';
