@@ -39,12 +39,17 @@
 
                                         <div class="col-md-6">
                                             <label class="form-label" style="color: black; font-weight: bold;">Gender</label>
-                                            <input type="text" class="form-control" style="background-color: whitesmoke" name="gender" value="${sessionScope.data.gender}">
+                                            <select class="form-control" style="background-color: whitesmoke" name="gender">
+
+                                                <option value="Nam" ${sessionScope.data.gender == 'Nam' ? 'selected' : ''}>Nam</option>
+                                                <option value="Nữ" ${sessionScope.data.gender == 'Nữ' ? 'selected' : ''}>Nữ</option> 
+                                                <option value="Khác" ${sessionScope.data.gender == 'Khác' ? 'selected' : ''}>Khác</option>
+                                            </select>
                                         </div>
 
                                         <div class="col-md-6">
                                             <label class="form-label" style="color: black; font-weight: bold;">Date of birth</label>
-                                            <input type="text" class="form-control" style="background-color: whitesmoke" name="dob" value="${sessionScope.data.dob}">
+                                            <input type="date" class="form-control" style="background-color: whitesmoke" name="dob" value="${sessionScope.data.dob}">
                                         </div>
 
                                         <div class="col-md-6">
@@ -59,15 +64,18 @@
 
                                         <div class="col-md-6">
                                             <label class="form-label" style="color: black; font-weight: bold;">Phone Number</label>
-                                            <input type="text" class="form-control" style="background-color: whitesmoke" name="phone_num" value="${sessionScope.data.phone_num}">
+                                            <input type="text" class="form-control" style="background-color: whitesmoke" name="phone_num" value="${sessionScope.data.phone_num}" pattern="\d{10,11}" title="Số điện thoại phải bao gồm từ 10 đến 11 chữ số" required>
+                                            <div class="invalid-feedback">Số điện thoại phải bao gồm từ 10 đến 11 chữ số.</div>
                                         </div>
 
-                   
+
 
                                         <div class="col-md-6">
                                             <label class="form-label" style="color: black; font-weight: bold;">CCCD</label>
-                                            <input type="text" class="form-control" style="background-color: whitesmoke" name="cccd" value="${sessionScope.data.cccd}">
+                                            <input type="text" class="form-control" style="background-color: whitesmoke" name="cccd" value="${sessionScope.data.cccd}" pattern="\d{12}" title="CCCD phải bao gồm đúng 12 chữ số" required>
+                                            <div class="invalid-feedback">CCCD phải bao gồm đúng 12 chữ số.</div>
                                         </div>
+
 
                                         <div class="col-md-6">
                                             <label class="form-label" style="color: black; font-weight: bold;">Address</label>
@@ -75,7 +83,7 @@
                                         </div>
 
 
-                                        
+
 
                                     </div> 
                                 </div>
@@ -85,23 +93,43 @@
 
 
                         <div class="gap-3 d-md-flex justify-content-md-end text-center" style=" text-align: center">
-                             <button type="submit" class="btn btn-primary btn-lg" style="font-weight: bold; width: 100px" name="update" value="update">Update</button>
+                            <button type="submit" class="btn btn-primary btn-lg" style="font-weight: bold; width: 100px" name="update" value="update">Update</button>
                             <button type="submit" class="btn btn-danger btn-lg" style="font-weight: bold; width: 100px" name="update" value="back">Back</button>
-                            
+
                         </div>
 
-                        </div> 
+                    </div> 
 
 
-                    </div>
                 </div>
             </div>
+        </div>
 
-            <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
-            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-            <script type="text/javascript">
-                // Your JavaScript code
-            </script>
-        </form>
-    </body>
+        <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                var form = document.querySelector('form');
+                form.addEventListener('submit', function (event) {
+                    if (!form.checkValidity()) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+                    form.classList.add('was-validated');
+                }, false);
+            });
+            document.addEventListener('DOMContentLoaded', function () {
+                var form = document.querySelector('form');
+                form.addEventListener('submit', function (event) {
+                    if (!form.checkValidity()) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+                    form.classList.add('was-validated');
+                }, false);
+            });
+        </script>
+
+    </form>
+</body>
 </html>
