@@ -27,7 +27,7 @@
                                         <label for="oldPassword" class="form-label">Old password *</label>
                                         <input type="password" class="form-control" id="oldPassword" name="oldPassword" value="${oldPassword}" required>
                                     </div>
-                                    <c:if test="${message == 'Old password is correct' or message =='New passwords do not match'}">
+                                    <c:if test="${message == 'Old password is correct' or message =='New passwords do not match' or message == 'Password is not accepted'}">
                                         <div class="col-md-7">
                                             <label for="newPassword" class="form-label">New password *</label>
                                             <input type="password" class="form-control" id="newPassword" name="newPassword" pattern="(?=.*[A-Z])(?=.*\W).{8,}" title="Mật khẩu phải chứa ít nhất 8 ký tự, bao gồm ít nhất 1 chữ hoa và 1 ký tự đặc biệt." required>
@@ -48,7 +48,7 @@
                                                 </div>
                                             </div>
                                         </c:when>
-                                        <c:when test="${message == 'Old password is incorrect' or message == 'New passwords do not match'}">
+                                        <c:when test="${message == 'Old password is incorrect' or message == 'New passwords do not match'  or message=='Password is not accepted'}">
                                             <div class="col-12">
                                                 <div class="alert alert-danger" role="alert">
                                                     ${message}

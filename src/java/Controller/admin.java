@@ -16,29 +16,14 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.stream.Collectors;
-import org.apache.catalina.ha.ClusterSession;
 
-/**
- *
- * @author tranm
- */
 @WebServlet(name = "admin", urlPatterns = {"/admin"})
 public class admin extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
@@ -62,53 +47,74 @@ public class admin extends HttpServlet {
         ArrayList<Student> student = d.getAllStudent();
 
         if (searchQuery != null && !searchQuery.isEmpty() && searchColumn != null && !searchColumn.isEmpty()) {
+            String searchQueryLower = searchQuery.toLowerCase();
             student = (ArrayList<Student>) student.stream()
                     .filter(s -> {
-                        switch (searchColumn) {
-                            case "name":
-                                return s.getName().toLowerCase().contains(searchQuery.toLowerCase());
-                            case "id":
-                                return s.getId().toLowerCase().contains(searchQuery.toLowerCase());
-                            case "gender":
-                                return s.getGender().toLowerCase().contains(searchQuery.toLowerCase());
-                            case "email":
-                                return s.getEmail().toLowerCase().contains(searchQuery.toLowerCase());
-                            case "dob":
-                                return s.getDob().toLowerCase().contains(searchQuery.toLowerCase());
-                            case "cccd":
-                                return s.getCccd().toLowerCase().contains(searchQuery.toLowerCase());
-                            case "major":
-                                return s.getMajor().toLowerCase().contains(searchQuery.toLowerCase());
-                            case "course":
-                                return s.getCourse().toLowerCase().contains(searchQuery.toLowerCase());
-                            case "address":
-                                return s.getAddress().toLowerCase().contains(searchQuery.toLowerCase());
-                            case "ethnicity":
-                                return s.getEthnicity().toLowerCase().contains(searchQuery.toLowerCase());
-                            case "nation":
-                                return s.getNation().toLowerCase().contains(searchQuery.toLowerCase());
-                            case "phone_num":
-                                return s.getPhone_num().toLowerCase().contains(searchQuery.toLowerCase());
-                            case "relative_name":
-                                return s.getRelative_name().toLowerCase().contains(searchQuery.toLowerCase());
-                            case "relative_contact":
-                                return s.getRelative_contact().toLowerCase().contains(searchQuery.toLowerCase());
-                            case "create_date":
-                                return s.getCreate_date().toLowerCase().contains(searchQuery.toLowerCase());
-                            case "update_date":
-                                return s.getUpdate_date().toLowerCase().contains(searchQuery.toLowerCase());
-                            case "status":
-                                return s.getStatus().toLowerCase().contains(searchQuery.toLowerCase());
-                            default:
-                                return false;
+                        if ("all".equals(searchColumn)) {
+                            return s.getName().toLowerCase().contains(searchQueryLower)
+                                    || s.getId().toLowerCase().contains(searchQueryLower)
+                                    || s.getGender().toLowerCase().contains(searchQueryLower)
+                                    || s.getEmail().toLowerCase().contains(searchQueryLower)
+                                    || s.getDob().toLowerCase().contains(searchQueryLower)
+                                    || s.getCccd().toLowerCase().contains(searchQueryLower)
+                                    || s.getMajor().toLowerCase().contains(searchQueryLower)
+                                    || s.getCourse().toLowerCase().contains(searchQueryLower)
+                                    || s.getAddress().toLowerCase().contains(searchQueryLower)
+                                    || s.getEthnicity().toLowerCase().contains(searchQueryLower)
+                                    || s.getNation().toLowerCase().contains(searchQueryLower)
+                                    || s.getPhone_num().toLowerCase().contains(searchQueryLower)
+                                    || s.getRelative_name().toLowerCase().contains(searchQueryLower)
+                                    || s.getRelative_contact().toLowerCase().contains(searchQueryLower)
+                                    || s.getCreate_date().toLowerCase().contains(searchQueryLower)
+                                    || s.getUpdate_date().toLowerCase().contains(searchQueryLower)
+                                    || s.getStatus().toLowerCase().contains(searchQueryLower);
+                        } else {
+                            switch (searchColumn) {
+                                case "name":
+                                    return s.getName().toLowerCase().contains(searchQueryLower);
+                                case "id":
+                                    return s.getId().toLowerCase().contains(searchQueryLower);
+                                case "gender":
+                                    return s.getGender().toLowerCase().contains(searchQueryLower);
+                                case "email":
+                                    return s.getEmail().toLowerCase().contains(searchQueryLower);
+                                case "dob":
+                                    return s.getDob().toLowerCase().contains(searchQueryLower);
+                                case "cccd":
+                                    return s.getCccd().toLowerCase().contains(searchQueryLower);
+                                case "major":
+                                    return s.getMajor().toLowerCase().contains(searchQueryLower);
+                                case "course":
+                                    return s.getCourse().toLowerCase().contains(searchQueryLower);
+                                case "address":
+                                    return s.getAddress().toLowerCase().contains(searchQueryLower);
+                                case "ethnicity":
+                                    return s.getEthnicity().toLowerCase().contains(searchQueryLower);
+                                case "nation":
+                                    return s.getNation().toLowerCase().contains(searchQueryLower);
+                                case "phone_num":
+                                    return s.getPhone_num().toLowerCase().contains(searchQueryLower);
+                                case "relative_name":
+                                    return s.getRelative_name().toLowerCase().contains(searchQueryLower);
+                                case "relative_contact":
+                                    return s.getRelative_contact().toLowerCase().contains(searchQueryLower);
+                                case "create_date":
+                                    return s.getCreate_date().toLowerCase().contains(searchQueryLower);
+                                case "update_date":
+                                    return s.getUpdate_date().toLowerCase().contains(searchQueryLower);
+                                case "status":
+                                    return s.getStatus().toLowerCase().contains(searchQueryLower);
+                                default:
+                                    return false;
+                            }
                         }
                     })
                     .collect(Collectors.toList());
         }
 
         session.setAttribute("data", student);
-        request.setAttribute("searchQuery", searchQuery); // Pass searchQuery to JSP
-        request.setAttribute("searchColumn", searchColumn); // Pass searchColumn to JSP
+        request.setAttribute("searchQuery", searchQuery);
+        request.setAttribute("searchColumn", searchColumn);
 
         switch (type) {
             case "viewstudent":
@@ -117,8 +123,9 @@ public class admin extends HttpServlet {
             case "changepass":
                 request.getRequestDispatcher("profile/Profile.jsp").forward(request, response);
                 break;
-           
-       
+            default:
+                // Handle other cases if needed
+                break;
         }
     }
 
@@ -136,5 +143,4 @@ public class admin extends HttpServlet {
         }
         request.getRequestDispatcher("admin/admin.jsp").forward(request, response);
     }
-
 }

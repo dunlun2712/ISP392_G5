@@ -1,5 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ page contentType="text/html" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -45,7 +45,6 @@
         </style>
     </head>
     <body>
-
         <div class="sidebar">
             <h4 class="text-center">Admin Menu</h4>
             <a href="${pageContext.request.contextPath}/admin?type=viewstudent">View Student</a>
@@ -55,7 +54,6 @@
             <a href="${pageContext.request.contextPath}/logout">Logout</a>
         </div>
         <div class="content">
-
             <c:if test="${not empty param.type and param.type == 'viewstudent'}">
                 <div class="container mt-5">
                     <!-- Form search -->
@@ -64,6 +62,7 @@
                         <div class="input-group mb-3">
                             <input type="text" class="form-control" placeholder="Search student" name="search" value="${searchQuery}">
                             <select class="form-select" name="column">
+                                <option value="all">All</option>
                                 <option value="name">Name</option>
                                 <option value="id">ID</option>
                                 <option value="email">Email</option>
@@ -80,84 +79,81 @@
                                 <option value="relative_contact">Relative Contact</option>
                                 <option value="create_date">Create Date</option>
                                 <option value="update_date">Update Date</option>
-                                <option value="status">status</option>
+                                <option value="status">Status</option>
                             </select>
                             <button class="btn btn-outline-secondary" type="submit">Search</button>
                         </div>
                     </form>
                 </div>
-
-
-                <!-- Table of students -->
-                <c:if test="${not empty data}">
-                    <form method="post" action="${pageContext.request.contextPath}/admin">
-                        <table class="table table-bordered">
-                            <!-- Table header -->
-                            <thead>
-                                <tr>
-                                    <th>ID</th>
-                                    <th>Name</th>
-                                    <th>Email</th>
-                                    <th>Date of Birth</th>
-                                    <th>CCCD</th>
-                                    <th>Major</th>
-                                    <th>Course</th>
-                                    <th>Address</th>
-                                    <th>Gender</th>
-                                    <th>Ethnicity</th>
-                                    <th>Nationality</th>
-                                    <th>Phone Number</th>
-                                    <th>Relative Name</th>
-                                    <th>Relative Contact</th>
-                                    <th>Create Date</th>
-                                    <th>Update Date</th>
-                                    <th>Status</th>
-
-                                </tr>
-                            </thead>
-                            <!-- Table body -->
-                            <tbody>
-                                <c:forEach var="student" items="${data}">
+                <c:if test="${not empty searchQuery}">
+                    <!-- Table of students -->
+                    <c:if test="${not empty data}">
+                        <form method="post" action="${pageContext.request.contextPath}/admin">
+                            <table class="table table-bordered">
+                                <!-- Table header -->
+                                <thead>
                                     <tr>
-                                        <td>${student.id}</td>
-                                        <td>${student.name}</td>
-                                        <td>${student.email}</td>
-                                        <td>${student.dob}</td>
-                                        <td>${student.cccd}</td>
-                                        <td>${student.major}</td>
-                                        <td>${student.course}</td>
-                                        <td>${student.address}</td>
-                                        <td>${student.gender}</td>
-                                        <td>${student.ethnicity}</td>
-                                        <td>${student.nation}</td>
-                                        <td>${student.phone_num}</td>
-                                        <td>${student.relative_name}</td>
-                                        <td>${student.relative_contact}</td>
-                                        <td>${student.create_date}</td>
-                                        <td>${student.update_date}</td>
-                                        <td>
-                                            <select class="form-select" name="status_${student.id}">
-                                                <option value="booking" ${student.status == 'booking' ? 'selected' : ''}>Booking</option>
-                                                <option value="not_book" ${student.status == 'not_book' ? 'selected' : ''}>Not Book</option>
-                                                <option value="staying" ${student.status == 'staying' ? 'selected' : ''}>Staying</option>
-                                            </select>
-                                        </td>
+                                        <th>ID</th>
+                                        <th>Name</th>
+                                        <th>Email</th>
+                                        <th>Date of Birth</th>
+                                        <th>CCCD</th>
+                                        <th>Major</th>
+                                        <th>Course</th>
+                                        <th>Address</th>
+                                        <th>Gender</th>
+                                        <th>Ethnicity</th>
+                                        <th>Nationality</th>
+                                        <th>Phone Number</th>
+                                        <th>Relative Name</th>
+                                        <th>Relative Contact</th>
+                                        <th>Create Date</th>
+                                        <th>Update Date</th>
+                                        <th>Status</th>
                                     </tr>
-                                </c:forEach>
-
-                            </tbody>
-                        </table>
-                        <button type="submit" class="btn btn-primary">Save</button>
-                    </form>
+                                </thead>
+                                <!-- Table body -->
+                                <tbody>
+                                    <c:forEach var="student" items="${data}">
+                                        <tr>
+                                            <td>${student.id}</td>
+                                            <td>${student.name}</td>
+                                            <td>${student.email}</td>
+                                            <td>${student.dob}</td>
+                                            <td>${student.cccd}</td>
+                                            <td>${student.major}</td>
+                                            <td>${student.course}</td>
+                                            <td>${student.address}</td>
+                                            <td>${student.gender}</td>
+                                            <td>${student.ethnicity}</td>
+                                            <td>${student.nation}</td>
+                                            <td>${student.phone_num}</td>
+                                            <td>${student.relative_name}</td>
+                                            <td>${student.relative_contact}</td>
+                                            <td>${student.create_date}</td>
+                                            <td>${student.update_date}</td>
+                                            <td>
+                                                <select class="form-select" name="status_${student.id}">
+                                                    <option value="booking" ${student.status == 'booking' ? 'selected' : ''}>Booking</option>
+                                                    <option value="not_book" ${student.status == 'not_book' ? 'selected' : ''}>Not Book</option>
+                                                    <option value="staying" ${student.status == 'staying' ? 'selected' : ''}>Staying</option>
+                                                </select>
+                                            </td>
+                                        </tr>
+                                    </c:forEach>
+                                </tbody>
+                            </table>
+                            <button type="submit" class="btn btn-primary">Save</button>
+                        </form>
+                    </c:if>
+                    <!-- If no students found -->
+                    <c:if test="${empty data}">
+                        <p>No students found.</p>
+                    </c:if>
                 </c:if>
-                <!-- If no students found -->
-                <c:if test="${empty data}">
-                    <p>No students found.</p>
-                </c:if>
-            </div>
-        </c:if>
-    </div>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-</body>
+            </c:if>
+        </div>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    </body>
 </html>

@@ -43,9 +43,6 @@ public class ChangePass extends HttpServlet {
         String update = request.getParameter("update");
         session.setAttribute("data", student);
 
-        String pass = request.getParameter("pass");
-        student.setPass(request.getParameter("pass"));
-
         if ("back".equals(update)) {
             request.getRequestDispatcher("profile/Profile.jsp").forward(request, response);
             return;
@@ -53,8 +50,20 @@ public class ChangePass extends HttpServlet {
 
         if ("pass_update".equals(update)) {
             String oldPassword = request.getParameter("oldPassword");
-            String newPassword = request.getParameter("newPassword");
-            String confirmPassword = request.getParameter("confirmPassword");
+            String passnewtrim = request.getParameter("newPassword");
+            String repasstrim = request.getParameter("confirmPassword");
+            String newPassword = null;
+            String confirmPassword = null;
+            if (passnewtrim != null && repasstrim != null) {
+                newPassword = passnewtrim.trim();
+                confirmPassword = repasstrim.trim();
+                if (newPassword.length() < 8 || confirmPassword.length() < 8) {
+                    request.setAttribute("oldPassword", oldPassword);
+                    request.setAttribute("message", "Password is not accepted");
+                    request.getRequestDispatcher("profile/ChangePass.jsp").forward(request, response);
+                }
+            }
+
             request.setAttribute("oldPassword", oldPassword);
             if (newPassword != null && newPassword.equals(confirmPassword)) {
                 student.setPass(newPassword);
