@@ -1,3 +1,4 @@
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
@@ -126,8 +127,16 @@ public class Login extends HttpServlet {
                         request.setAttribute("mess", "Your passwords do not match");
                         request.getRequestDispatcher("SignUp.jsp").forward(request, response);
                     } else {
-                        accdao.insertAcc(acc_name, acc_email, acc_pass);
-                        request.getRequestDispatcher("index.jsp").forward(request, response);
+                       // Generate OTP
+                    String otp = OTPUtil.generateOTP();
+                    // Send OTP to user's email
+                    OTPUtil.sendEmail(acc_email, otp);
+                    // Save account information and OTP in session
+                    session.setAttribute("otp", otp);
+                    session.setAttribute("acc_name", acc_name);
+                    session.setAttribute("acc_email", acc_email);
+                    session.setAttribute("acc_pass", acc_pass);
+                    request.getRequestDispatcher("OTPVerification.jsp").forward(request, response);
                     }
                 }
                 break;

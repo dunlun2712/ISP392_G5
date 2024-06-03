@@ -31,13 +31,12 @@ public class AccDao extends DBContext {
 
     public void insertAcc(String name, String email, String pass) {
         try {
-            String strSQL = "insert into Account (acc_username, acc_pass, acc_email) VALUES(?,?,? )";
+            String strSQL = "insert into Account (acc_username, acc_pass, acc_email) VALUES(?,?,?)";
             stm = cnn.prepareStatement(strSQL);
 
             stm.setString(1, name);
             stm.setString(2, pass);
             stm.setString(3, email);
-
             stm.executeUpdate();
         } catch (Exception e) {
             System.out.println("updateStudentInfo: " + e.getMessage());
@@ -51,14 +50,14 @@ public class AccDao extends DBContext {
             stm = cnn.prepareStatement(strSQL);
             stm.setString(1, email);
             rs = stm.executeQuery();
-            
+
             if (rs.next()) {
                 String acc_username = rs.getString(1);
                 String acc_pass = rs.getString(2);
                 String role = rs.getString(3);
                 String acc_email = rs.getString(4);
                 String status = rs.getString(5);
-                
+
                 account = new Account(acc_username, acc_pass, role, acc_email, status);
             }
         } catch (Exception e) {
@@ -66,4 +65,5 @@ public class AccDao extends DBContext {
         }
         return account;
     }
+
 }
