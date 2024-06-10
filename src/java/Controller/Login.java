@@ -17,6 +17,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import java.util.regex.Pattern;
 
 @WebServlet(name = "Login", urlPatterns = {"/login"})
 public class Login extends HttpServlet {
@@ -95,7 +96,7 @@ public class Login extends HttpServlet {
                             request.getRequestDispatcher("index.jsp").forward(request, response);
                         }
                     }
-                }   
+                }
                 if (!isAuthenticated) {
                     if (!isEmailValid) {
                         request.setAttribute("mess", "Email must be fpt.edu.vn");
@@ -114,7 +115,10 @@ public class Login extends HttpServlet {
                 String acc_pass = request.getParameter("password");
                 String repass = request.getParameter("repass");
                 boolean isSignupEmailValid = acc_email.endsWith("@fpt.edu.vn");
-
+                
+                String passwordPattern = "^(?=.*[A-Z])(?=.*[0-9])(?=.*[@#$%^&+=]).*$";
+                boolean isPasswordValid = Pattern.matches(passwordPattern, acc_pass);
+                
                 if (!isSignupEmailValid) {
                     request.setAttribute("mess", "Email must be fpt.edu.vn");
                     request.getRequestDispatcher("SignUp.jsp").forward(request, response);
@@ -127,16 +131,16 @@ public class Login extends HttpServlet {
                         request.setAttribute("mess", "Your passwords do not match");
                         request.getRequestDispatcher("SignUp.jsp").forward(request, response);
                     } else {
-                       // Generate OTP
-                    String otp = OTPUtil.generateOTP();
-                    // Send OTP to user's email
-                    OTPUtil.sendEmail(acc_email, otp);
-                    // Save account information and OTP in session
-                    session.setAttribute("otp", otp);
-                    session.setAttribute("acc_name", acc_name);
-                    session.setAttribute("acc_email", acc_email);
-                    session.setAttribute("acc_pass", acc_pass);
-                    request.getRequestDispatcher("OTPVerification.jsp").forward(request, response);
+                        // Generate OTP
+                        String otp = OTPUtil.generateOTP();
+                        // Send OTP to user's email
+                        OTPUtil.sendEmail(acc_email, otp);
+                        // Save account information and OTP in session
+                        session.setAttribute("otp", otp);
+                        session.setAttribute("acc_name", acc_name);
+                        session.setAttribute("acc_email", acc_email);
+                        session.setAttribute("acc_pass", acc_pass);
+                        request.getRequestDispatcher("OTPVerification.jsp").forward(request, response);
                     }
                 }
                 break;
