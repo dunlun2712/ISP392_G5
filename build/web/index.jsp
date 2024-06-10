@@ -83,10 +83,10 @@
                 <span>Profile</span>
 
             </div>
-            <div class="offcanvas__auth">
+            <div class="header__top__auth">
                 <ul>
-                    <li><a href="#">Login</a></li>
-                    <li><a href="#">Readadgadfgsdr</a></li>
+                    <li><a href="Login.jsp">Login</a></li>
+                    <li><a href="SignUp.jsp">Register</a></li>
                 </ul>
             </div>
             <div class="profile__button profile__button--white">
@@ -112,8 +112,8 @@
                             <div class="header__top__right">
                                 <div class="header__top__auth">
                                     <ul>
-                                        <li><a href="#">Login</a></li>
-                                        <li><a href="#">Register</a></li>
+                                        <li><a href="Login.jsp">Login</a></li>
+                                        <li><a href="SignUp.jsp">Register</a></li>
                                     </ul>
                                 </div>
                                 <div class="profile__button profile__button--black">
@@ -148,7 +148,7 @@
                                             </ul>
                                         </li>
                                         <li><a href="./blog.html">News</a></li>
-                                        <li><a href="./contact.html">Contact</a></li>
+                                        <li><a href="./request">Request</a></li>
                                     </ul>
                                 </nav>
                                 <div class="header__nav__widget">

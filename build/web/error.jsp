@@ -1,6 +1,3 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page contentType="text/html" pageEncoding="UTF-8" %>
-<!DOCTYPE html>
 <!DOCTYPE html>
 <html lang="zxx">
 
@@ -169,134 +166,108 @@
         <!-- Header Section End -->
 
         <!-- Hero Section Begin -->
-        <section class="hero spad set-bg" data-setbg="img/hero.jpg">
-            <div class="container">
+         <section class="hero spad set-bg" data-setbg="img/hero.jpg">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="hero__text">
+                        <h2>Oops! You cannot enter this page?</h2>
+                        <p>Sorry, the page you are looking for need to login first to assign to this page.</p>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+  
+    <!-- Chooseus Section End -->
+    <br>
+    <br>
+    <br>
+    <br>
+
+    <!-- Footer Section Begin -->
+    <footer class="footer set-bg" data-setbg="img/footer-bg.jpg">
+
+        <div class="container">
+            <div class="footer__content">
                 <div class="row">
-                    <div class="col-lg-12">
-                        <div class="col-xxl-8 mb-5 mb-xxl-0">
-                            <div class="bg-secondary-soft px-4 py-5 rounded">
-                                <div class="row g-3">
-                                    <div class="container mt-5">
-                                        <h2  style="color: white">Student Request Form</h2>
-                                        <form action="${pageContext.request.contextPath}/request" method="post">
-                                            <div class="mb-3">
-                                                <label for="studentName" class="form-label" style="color: white">Student Name</label>
-                                                <input type="text" class="form-control" id="studentName" name="studentName" value="${sessionScope.data.name}" readonly>
-                                            </div>
-                                            <div class="mb-3">
-                                                <label for="studentId" class="form-label"  style="color: white">Student ID</label>
-                                                <input type="text" class="form-control" id="studentId" name="studentId" value="${sessionScope.data.id}" readonly>
-                                            </div>
-                                            <div class="mb-3">
-                                                <label for="requestType" class="form-label"  style="color: white">Request Type</label>
-                                                <select class="form-select" id="requestType" name="requestType" required>
-                                                    <option value="maintenance">Maintenance</option>
-                                                    <option value="room_change">Room Change</option>
-                                                    <option value="complaint">Complaint</option>
-                                                    <option value="other">Other</option>
-                                                </select>
-                                            </div>
-                                            <div class="mb-3">
-                                                <label for="description" class="form-label"  style="color: white">Description</label>
-                                                <textarea class="form-control" id="description" name="description" rows="4" required></textarea>
-                                            </div>
-                                            <button type="submit" class="btn btn-primary">Submit Request</button>
-                                        </form>
-                                    </div></div></div>
+                    <div class="col-lg-3 col-md-6 col-sm-6">
+                        <div class="footer__about">
+                            <div class="footer__logo">
+                                <a href="#"><img src="img/logo.png" alt=""></a>
+                            </div>
+                            <h4>(123) 456-78-91096</h4>
+                            <ul>
+                                <li>Ernser Vista Suite 437, NY</li>
+                                <li>Info.colorlib@gmail.com</li>
+                            </ul>
+                            <div class="footer__social">
+                                <a href="#"><i class="fa fa-facebook"></i></a>
+                                <a href="#"><i class="fa fa-twitter"></i></a>
+                                <a href="#"><i class="fa fa-linkedin"></i></a>
+                                <a href="#"><i class="fa fa-youtube-play"></i></a>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div>
-        </section>
-
-
-
-
-        <!-- Chooseus Section End -->
-        <br>
-        <br>
-        <br>
-        <br>
-
-        <!-- Footer Section Begin -->
-        <footer class="footer set-bg" data-setbg="img/footer-bg.jpg">
-
-            <div class="container">
-                <div class="footer__content">
-                    <div class="row">
-                        <div class="col-lg-3 col-md-6 col-sm-6">
-                            <div class="footer__about">
-                                <div class="footer__logo">
-                                    <a href="#"><img src="img/logo.png" alt=""></a>
-                                </div>
-                                <h4>(123) 456-78-91096</h4>
-                                <ul>
-                                    <li>Ernser Vista Suite 437, NY</li>
-                                    <li>Info.colorlib@gmail.com</li>
-                                </ul>
-                                <div class="footer__social">
-                                    <a href="#"><i class="fa fa-facebook"></i></a>
-                                    <a href="#"><i class="fa fa-twitter"></i></a>
-                                    <a href="#"><i class="fa fa-linkedin"></i></a>
-                                    <a href="#"><i class="fa fa-youtube-play"></i></a>
-                                </div>
-                            </div>
+                    <div class="col-lg-3 offset-lg-1 col-md-5 offset-md-1 col-sm-6">
+                        <div class="footer__widget">
+                            <h4>Quick Link</h4>
+                            <ul>
+                                <li><a href="#">Home</a></li>
+                                <li><a href="#">Booking</a></li>
+                                <li><a href="#">About Us</a></li>
+                                <li><a href="#">Review</a></li>
+                                <li><a href="#">Contact</a></li>
+                            </ul>
+                            <ul>
+                                <li><a href="#">Services</a></li>
+                                <li><a href="#">Our Room</a></li>
+                                <li><a href="#">Restaurants</a></li>
+                                <li><a href="#">Payments</a></li>
+                                <li><a href="#">Events</a></li>
+                            </ul>
                         </div>
-                        <div class="col-lg-3 offset-lg-1 col-md-5 offset-md-1 col-sm-6">
-                            <div class="footer__widget">
-                                <h4>Quick Link</h4>
-                                <ul>
-                                    <li><a href="#">Home</a></li>
-                                    <li><a href="#">Booking</a></li>
-                                    <li><a href="#">About Us</a></li>
-                                    <li><a href="#">Review</a></li>
-                                    <li><a href="#">Contact</a></li>
-                                </ul>
-                                <ul>
-                                    <li><a href="#">Services</a></li>
-                                    <li><a href="#">Our Room</a></li>
-                                    <li><a href="#">Restaurants</a></li>
-                                    <li><a href="#">Payments</a></li>
-                                    <li><a href="#">Events</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="col-lg-5 col-md-8 col-sm-12">
-                            <div class="footer__newslatter">
-                                <h4>Subscribe our newlatester</h4>
-                                <form action="#">
-                                    <input type="text" placeholder="Your E-mail Address">
-                                    <button type="submit">Subscribe</button>
-                                </form>
-                                <div class="footer__newslatter__find">
-                                    <h5>Find Us:</h5>
-                                    <div class="footer__newslatter__find__links">
-                                        <a href="#"><i class="fa fa-tripadvisor"></i></a>
-                                        <a href="#"><i class="fa fa-map-o"></i></a>
-                                        <a href="#"><i class="fa fa-dribbble"></i></a>
-                                        <a href="#"><i class="fa fa-forumbee"></i></a>
-                                    </div>
+                    </div>
+                    <div class="col-lg-5 col-md-8 col-sm-12">
+                        <div class="footer__newslatter">
+                            <h4>Subscribe our newlatester</h4>
+                            <form action="#">
+                                <input type="text" placeholder="Your E-mail Address">
+                                <button type="submit">Subscribe</button>
+                            </form>
+                            <div class="footer__newslatter__find">
+                                <h5>Find Us:</h5>
+                                <div class="footer__newslatter__find__links">
+                                    <a href="#"><i class="fa fa-tripadvisor"></i></a>
+                                    <a href="#"><i class="fa fa-map-o"></i></a>
+                                    <a href="#"><i class="fa fa-dribbble"></i></a>
+                                    <a href="#"><i class="fa fa-forumbee"></i></a>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-
             </div>
-        </footer>
-        <!-- Footer Section End -->
 
-        <!-- Js Plugins -->
-        <script src="js/jquery-3.3.1.min.js"></script>
-        <script src="js/bootstrap.min.js"></script>
-        <script src="js/jquery.nice-select.min.js"></script>
-        <script src="js/jquery-ui.min.js"></script>
-        <script src="js/jquery.slicknav.js"></script>
-        <script src="js/owl.carousel.min.js"></script>
-        <script src="js/main.js"></script>
-    </body>
+        </div>
+    </footer>
+    <!-- Footer Section End -->
+
+    <!-- Js Plugins -->
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.nice-select.min.js"></script>
+    <script src="js/jquery-ui.min.js"></script>
+    <script src="js/jquery.slicknav.js"></script>
+    <script src="js/owl.carousel.min.js"></script>
+    <script src="js/main.js"></script>
+</body>
 
 </html>
-<!-- Error Section Begin -->
-
-<!-- Error Section End -->
+    <!-- Error Section Begin -->
+   
+    <!-- Error Section End -->
