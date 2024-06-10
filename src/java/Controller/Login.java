@@ -89,7 +89,7 @@ public class Login extends HttpServlet {
                         isAuthenticated = true;
                         session.setAttribute("email", email);
 //                        request.getRequestDispatcher("index.jsp").forward(request, response);
-     response.sendRedirect("homeservlet");
+                          response.sendRedirect("homeservlet");
                     }
                 }
                 if (!isAuthenticated) {
