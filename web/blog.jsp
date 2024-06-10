@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page contentType="text/html" pageEncoding="UTF-8" %>
 <head>
     <meta charset="UTF-8">
     <meta name="description" content="Hiroto Template">
@@ -302,7 +303,7 @@
                         <div class="col-lg-12 text-center">
                             <div class="footer__copyright__text">
                                 <p>
-                                    Copyright ©
+                                    Copyright Â©
                                     <script>
                                         document.write(new Date().getFullYear());
                                     </script>2020
@@ -345,8 +346,8 @@
                 <h3>${title}</h3>
                 <p>${content}</p>
                 <img src="${URL.createObjectURL(image)}" alt="${title}">
-                <button class="delete-btn">Delete</button>
-            `;
+                
+                <button class="delete-btn">Delete</button>`;
 
             // Add delete event
             newsItem.querySelector('.delete-btn').addEventListener('click', function () {
