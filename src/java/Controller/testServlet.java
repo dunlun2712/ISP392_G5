@@ -17,10 +17,10 @@ import jakarta.servlet.http.HttpSession;
 
 /**
  *
- * @author tranm
+ * @author Admin
  */
-@WebServlet(name="test", urlPatterns={"/test"})
-public class test extends HttpServlet {
+//@WebServlet(name = "testServlet", urlPatterns = {"/test"})
+public class testServlet extends HttpServlet {
    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -37,10 +37,10 @@ public class test extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet test</title>");  
+            out.println("<title>Servlet testServlet</title>");  
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>test</h1>");
+            out.println("<h1>Servlet testServlet at " + request.getContextPath () + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -57,7 +57,7 @@ public class test extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        HttpSession session = request.getSession();
+       HttpSession session = request.getSession();
         Account account = (Account) session.getAttribute("account");
         if(account.getRole().equals("1")){
             response.getWriter().println("admin");
@@ -76,7 +76,13 @@ public class test extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        processRequest(request, response);
+        HttpSession session = request.getSession();
+        Account account = (Account) session.getAttribute("account");
+        if(account.getRole().equals("1")){
+            response.getWriter().println("admin");
+        }else{
+            response.getWriter().println("user");
+        }
     }
 
     /** 

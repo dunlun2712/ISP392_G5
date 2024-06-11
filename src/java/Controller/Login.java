@@ -136,17 +136,17 @@ public class Login extends HttpServlet {
                         // Send OTP to user's email
                         OTPUtil.sendEmail(acc_email, otp);
                         // Save account information and OTP in session
-                        session.setAttribute("otp", otp);
-                        session.setAttribute("acc_name", acc_name);
-                        session.setAttribute("acc_email", acc_email);
-                        session.setAttribute("acc_pass", acc_pass);
+                        session.setAttribute("account", existingAccount);
                         request.getRequestDispatcher("OTPVerification.jsp").forward(request, response);
                     }
                 }
                 break;
+                
             case "signupPage":
                 request.getRequestDispatcher("SignUp.jsp").forward(request, response);
                 break;
         }
+          Account a = accdao.getInforAcc(email);
+          session.setAttribute("account", a);
     }
 }
