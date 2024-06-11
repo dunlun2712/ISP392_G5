@@ -24,7 +24,7 @@ public class NewDAO {
     Connection conn = null;
     PreparedStatement ps = null;
     ResultSet rs = null;
-    public boolean addNews(int new_id, String title, String content, Date publish_date, String category, Connection connection, String query) {
+    public boolean addNews(int new_id, String title, String content, Date publish_date, String category, byte[] image, String link, Connection connection, String query) {
         boolean status = false;
         String sql = "INSERT INTO news(news_id,title, content, publish_date, category) VALUES(?, ?, ?, ?)";
         try {
@@ -35,8 +35,8 @@ public class NewDAO {
             ps.setString(3, content);
             ps.setDate(4, publish_date);
             ps.setString(5, category);
-            //rs.setBytes(4, news.getImage());
-           //rs.setString(5, news.getLink());
+            ps.setBytes(6, image);
+            ps.setString(7, link);
              rs = ps.executeQuery();
         int val = ps.executeUpdate();
             if (val > 0) {
@@ -74,9 +74,9 @@ public class NewDAO {
                         rs.getString("title"),
                         rs.getString("content"),
                         rs.getDate("publish_date"),
-                        rs.getString("category")
-                        //rs.getBytes("image"),
-                        //rs.getString("link")
+                        rs.getString("category"),
+                        rs.getBytes("image"),
+                        rs.getString("link")
                 );
                 newsList.add(news);
             }
