@@ -11,31 +11,33 @@ import java.util.Date;
  * @author khanh
  */
 public class News {
-    private int new_id;
+
+    private String new_id;
     private String title;
     private String content;
     private Date publish_date;
     private String category;
-    private byte[] image;
+
     private String link;
+
     public News() {
     }
 
-    public News(int new_id, String title, String content, Date publish_date, String category, byte[] image, String link) {
+    public News(String new_id, String title, String content, Date publish_date, String category, String link) {
         this.new_id = new_id;
         this.title = title;
         this.content = content;
         this.publish_date = publish_date;
         this.category = category;
-        this.image = image;
+
         this.link = link;
     }
 
-    public int getNew_id() {
+    public String getNew_id() {
         return new_id;
     }
 
-    public void setNew_id(int new_id) {
+    public void setNew_id(String new_id) {
         this.new_id = new_id;
     }
 
@@ -71,14 +73,6 @@ public class News {
         this.category = category;
     }
 
-    public byte[] getImage() {
-        return image;
-    }
-
-    public void setImage(byte[] image) {
-        this.image = image;
-    }
-
     public String getLink() {
         return link;
     }
@@ -87,6 +81,4 @@ public class News {
         this.link = link;
     }
 
-    
-    
 }
