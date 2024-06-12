@@ -1,5 +1,8 @@
 package Controller;
 
+import java.sql.Date;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import Dao.NewDAO;
 import Model.News;
 import java.io.IOException;
@@ -7,13 +10,15 @@ import java.io.InputStream;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-
+import java.sql.Date;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import jakarta.servlet.http.Part;
 
 /**
@@ -42,6 +47,9 @@ public class AddNew extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         // Hiển thị trang thêm tin tức
+        NewDAO newsDAO = new NewDAO();
+        int id = newsDAO.getID();
+        request.setAttribute("id", id);
         request.getRequestDispatcher("addnew.jsp").forward(request, response);
     }
 
@@ -57,33 +65,29 @@ public class AddNew extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         // Xử lý dữ liệu từ biểu mẫu
-        int newId = Integer.parseInt(request.getParameter("new_id"));
+        String newId = request.getParameter("new_id");
         String category = request.getParameter("category");
         String title = request.getParameter("title");
         String content = request.getParameter("content");
         String link = request.getParameter("link");
-        Part filePart = request.getPart("image");
+
         String publishDateStr = request.getParameter("publish_date");
-        byte[] image = null;
-        if (filePart != null) {
-            InputStream inputStream = filePart.getInputStream();
-            image = inputStream.readAllBytes();
-        }
-        
         Date publishDate = null;
-        try {
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-            publishDate = sdf.parse(publishDateStr);
-        } catch (ParseException e) {
-            e.printStackTrace();
-            response.sendRedirect("errorPage.jsp"); // Redirect to an error page if date parsing fails
-            return;
+
+        if (publishDateStr != null && !publishDateStr.isEmpty()) {
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            LocalDate localDate = LocalDate.parse(publishDateStr, formatter);
+            publishDate = Date.valueOf(localDate);
         }
 
-        News news = new News(newId, title, content, publishDate, category, image, link);
-        NewDAO newsDAO = new NewDAO();
+        HttpSession session = request.getSession();
 
-        
+        News news = new News(newId, title, content, publishDate, category, link);
+        NewDAO newsDAO = new NewDAO();
+        newsDAO.addNews(newId, title, content, publishDate, category, link);
+        request.getRequestDispatcher("addnew.jsp").forward(request, response);
+        request.getRequestDispatcher("newsList.jsp").forward(request, response);
+
     }
 
     /**
