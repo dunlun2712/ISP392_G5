@@ -5,10 +5,6 @@
         <servlet-class>Controller.Login</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>AdminPageServlet</servlet-name>
-        <servlet-class>Controller.AdminPageServlet</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>AdminServlet</servlet-name>
         <servlet-class>Controller.AdminServlet</servlet-class>
     </servlet>
@@ -24,11 +20,6 @@
         <servlet-name>Login</servlet-name>
         <url-pattern>/login</url-pattern>
     </servlet-mapping>
-<<<<<<< HEAD
-    <servlet-mapping>
-        <servlet-name>AdminPageServlet</servlet-name>
-        <url-pattern>/adminpage</url-pattern>
-    </servlet-mapping>
     <servlet-mapping>
         <servlet-name>AdminServlet</servlet-name>
         <url-pattern>/adminDashboard</url-pattern>
@@ -41,6 +32,4 @@
         <servlet-name>StudentServlet</servlet-name>
         <url-pattern>/studentDashboard</url-pattern>
     </servlet-mapping>
-=======
->>>>>>> 80d9b590cbf296dfd72ae37233b88756f86f8a36
 </web-app>

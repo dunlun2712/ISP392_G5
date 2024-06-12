@@ -18,7 +18,7 @@ import jakarta.servlet.http.HttpSession;
  *
  * @author tranm
  */
-@WebServlet(name = "test", urlPatterns = {"/test"})
+//@WebServlet(name = "test", urlPatterns = {"/test"})
 public class test extends HttpServlet {
 
     /**
@@ -41,11 +41,8 @@ public class test extends HttpServlet {
             out.println("<title>Servlet test</title>");
             out.println("</head>");
             out.println("<body>");
-<<<<<<< HEAD
             out.println("<h1>Servlet test at " + request.getContextPath() + "</h1>");
-=======
             out.println("<h1>test</h1>");
->>>>>>> 80d9b590cbf296dfd72ae37233b88756f86f8a36
             out.println("</body>");
             out.println("</html>");
         }
@@ -62,7 +59,6 @@ public class test extends HttpServlet {
      */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
-<<<<<<< HEAD
             throws ServletException, IOException {
         HttpSession session = request.getSession();
         Account account = (Account) session.getAttribute("account");
@@ -72,18 +68,6 @@ public class test extends HttpServlet {
             response.getWriter().print("user");
         }
     }
-=======
-    throws ServletException, IOException {
-        HttpSession session = request.getSession();
-        Account account = (Account) session.getAttribute("account");
-        if(account.getRole().equals("1")){
-            response.getWriter().println("admin");
-        }else{
-            response.getWriter().println("user");
-        }
-    } 
->>>>>>> 80d9b590cbf296dfd72ae37233b88756f86f8a36
-
     /**
      * Handles the HTTP <code>POST</code> method.
      *

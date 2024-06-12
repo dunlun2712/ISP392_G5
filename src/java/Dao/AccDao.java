@@ -65,9 +65,4 @@ public class AccDao extends DBContext {
         }
         return account;
     }
-    public static void main(String[] args) {
-        AccDao acc = new AccDao();
-        Account a = acc.getInforAcc("synhhe171943@fpt.edu.vn");
-        System.out.println(a.getRole());
-    }
 }

@@ -121,17 +121,8 @@ public class Login extends HttpServlet {
                 String acc_pass = request.getParameter("password");
                 String repass = request.getParameter("repass");
                 boolean isSignupEmailValid = acc_email.endsWith("@fpt.edu.vn");
-<<<<<<< HEAD
-
                 String passwordPattern = "^(?=.*[A-Z])(?=.*[0-9])(?=.*[@#$%^&+=]).*$";
                 boolean isPasswordValid = Pattern.matches(passwordPattern, acc_pass);
-
-=======
-                
-                String passwordPattern = "^(?=.*[A-Z])(?=.*[0-9])(?=.*[@#$%^&+=]).*$";
-                boolean isPasswordValid = Pattern.matches(passwordPattern, acc_pass);
-                
->>>>>>> 80d9b590cbf296dfd72ae37233b88756f86f8a36
                 if (!isSignupEmailValid) {
                     request.setAttribute("mess", "Email must be fpt.edu.vn");
                     request.getRequestDispatcher("SignUp.jsp").forward(request, response);
@@ -149,14 +140,11 @@ public class Login extends HttpServlet {
                         // Send OTP to user's email
                         OTPUtil.sendEmail(acc_email, otp);
                         // Save account information and OTP in session
-<<<<<<< HEAD
                         session.setAttribute("otp", otp);
                         session.setAttribute("acc_name", acc_name);
                         session.setAttribute("acc_email", acc_email);
                         session.setAttribute("acc_pass", acc_pass);
-=======
                         session.setAttribute("account", existingAccount);
->>>>>>> 80d9b590cbf296dfd72ae37233b88756f86f8a36
                         request.getRequestDispatcher("OTPVerification.jsp").forward(request, response);
                     }
                 }
@@ -166,12 +154,7 @@ public class Login extends HttpServlet {
                 request.getRequestDispatcher("SignUp.jsp").forward(request, response);
                 break;
         }
-<<<<<<< HEAD
-        Account a = accdao.getInforAcc(email);
-        session.setAttribute("account", a);
-=======
           Account a = accdao.getInforAcc(email);
           session.setAttribute("account", a);
->>>>>>> 80d9b590cbf296dfd72ae37233b88756f86f8a36
     }
 }
