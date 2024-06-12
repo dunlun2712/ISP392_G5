@@ -59,6 +59,7 @@ public class ViewProfile extends HttpServlet {
         // Lưu đối tượng Student vào session
         HttpSession session = request.getSession();
         session.setAttribute("data", student);
+        
         request.getRequestDispatcher("profile/Profile.jsp").forward(request, response);
     }
 
