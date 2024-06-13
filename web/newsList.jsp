@@ -192,7 +192,7 @@
                                             <td>${news.category}</td>
                                             <td><a href="${news.link}" target="_blank">${news.link}</a></td>
                                             <td>
-                                                <form action="DeleteNew" method="post">
+                                                <form action="listnew" method="post">
                                                     <input type="hidden" name="new_id" value="${news.new_id}">
                                                     <input type="submit" value="Delete" onclick="return confirm('Are you sure you want to delete this news?');">
                                                 </form>
