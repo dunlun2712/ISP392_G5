@@ -80,13 +80,13 @@ public class ListNew extends HttpServlet {
 
         try {
             newsDAO.deleteNews(newId);
-            response.sendRedirect("deletenew"); // Redirect to the Servlet to refresh the news list
+            request.getRequestDispatcher("newsList.jsp").forward(request, response); // Redirect to the Servlet to refresh the news list
         } catch (Exception e) {
             e.printStackTrace();
             request.setAttribute("errorMessage", "Database error: " + e.getMessage());
             request.getRequestDispatcher("errorPage.jsp").forward(request, response);
         }
-        return ;
+        
     }
     
 
@@ -99,5 +99,4 @@ public class ListNew extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-
 }
