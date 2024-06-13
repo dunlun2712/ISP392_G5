@@ -81,6 +81,7 @@ public class ResetPasswordServlet extends HttpServlet {
 
         if (email == null || newPassword == null || newPassword.isEmpty() || confirmPassword == null || confirmPassword.isEmpty()) {
             response.getWriter().write("Invalid request. Please try again!");
+              
             return;
         }
 
