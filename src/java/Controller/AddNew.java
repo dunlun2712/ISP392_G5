@@ -49,6 +49,13 @@ public class AddNew extends HttpServlet {
         // Hiển thị trang thêm tin tức
         NewDAO newsDAO = new NewDAO();
         int id = newsDAO.getID();
+        // Set the current date
+        LocalDate currentDate = LocalDate.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        String formattedDate = currentDate.format(formatter);
+        currentDate = LocalDate.now();
+        
+        request.setAttribute("date", currentDate);
         request.setAttribute("id", id);
         request.getRequestDispatcher("addnew.jsp").forward(request, response);
     }
@@ -85,8 +92,17 @@ public class AddNew extends HttpServlet {
         News news = new News(newId, title, content, publishDate, category, link);
         NewDAO newsDAO = new NewDAO();
         newsDAO.addNews(newId, title, content, publishDate, category, link);
-        request.getRequestDispatcher("addnew.jsp").forward(request, response);
-        request.getRequestDispatcher("newsList.jsp").forward(request, response);
+        int id = newsDAO.getID();
+        request.setAttribute("id", id);
+        String update = request.getParameter("update");
+        if (update == "Add News") {
+            request.getRequestDispatcher("addnew.jsp").forward(request, response);
+        } 
+        if(update == "List News"){
+            request.getRequestDispatcher("newsList.jsp").forward(request, response);
+        }
+   
+        
 
     }
 
