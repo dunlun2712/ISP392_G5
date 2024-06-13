@@ -114,5 +114,26 @@ public class NewDAO extends DBContext {
         }
         return newsList;
     }
-
+public News getNewsById(int id) {
+        String sql = "SELECT * FROM news WHERE news_id = ?";
+        try (Connection conn = connection;
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setInt(1, id);
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    return new News(
+                            rs.getString("news_id"),
+                            rs.getString("title"),
+                            rs.getString("content"),
+                            rs.getDate("publish_date"),
+                            rs.getString("category"),
+                            rs.getString("link")
+                    );
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 }
