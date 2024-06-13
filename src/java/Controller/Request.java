@@ -16,6 +16,9 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import org.apache.tomcat.jni.SSLContext;
 
 /**
@@ -78,10 +81,20 @@ public class Request extends HttpServlet {
         Booking book = (Booking) session.getAttribute("book");
         session.setAttribute("book", bookInfo);
 
-        
-        
-        
-        
+        String user_id = request.getParameter("studentId");
+        String room_id = request.getParameter("roomId");
+        String req = request.getParameter("description");
+        String type = request.getParameter("requestType");
+
+       // Set the current date
+        LocalDate currentDate = LocalDate.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        String formattedDate = currentDate.format(formatter);
+        currentDate = LocalDate.now();
+
+
+
+        rdao.addNewRequest(room_id,user_id,type,req,currentDate);
         request.getRequestDispatcher("request/Request.jsp").forward(request, response);
 
     }

@@ -7,7 +7,9 @@ package Dao;
 import Model.Booking;
 import Model.Student;
 import dal.DBContext;
+import jakarta.servlet.http.HttpServletRequest;
 import java.sql.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class RoomDao extends DBContext {
@@ -50,6 +52,23 @@ public class RoomDao extends DBContext {
             System.out.println("getUsers:" + e.getMessage());
         }
         return book;
+    }
+
+    public void addNewRequest(String room_id, String user_id, String type, String request, LocalDate sqlDate) {
+        try {
+            String strSQL = "insert into Request (room_id,users_id,request_type,request,request_date) VALUES(?,?,?,?,? )";
+            stm = cnn.prepareStatement(strSQL);
+
+            stm.setString(1, room_id);
+            stm.setString(2, user_id);
+            stm.setString(3, type);
+            stm.setString(4, request);
+            stm.setDate(5, java.sql.Date.valueOf(sqlDate));
+
+            stm.executeUpdate();
+        } catch (Exception e) {
+            System.out.println("updateStudentInfo: " + e.getMessage());
+        }
     }
 
 }
