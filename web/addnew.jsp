@@ -198,10 +198,10 @@
                                 <input type="url" id="link" name="link"  required><br><br>
 
                                 <label for="publish_date">Publish Date:</label>
-                                <input type="date" id="publish_date" name="publish_date" required><br><br>
+                                <input type="date" id="publish_date" name="publish_date" value="${date}" readonly><br><br>
 
-                                <a onclick="location.reload()"> <input  type="submit" value="Add News"> </a>
-                                <a href="http://localhost:9999/ISP392_G5/listnew"> <input  type="submit" value="List News"> </a>
+                                <a onclick="location.reload()"> <input name="update" type="submit" value="Add News"> </a>
+                                <a onclick="http://localhost:9999/ISP392_G5/addnew"> <input name="update" type="submit" value="List News"> </a>
 
                             </form>
                         </div>
