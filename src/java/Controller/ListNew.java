@@ -58,7 +58,7 @@ public class ListNew extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-         NewDAO newsDAO = new NewDAO();
+        NewDAO newsDAO = new NewDAO();
         List<News> newsList = newsDAO.getAllNews();
         request.setAttribute("newsList", newsList);
         request.getRequestDispatcher("newsList.jsp").forward(request, response);
@@ -79,16 +79,17 @@ public class ListNew extends HttpServlet {
         NewDAO newsDAO = new NewDAO();
 
         try {
+
             newsDAO.deleteNews(newId);
+            List<News> newsList = newsDAO.getAllNews();
+            request.setAttribute("newsList", newsList);
             request.getRequestDispatcher("newsList.jsp").forward(request, response); // Redirect to the Servlet to refresh the news list
         } catch (Exception e) {
             e.printStackTrace();
-            request.setAttribute("errorMessage", "Database error: " + e.getMessage());
-            request.getRequestDispatcher("errorPage.jsp").forward(request, response);
+
         }
-        
+
     }
-    
 
     /**
      * Returns a short description of the servlet.
