@@ -1,4 +1,3 @@
-
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="zxx">
@@ -60,6 +59,14 @@
                 background-color: #45a049;
             }
         </style>
+        <script>
+            function removeRequiredAttributes() {
+                var formElements = document.querySelectorAll('.form-container input[required], .form-container textarea[required]');
+                formElements.forEach(function(element) {
+                    element.removeAttribute('required');
+                });
+            }
+        </script>
     </head>
 
     <body>
@@ -200,8 +207,8 @@
                                 <label for="publish_date">Publish Date:</label>
                                 <input type="date" id="publish_date" name="publish_date" value="${date}" readonly><br><br>
 
-                                <a onclick="location.reload()"> <input name="update" type="submit" value="Add News"> </a>
-                                <a onclick="http://localhost:9999/ISP392_G5/addnew"> <input name="update" type="submit" value="List News"> </a>
+                                <input id="addNewsBtn" name="update" type="submit" value="Add News">
+                                <input id="listNewsBtn" name="update" type="submit" value="List News" onclick="removeRequiredAttributes()">
 
                             </form>
                         </div>
