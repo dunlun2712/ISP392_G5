@@ -56,7 +56,10 @@ public class Blog extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+         NewDAO newsDAO = new NewDAO();
+        List<News> newsList = newsDAO.getAllNews();
+            
+        request.setAttribute("newsList", newsList);
         request.getRequestDispatcher("title.jsp").forward(request, response);
     }
 
