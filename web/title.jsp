@@ -56,14 +56,14 @@
             <c:forEach var="news" items="${newsList}">
                 <div class="notification-item">
                     <h3>
-                        <form action="NewDetail" method="post" style="display: inline;">
-                            <input type="hidden" name="id" value="${news.id}">
+                        <form action="newdetail" method="post" style="display: inline;">
+                            <input type="hidden" name="id" value="${news.new_id}">
                             <button type="submit" style="border: none; background: none; color: #0056b3; cursor: pointer; padding: 0;">
                                 ${news.title}
                             </button>
                         </form>
                     </h3>
-                    <p>By ${news.author} ${news.publish_date}</p>
+                    <p>By Student Management - ${news.publish_date}</p>
                 </div>
             </c:forEach>
         </div>
