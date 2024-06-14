@@ -60,11 +60,14 @@
         <div class="content">
             <h2 class="title">${news.title}</h2>
             <p class="publish-date">${news.publish_date}</p>
+            
+            
             <div class="notification-content">
                 <p>${news.content}</p>
+                <p><a href="${news.link} " target="_blank">${news.link}</a></p>
             </div>
             <div class="back-button">
-                <a href="Blog">Back to List</a>
+                <a href="blog">Back to List</a>
             </div>
         </div>
     </div>
