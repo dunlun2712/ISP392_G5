@@ -118,10 +118,15 @@ public class admin extends HttpServlet {
 
         switch (type) {
             case "viewstudent":
+                String tim = request.getParameter("search");
+                if(tim!=null){
+                    request.setAttribute("tim", tim);
+                }
                 request.getRequestDispatcher("admin/admin.jsp").forward(request, response);
                 break;
-            case "changepass":
-                request.getRequestDispatcher("profile/Profile.jsp").forward(request, response);
+            case "viewmanager":
+                
+                request.getRequestDispatcher("admin/viewmanager.jsp").forward(request, response);
                 break;
             default:
                 // Handle other cases if needed
