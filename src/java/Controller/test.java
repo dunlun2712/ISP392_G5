@@ -60,13 +60,13 @@ public class test extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        HttpSession session = request.getSession();
-        Account account = (Account) session.getAttribute("account");
-        if(account.getRole().equals("1")){
-            response.getWriter().print("admin");
-        }else{
-            response.getWriter().print("user");
-        }
+//        HttpSession session = request.getSession();
+//        Account account = (Account) session.getAttribute("account");
+//        if(account.getRole().equals("1")){
+//            response.getWriter().print("admin");
+//        }else{
+//            response.getWriter().print("user");
+//        }
     }
     /**
      * Handles the HTTP <code>POST</code> method.

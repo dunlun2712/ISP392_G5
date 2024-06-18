@@ -88,7 +88,7 @@ public class Login extends HttpServlet {
                             session.setAttribute("email", email);
                             session.setAttribute("user", account);
                             if ("1".equalsIgnoreCase(account.getRole())) {
-                                response.sendRedirect("adminDashboard.jsp");
+                                response.sendRedirect("admin/admin.jsp");
                             } else if("2".equalsIgnoreCase(account.getRole())){
                                 response.sendRedirect("managerDashboard.jsp");
                             }

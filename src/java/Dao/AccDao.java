@@ -5,7 +5,6 @@
 package Dao;
 
 import Model.Account;
-import Model.Student;
 import dal.DBContext;
 import java.sql.*;
 import java.util.ArrayList;
@@ -18,8 +17,8 @@ public class AccDao extends DBContext {
     Connection cnn; //ket noi db
     PreparedStatement stm; // thuc hien cac cau lenh sql
     ResultSet rs;//luu tru va xu ly du lieu
+    //ket noi voi database
 
-//khai bao thanh phan xu ly database
     private void connectDB() {
         cnn = connection;
         if (cnn != null) {
@@ -64,5 +63,41 @@ public class AccDao extends DBContext {
             System.out.println("getUsers:" + e.getMessage());
         }
         return account;
+    }
+
+    public ArrayList<Account> getAllAcc() {
+        ArrayList<Account> data = new ArrayList<Account>();
+        Account account = null;
+        try {
+            String strSQL = "select * from Account ";
+            stm = cnn.prepareStatement(strSQL);
+            rs = stm.executeQuery();
+            while (rs.next()) {
+                String acc = rs.getString(1);
+                String pass = rs.getString(2);
+                String role = rs.getString(3);
+                String email = rs.getString(4);
+                String status = rs.getString(5);
+
+                account = new Account(acc, pass, role, email, status);
+                data.add(account);
+            }
+        } catch (Exception e) {
+            System.out.println("getAccount:" + e.getMessage());
+        }
+        return data;
+    }
+
+    public void updateAcc(String email, String role, String status) {
+        try {
+            String strSQL = "UPDATE Account SET role = ?, status = ? WHERE acc_email = ?";
+            stm = cnn.prepareStatement(strSQL);
+            stm.setString(1, role);
+            stm.setString(2, status);
+            stm.setString(3, email);
+            stm.executeUpdate();
+        } catch (Exception e) {
+            System.out.println("updateAcc: " + e.getMessage());
+        }
     }
 }
