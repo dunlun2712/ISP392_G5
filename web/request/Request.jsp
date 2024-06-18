@@ -244,8 +244,8 @@
                                                         <label for="description" class="form-label">Description</label>
                                                         <textarea class="form-control" style="max-width: 1000px; font-size: 1.3rem;" id="description" name="description" rows="4" required></textarea>
                                                     </div>
-                                                    <button type="submit" name="request"class="btn btn-primary">Submit Request</button>
-                                                    <button type="submit"name="list" class="btn btn-primary">Submit Request</button>
+                                                    <button type="submit" name="mess" value="request" class="btn btn-primary">Submit Request</button>
+                                                    <button type="submit"name="mess" value="list" class="btn btn-primary">List Request</button>
                                                 </form>
                                             </div></div></div>
                                 </div>

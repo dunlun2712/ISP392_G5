@@ -10,19 +10,21 @@ import java.util.Date;
  *
  * @author tranm
  */
-public class Request {
-    String request_id,room_id,users_id,request_type,request;
+public class Req {
+    String request_id,room_id,users_id,request_type,request,Response,request_status;
     Date request_date,reponse_date;
 
-    public Request() {
+    public Req() {
     }
 
-    public Request(String request_id, String room_id, String users_id, String request_type, String request, Date request_date, Date reponse_date) {
+    public Req(String request_id, String room_id, String users_id, String request_type, String request, String Response, String request_status, Date request_date, Date reponse_date) {
         this.request_id = request_id;
         this.room_id = room_id;
         this.users_id = users_id;
         this.request_type = request_type;
         this.request = request;
+        this.Response = Response;
+        this.request_status = request_status;
         this.request_date = request_date;
         this.reponse_date = reponse_date;
     }
@@ -67,6 +69,22 @@ public class Request {
         this.request = request;
     }
 
+    public String getResponse() {
+        return Response;
+    }
+
+    public void setResponse(String Response) {
+        this.Response = Response;
+    }
+
+    public String getRequest_status() {
+        return request_status;
+    }
+
+    public void setRequest_status(String request_status) {
+        this.request_status = request_status;
+    }
+
     public Date getRequest_date() {
         return request_date;
     }
@@ -82,5 +100,6 @@ public class Request {
     public void setReponse_date(Date reponse_date) {
         this.reponse_date = reponse_date;
     }
+
     
 }
