@@ -245,13 +245,43 @@
                                                         </c:if>
                                                         <td>${request.request_date}</td>
                                                         <td>
-                                                            <a href="${pageContext.request.contextPath}/request?mess=detail&&requestId=${request.request_id}" class="action-link">Detail</a> |
-                                                            <a href="${pageContext.request.contextPath}/request?mess=delete&&requestId=${request.request_id}" class="action-link">Delete</a>
-                                                        </td>
+                                                            <!-- Detail -->
+                                                            <a href="javascript:void(0);" onclick="submitForm('${request.request_id}', 'detail')" class="btn btn-danger btn-lg" style="font-weight: bold; background-color: #E9AD28">Detail</a>
 
+                                                            <!-- Delete -->
+                                                            <a href="javascript:void(0);" onclick="submitForm('${request.request_id}', 'delete')" class="btn btn-danger btn-lg" style="font-weight: bold; background-color: #E9AD28">Delete</a>
+                                                        </td>
                                                     </tr>
+
+                                                    <script>
+                                                        function submitForm(req_id, action) {
+                                                            var form = document.createElement("form");
+                                                            form.setAttribute("method", "post");
+                                                            form.setAttribute("action", "${pageContext.request.contextPath}/request");
+
+                                                            // Create hidden input for req_id
+                                                            var req_idInput = document.createElement("input");
+                                                            req_idInput.setAttribute("type", "hidden");
+                                                            req_idInput.setAttribute("name", "req_id");
+                                                            req_idInput.setAttribute("value", req_id);
+                                                            form.appendChild(req_idInput);
+
+                                                            // Create hidden input for action
+                                                            var actionInput = document.createElement("input");
+                                                            actionInput.setAttribute("type", "hidden");
+                                                            actionInput.setAttribute("name", "other");
+                                                            actionInput.setAttribute("value", action);
+                                                            form.appendChild(actionInput);
+
+                                                            // Append form to document body and submit
+                                                            document.body.appendChild(form);
+                                                            form.submit();
+                                                        }
+                                                    </script>
                                                 </c:forEach>
                                             </table>
+                                            <br>
+                                            <button type="submit" class="btn btn-danger btn-lg" style="font-weight: bold;background-color: #E9AD28" name="other" value="back">Back to add Request</button>
                                         </form>
                                     </div>
                                 </div>
@@ -346,4 +376,5 @@
         <script src="js/owl.carousel.min.js"></script>
         <script src="js/main.js"></script>
     </body>
+
 </html>

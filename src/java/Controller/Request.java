@@ -78,22 +78,63 @@ public class Request extends HttpServlet {
         HttpSession session = request.getSession();
         Student student = (Student) session.getAttribute("data");
         String mess = request.getParameter("mess");
+        String other = request.getParameter("other");
         session.setAttribute("data", student);
-        if (mess.equals("detail")) {
-            RoomDao rdao = new RoomDao();
-            ArrayList<Req> req = rdao.getAllRequestOfStudent(student.getId());
-            session.setAttribute("requests", req);
-            request.getRequestDispatcher("request/listRequest.jsp").forward(request, response);
-        }
-        if (mess.equals("delete")) {
-            RoomDao rdao = new RoomDao();
-            ArrayList<Req> req = rdao.getAllRequestOfStudent(student.getId());
-            session.setAttribute("requests", req);
-            request.getRequestDispatcher("request/listRequest.jsp").forward(request, response);
-        }
-        if (mess.equals("request")) {
+        RoomDao rdao = new RoomDao();
+        if (other != null) {
+            switch (other) {
+                case "detail":
 
-            RoomDao rdao = new RoomDao();
+                    Booking bookInfo = rdao.getBookInfo(student.getId());
+                    Booking book = (Booking) session.getAttribute("book");
+                    session.setAttribute("book", bookInfo);
+
+                    String user_id = request.getParameter("studentId");
+                    String room_id = request.getParameter("roomId");
+                    String note = request.getParameter("description");
+                    String type = request.getParameter("requestType");
+
+                    // Set the current date
+                    LocalDate currentDate = LocalDate.now();
+                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+                    String formattedDate = currentDate.format(formatter);
+                    currentDate = LocalDate.now();
+
+                    rdao.addNewRequest(room_id, user_id, type, note, currentDate);
+                    request.getRequestDispatcher("request/requestDetail.jsp").forward(request, response);
+                    break;
+                case "delete":
+                    String req_id = request.getParameter("req_id");
+                    rdao.deleteRequest(req_id);
+                    ArrayList<Req> req = rdao.getAllRequestOfStudent(student.getId());
+                    session.setAttribute("requests", req);
+                    request.getRequestDispatcher("/request/listRequest.jsp").forward(request, response);
+                    break;
+                case "back":
+
+                     bookInfo = rdao.getBookInfo(student.getId());
+                     book = (Booking) session.getAttribute("book");
+                    session.setAttribute("book", bookInfo);
+
+                    user_id = request.getParameter("studentId");
+                     room_id = request.getParameter("roomId");
+                     note = request.getParameter("description");
+                     type = request.getParameter("requestType");
+
+                    // Set the current date
+                     currentDate = LocalDate.now();
+                     formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+                     formattedDate = currentDate.format(formatter);
+                    currentDate = LocalDate.now();
+
+                    rdao.addNewRequest(room_id, user_id, type, note, currentDate);
+                    request.getRequestDispatcher("request/Request.jsp").forward(request, response);
+                    break;
+            }
+
+        }
+        if (mess != null && mess.equals("request")) {
+
             Booking bookInfo = rdao.getBookInfo(student.getId());
             Booking book = (Booking) session.getAttribute("book");
             session.setAttribute("book", bookInfo);
@@ -112,8 +153,8 @@ public class Request extends HttpServlet {
             rdao.addNewRequest(room_id, user_id, type, req, currentDate);
             request.getRequestDispatcher("request/Request.jsp").forward(request, response);
         }
-        if (mess.equals("list")) {
-            RoomDao rdao = new RoomDao();
+        if (mess != null && mess.equals("list")) {
+
             ArrayList<Req> req = rdao.getAllRequestOfStudent(student.getId());
             session.setAttribute("requests", req);
             request.getRequestDispatcher("request/listRequest.jsp").forward(request, response);

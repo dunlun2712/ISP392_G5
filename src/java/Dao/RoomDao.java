@@ -73,14 +73,14 @@ public class RoomDao extends DBContext {
     }
 
     public ArrayList<Req> getAllRequestOfStudent(String id) {
-         ArrayList<Req>  data= new ArrayList<Req>();
-         Req req = null;
+        ArrayList<Req> data = new ArrayList<Req>();
+        Req req = null;
         try {
             String strSQL = "select * from request where users_id = ? ";
             stm = cnn.prepareStatement(strSQL);
             stm.setString(1, id);
             rs = stm.executeQuery();
-            while(rs.next()) {
+            while (rs.next()) {
                 String req_id = rs.getString(1);
                 String room_id = rs.getString(2);
                 String user = rs.getString(3);
@@ -91,13 +91,25 @@ public class RoomDao extends DBContext {
                 String response = rs.getString(7);
                 Date resp_date = rs.getDate(8);
                 String response_status = rs.getString(9);
-                req = new Req(req_id, room_id, user , request_type, note,response, response_status, req_date, resp_date);
+                req = new Req(req_id, room_id, user, request_type, note, response, response_status, req_date, resp_date);
                 data.add(req);
             }
         } catch (Exception e) {
             System.out.println("getUsers:" + e.getMessage());
         }
         return data;
+    }
+
+    public void deleteRequest(String req_id) {
+        try {
+            String strSQL = "Delete from Request where request_id=?";
+            stm = cnn.prepareStatement(strSQL);
+            stm.setString(1, req_id);
+
+            stm.executeUpdate();
+        } catch (Exception e) {
+            System.out.println("updateStudentInfo: " + e.getMessage());
+        }
     }
 
 }

@@ -59,7 +59,7 @@ public class ViewProfile extends HttpServlet {
         // Lưu đối tượng Student vào session
         HttpSession session = request.getSession();
         session.setAttribute("data", student);
-        
+
         request.getRequestDispatcher("profile/Profile.jsp").forward(request, response);
     }
 
@@ -76,9 +76,11 @@ public class ViewProfile extends HttpServlet {
         String update = request.getParameter("update");
         session.setAttribute("data", student);
         switch (update) {
-
+            case "homepage":
+                request.getRequestDispatcher("index.jsp").forward(request, response);
+                break;
             case "pass_update":
-                
+
                 request.getRequestDispatcher("profile/ChangePass.jsp").forward(request, response);
                 break;
             case "update":
