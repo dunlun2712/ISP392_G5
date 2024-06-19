@@ -81,13 +81,13 @@
                                 <td>${account.acc}</td>
                                 <td>${account.pass}</td>
                                 <td>${account.role}</td>
-<!--                                <td>
+                                <td>
                                     <select class="form-select" name="status_${account.role}">
                                         <option value="2" ${account.status == '2' ? 'selected' : ''}>Student Manager</option>
                                         <option value="3" ${account.status == '3' ? 'selected' : ''}>Dorm Manager</option>
                                         <option value="4" ${account.status == '4' ? 'selected' : ''}>Not Consider</option>
                                     </select>
-                                </td>-->
+                                </td>
                                 
                                 <td>${account.email}</td>
                                  
