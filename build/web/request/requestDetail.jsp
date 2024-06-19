@@ -20,90 +20,70 @@
         <link rel="stylesheet" href="css/slicknav.min.css" type="text/css">
         <link rel="stylesheet" href="css/style.css" type="text/css">
         <style>
+            /* Custom CSS for table */
             table {
-                width: 100%;
-                border-collapse: collapse;
+                width: 500px;
+                margin-top: 20px;
+                margin-bottom: 20px;
+                border-spacing: 0; /* Remove space between table cells */
+                border: none; /* Remove table border */
+                border-radius: 10px; /* Border radius for table */
+                overflow: hidden; /* Ensure content inside table does not overflow rounded corners */
             }
-            table, th, td {
-                border: 1px solid black;
-            }
+
             th, td {
                 padding: 8px;
                 text-align: left;
+                border-bottom: 1px solid #ddd; /* Bottom border for each cell */
+                border-top: none; /* Remove top border */
+                border-left: none; /* Remove left border */
+                border-right: none; /* Remove right border */
             }
+
             th {
-                background-color: #f0a500; /* Light orange background for headers */
-            }
-            .not-reply-yet {
-                color: red;
-            }
-            .action-link {
+                background-color: #f0a500; /* Header background color */
+                color: white; /* Header text color */
                 font-weight: bold;
-                text-decoration: none;
-                color: #000; /* Black color */
             }
-            .action-link:hover,
-            .action-link:active,
-            .action-link:visited {
-                color: #000; /* Ensure the color remains black when hovered, clicked, or visited */
+
+            tr:nth-child(even) {
+                background-color: #f2f2f2; /* Even rows background color */
             }
-            .profile__button {
-                display: inline-block;
-                padding: 12px 0 12px;
-                position: relative;
-                cursor: pointer;
+
+            tr:hover {
+                background-color: #ddd; /* Hover row background color */
             }
-            .profile__button i {
-                display: inline-block;
-                font-size: 15px;
-                color: #1d1c1c;
-                font-weight: 500;
-            }
-            .profile__button--black a {
-                text-decoration: none;
-                color: black;
-            }
-            .profile__button--white a {
-                text-decoration: none;
-                color: white;
-            }
-            .profile__button a:hover {
-                color: inherit;
-            }
-            .profile__button--black {
-                color: black;
-            }
-            .profile__button--white {
-                color: white;
-            }
+
             .form-label {
-                color: white;
-                font-size: 2.2rem;
+                font-weight: bold;
+                color: black;
             }
+
             .form-control {
-                font-size: 2rem;
-                max-width: 500px; /* Adjust the width of text inputs */
+                width: 100%;
+                padding: 3px;
+                box-sizing: border-box;
             }
-            .form-select {
-                font-size: 2rem;
-                max-width: 500px; /* Adjust the width of select inputs */
+
+            .btn-back {
+                font-weight: bold;
+                background-color: #E9AD28;
+                color: white;
+                border: none;
+                padding: 12px 20px;
+                text-align: center;
+                text-decoration: none;
+                display: inline-block;
+                margin-top: 20px;
+                cursor: pointer;
+                border-radius: 4px;
             }
-            .btn-primary {
-                font-size: 2rem;
-            }
-            .form-container {
-                max-width: 700px; /* Adjust the width of the form container */
-                padding: 20px;
-                background-color: #343a40;
-                border-radius: 8px;
-            }
-            .centered-container {
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                height: 100vh;
+
+            .btn-back:hover {
+                background-color: #f29e02; /* Darker background color on hover */
             }
         </style>
+
     </head>
     <body>
         <!-- Page Preloder -->
@@ -221,67 +201,56 @@
                             <div class="bg-secondary-soft px-4 py-5 rounded">
                                 <div class="row g-3">
                                     <div class="container mt-5">
-                                        <h1 style="color: white; font-size: 5rem">List Request</h1>
+                                        <h1 style="color: white; font-size: 5rem">My Request</h1>
                                         <form action="${pageContext.request.contextPath}/request" method="post">
                                             <table border="1">
-                                                <tr>
-                                                    <th>Request Type</th>
-                                                    <th>Content</th>
-                                                    <th>Created Date</th>
-                                                    <th>Response</th>
-                                                    <th>Status</th>
-                                                    <th>Others</th>
+                                                <tr style="background-color: #ffffff;">
+                                                    <td style="width: 150px"><label for="studentName" class="form-label" style="color: black">Title</label></td>
+                                                    <td><input type="text" class="form-control" id="studentName" name="studentName" value="${Req.request_type} - ${sessionScope.book.room_id}" readonly></td>
                                                 </tr>
-                                                <c:forEach var="request" items="${requests}">
-                                                    <tr style="background-color: #ffffff;">
-                                                        <td>${request.request_type}</td>
-                                                        <td>${request.request}</td>
-                                                        <td>${request.request_date}</td>
-                                                        <c:if test="${request.request_status == null}">
-                                                            <td><a style="color: red">not reply yet</a></td>
+                                                <tr style="background-color: #ffffff;">
+                                                    <td style="width: 150px"><label for="studentName" class="form-label" style="color: black">Student Name</label></td>
+                                                    <td><input type="text" class="form-control" id="studentName" name="studentName" value="${sessionScope.data.name}" readonly></td>
+                                                </tr>
+                                                <tr style="background-color: #ffffff;">
+                                                    <td><label for="studentId" class="form-label" style="color: black">Student ID</label></td>
+                                                    <td><input type="text" class="form-control" id="studentId" name="studentId" value="${sessionScope.data.id}" readonly></td>
+                                                </tr>
+                                                <tr style="background-color: #ffffff;">
+                                                    <td><label for="roomId" class="form-label" style="color: black">Room ID</label></td>
+                                                    <td><input type="text" class="form-control" id="roomId" name="roomId" value="${sessionScope.book.room_id}" readonly></td>
+                                                </tr>
+                                                <tr style="background-color: #ffffff;">
+                                                    <td><label for="roomId" class="form-label" style="color: black">Type</label></td>
+                                                    <td><input type="text" class="form-control" id="roomId" name="roomId" value="${Req.request_type}" readonly></td>
+                                                </tr>
+                                                <tr style="background-color: #ffffff;">
+                                                    <td><label for="roomId" class="form-label" style="color: black">Content</label></td>
+                                                    <td><input type="text" class="form-control" id="roomId" name="roomId" value="${Req.request}" readonly></td>
+                                                </tr>
+                                                <tr style="background-color: #ffffff;">
+                                                    <td><label for="roomId" class="form-label" style="color: black">Create Date</label></td>
+                                                    <td><input type="text" class="form-control" id="roomId" name="roomId" value="${Req.request_date}" readonly></td>
+                                                </tr>
+                                                <tr style="background-color: #ffffff;">
+                                                    <td><label for="roomId" class="form-label" style="color: black">Reply</label></td>
+                                                    <td><input type="text" class="form-control" id="roomId" name="roomId" value="${Req.response}" readonly></td>
+                                                </tr>
+                                                <tr style="background-color: #ffffff;">
+                                                    <td><label for="roomId" class="form-label" style="color: black">Status</label></td>
+
+                                                    <c:if test="${request.request_status == null}">
+                                                        <td><a style="color: red">not reply yet</a></td>
+                                                    </c:if>
+                                                    <c:if test="${request.request_status != null}">
+                                                        <td><input type="text" class="form-control" id="roomId" name="roomId" value="${sessionScope.book.room_id}" readonly> </td>
                                                         </c:if>
-                                                        <c:if test="${request.request_status != null}">
-                                                            <td>${request.request_status}</td>
-                                                        </c:if>
-                                                        <td>${request.request_date}</td>
-                                                        <td>
-                                                            <!-- Detail -->
-                                                            <a href="javascript:void(0);" onclick="submitForm('${request.request_id}', 'detail')" class="btn btn-danger btn-lg" style="font-weight: bold; background-color: #E9AD28">Detail</a>
+                                                </tr>
 
-                                                            <!-- Delete -->
-                                                            <a href="javascript:void(0);" onclick="submitForm('${request.request_id}', 'delete')" class="btn btn-danger btn-lg" style="font-weight: bold; background-color: #E9AD28">Delete</a>
-                                                        </td>
-                                                    </tr>
-
-                                                    <script>
-                                                        function submitForm(req_id, action) {
-                                                            var form = document.createElement("form");
-                                                            form.setAttribute("method", "post");
-                                                            form.setAttribute("action", "${pageContext.request.contextPath}/request");
-
-                                                            // Create hidden input for req_id
-                                                            var req_idInput = document.createElement("input");
-                                                            req_idInput.setAttribute("type", "hidden");
-                                                            req_idInput.setAttribute("name", "req_id");
-                                                            req_idInput.setAttribute("value", req_id);
-                                                            form.appendChild(req_idInput);
-
-                                                            // Create hidden input for action
-                                                            var actionInput = document.createElement("input");
-                                                            actionInput.setAttribute("type", "hidden");
-                                                            actionInput.setAttribute("name", "other");
-                                                            actionInput.setAttribute("value", action);
-                                                            form.appendChild(actionInput);
-
-                                                            // Append form to document body and submit
-                                                            document.body.appendChild(form);
-                                                            form.submit();
-                                                        }
-                                                    </script>
-                                                </c:forEach>
                                             </table>
                                             <br>
-                                            <button type="submit" class="btn btn-danger btn-lg" style="font-weight: bold;background-color: #E9AD28" name="other" value="back">Back to add Request</button>
+                                            <button type="submit" class="btn-back" name="other" value="back">Back to add Request</button>
+                                            <button type="submit" class="btn-back" name="mess" value="list">Back to list Request</button>
                                         </form>
                                     </div>
                                 </div>

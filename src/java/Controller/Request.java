@@ -81,6 +81,7 @@ public class Request extends HttpServlet {
         String other = request.getParameter("other");
         session.setAttribute("data", student);
         RoomDao rdao = new RoomDao();
+        String req_id = request.getParameter("req_id");
         if (other != null) {
             switch (other) {
                 case "detail":
@@ -88,7 +89,8 @@ public class Request extends HttpServlet {
                     Booking bookInfo = rdao.getBookInfo(student.getId());
                     Booking book = (Booking) session.getAttribute("book");
                     session.setAttribute("book", bookInfo);
-
+                    Req reqdata = rdao.getInfoReq(req_id);
+                    
                     String user_id = request.getParameter("studentId");
                     String room_id = request.getParameter("roomId");
                     String note = request.getParameter("description");
@@ -100,11 +102,11 @@ public class Request extends HttpServlet {
                     String formattedDate = currentDate.format(formatter);
                     currentDate = LocalDate.now();
 
-                    rdao.addNewRequest(room_id, user_id, type, note, currentDate);
+                    request.setAttribute("Req", reqdata);
                     request.getRequestDispatcher("request/requestDetail.jsp").forward(request, response);
                     break;
                 case "delete":
-                    String req_id = request.getParameter("req_id");
+                    
                     rdao.deleteRequest(req_id);
                     ArrayList<Req> req = rdao.getAllRequestOfStudent(student.getId());
                     session.setAttribute("requests", req);
@@ -127,7 +129,7 @@ public class Request extends HttpServlet {
                      formattedDate = currentDate.format(formatter);
                     currentDate = LocalDate.now();
 
-                    rdao.addNewRequest(room_id, user_id, type, note, currentDate);
+                    
                     request.getRequestDispatcher("request/Request.jsp").forward(request, response);
                     break;
             }
