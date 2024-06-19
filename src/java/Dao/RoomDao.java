@@ -114,7 +114,7 @@ public class RoomDao extends DBContext {
 
     public Req getInfoReq(String req_id) {
         Req req = null;
-        
+
         try {
             String strSQL = "select * from request where request_id = ? ";
             stm = cnn.prepareStatement(strSQL);
@@ -140,4 +140,31 @@ public class RoomDao extends DBContext {
         return req;
     }
 
+    public ArrayList<Req> getAllRequest() {
+        ArrayList<Req> data = new ArrayList<Req>();
+        Req req = null;
+        try {
+            String strSQL = "select * from request ";
+            stm = cnn.prepareStatement(strSQL);
+            
+            rs = stm.executeQuery();
+            while (rs.next()) {
+                String req_id = rs.getString(1);
+                String room_id = rs.getString(2);
+                String user = rs.getString(3);
+                String request_type = rs.getString(4);
+
+                String note = rs.getString(5);
+                Date req_date = rs.getDate(6);
+                String response = rs.getString(7);
+                Date resp_date = rs.getDate(8);
+                String response_status = rs.getString(9);
+                req = new Req(req_id, room_id, user, request_type, note, response, response_status, req_date, resp_date);
+                data.add(req);
+            }
+        } catch (Exception e) {
+            System.out.println("getUsers:" + e.getMessage());
+        }
+        return data;
+    }
 }
