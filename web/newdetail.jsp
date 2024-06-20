@@ -1,5 +1,5 @@
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -35,10 +35,12 @@
         .notification-content {
             border: 1px solid #ccc;
             padding: 10px;
+            white-space: pre-wrap; /* Preserves line breaks and spaces */
         }
         .notification-content p {
             margin: 0;
             line-height: 1.6;
+            text-align: left; /* Aligns text to the left */
         }
         .back-button {
             margin-top: 20px;
@@ -61,10 +63,9 @@
             <h2 class="title">${news.title}</h2>
             <p class="publish-date">${news.publish_date}</p>
             
-            
             <div class="notification-content">
                 <p>${news.content}</p>
-                <p><a href="${news.link} " target="_blank">${news.link}</a></p>
+                <p><a href="${news.link}" target="_blank">${news.link}</a></p>
             </div>
             <div class="back-button">
                 <a href="blog">Back to List</a>
