@@ -136,4 +136,29 @@ public News getNewsById(int id) {
         }
         return null;
     }
+
+    public List<News> searchNewsByTitle(String title) {
+        List<News> newsList = new ArrayList<>();
+        String sql = "SELECT * FROM news WHERE title LIKE ?";
+        try (Connection conn = connection;
+             PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setString(1, "%" + title + "%");
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                News news = new News();
+                news.setNew_id(resultSet.getString("new_id"));
+                news.setTitle(resultSet.getString("title"));
+                news.setContent(resultSet.getString("content"));
+                news.setPublish_date(resultSet.getDate("publish_date"));
+                news.setCategory(resultSet.getString("category"));
+                news.setLink(resultSet.getString("link"));
+                newsList.add(news);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return newsList;
+    }
 }
+
+
