@@ -239,11 +239,11 @@
                                                 <tr style="background-color: #ffffff;">
                                                     <td><label for="roomId" class="form-label" style="color: black">Status</label></td>
 
-                                                    <c:if test="${request.request_status == null}">
+                                                    <c:if test="${Req.request_status == null}">
                                                         <td><a style="color: red">not reply yet</a></td>
                                                     </c:if>
-                                                    <c:if test="${request.request_status != null}">
-                                                        <td><input type="text" class="form-control" id="roomId" name="roomId" value="${sessionScope.book.room_id}" readonly> </td>
+                                                    <c:if test="${Req.request_status != null}">
+                                                        <td><input type="text" class="form-control" id="roomId" name="roomId" value="${Req.request_status}" readonly> </td>
                                                         </c:if>
                                                 </tr>
 

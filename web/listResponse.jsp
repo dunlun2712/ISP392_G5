@@ -222,62 +222,38 @@
                                 <div class="row g-3">
                                     <div class="container mt-5">
                                         <h1 style="color: white; font-size: 5rem">List Request</h1>
-                                        <form action="${pageContext.request.contextPath}/request" method="post">
+                                        <form action="response" method="post">
                                             <table border="1">
                                                 <tr>
-                                                    <th>Request Type</th>
-                                                    <th>Content</th>
-                                                    <th>Created Date</th>
+                                                    <th>Student ID</th>
+                                                    <th>Room ID</th>
+                                                    <th>Create Date</th>
+                                                    <th>Request</th>
                                                     <th>Response</th>
                                                     <th>Status</th>
-                                                    <th>Others</th>
+                                                    <th>Request type</th>
+                                                    <th>Function</th>
                                                 </tr>
-                                                <c:forEach var="request" items="${requests}">
+                                                <c:forEach var="request" items="${req}">
                                                     <tr style="background-color: #ffffff;">
-                                                        <td>${request.request_type}</td>
-                                                        <td>${request.request}</td>
+                                                        <td>${request.users_id}</td>
+                                                        <td>${request.room_id}</td>
                                                         <td>${request.request_date}</td>
+                                                        <td>${request.request}</td>
+                                                        <td>${request.Response}</td>
                                                         <c:if test="${request.request_status == null}">
                                                             <td><a style="color: red">not reply yet</a></td>
                                                         </c:if>
                                                         <c:if test="${request.request_status != null}">
                                                             <td>${request.request_status}</td>
                                                         </c:if>
-                                                        <td>${request.request_date}</td>
-                                                        <td>
-                                                            <!-- Detail -->
-                                                            <a href="javascript:void(0);" onclick="submitForm('${request.request_id}', 'detail')" class="btn btn-danger btn-lg" style="font-weight: bold; background-color: #E9AD28">Detail</a>
 
-                                                            <!-- Delete -->
-                                                            <a href="javascript:void(0);" onclick="submitForm('${request.request_id}', 'delete')" class="btn btn-danger btn-lg" style="font-weight: bold; background-color: #E9AD28">Delete</a>
+                                                        <td>
+                                                            
                                                         </td>
                                                     </tr>
 
-                                                    <script>
-                                                        function submitForm(req_id, action) {
-                                                            var form = document.createElement("form");
-                                                            form.setAttribute("method", "post");
-                                                            form.setAttribute("action", "${pageContext.request.contextPath}/request");
-
-                                                            // Create hidden input for req_id
-                                                            var req_idInput = document.createElement("input");
-                                                            req_idInput.setAttribute("type", "hidden");
-                                                            req_idInput.setAttribute("name", "req_id");
-                                                            req_idInput.setAttribute("value", req_id);
-                                                            form.appendChild(req_idInput);
-
-                                                            // Create hidden input for action
-                                                            var actionInput = document.createElement("input");
-                                                            actionInput.setAttribute("type", "hidden");
-                                                            actionInput.setAttribute("name", "other");
-                                                            actionInput.setAttribute("value", action);
-                                                            form.appendChild(actionInput);
-
-                                                            // Append form to document body and submit
-                                                            document.body.appendChild(form);
-                                                            form.submit();
-                                                        }
-                                                    </script>
+                                                   
                                                 </c:forEach>
                                             </table>
                                             <br>

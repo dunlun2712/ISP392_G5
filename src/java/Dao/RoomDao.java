@@ -125,7 +125,6 @@ public class RoomDao extends DBContext {
                 String room_id = rs.getString(2);
                 String user = rs.getString(3);
                 String request_type = rs.getString(4);
-
                 String note = rs.getString(5);
                 Date req_date = rs.getDate(6);
                 String response = rs.getString(7);
@@ -144,16 +143,14 @@ public class RoomDao extends DBContext {
         ArrayList<Req> data = new ArrayList<Req>();
         Req req = null;
         try {
-            String strSQL = "select * from request ";
+            String strSQL = "select * from Request";
             stm = cnn.prepareStatement(strSQL);
-            
             rs = stm.executeQuery();
             while (rs.next()) {
                 String req_id = rs.getString(1);
                 String room_id = rs.getString(2);
                 String user = rs.getString(3);
                 String request_type = rs.getString(4);
-
                 String note = rs.getString(5);
                 Date req_date = rs.getDate(6);
                 String response = rs.getString(7);
@@ -163,8 +160,29 @@ public class RoomDao extends DBContext {
                 data.add(req);
             }
         } catch (Exception e) {
-            System.out.println("getUsers:" + e.getMessage());
+            System.out.println("SQL Error: " + e.getMessage());
         }
         return data;
+    }
+
+    public void updateResponse(String req_status, String resp, LocalDate currentDate, String req_id) {
+
+        try {
+            String strSQL = "UPDATE [dbo].[Request] "
+                    + "SET [response] = ?, "
+                    + "[response_date] = ?, "
+                    + "[request_status] = ? "
+                    + "WHERE request_id = ?";
+            stm = cnn.prepareStatement(strSQL);
+
+            stm.setString(1, resp);            // Set response
+            stm.setDate(2, java.sql.Date.valueOf(currentDate)); // Set response_date
+            stm.setString(3, req_status);      // Set request_status
+            stm.setString(4, req_id);          // Set request_idF
+
+            stm.executeUpdate();
+        } catch (Exception e) {
+            System.out.println("updateStudentInfo: " + e.getMessage());
+        }
     }
 }

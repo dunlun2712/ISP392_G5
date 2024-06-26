@@ -20,14 +20,46 @@
         <link rel="stylesheet" href="css/slicknav.min.css" type="text/css">
         <link rel="stylesheet" href="css/style.css" type="text/css">
         <style>
+            .header__search {
+                margin-left: auto; /* Đẩy phần tìm kiếm sang phải */
+                display: flex;
+                align-items: center;
+            }
+
+            .header__search form {
+                position: relative;
+            }
+
+            .header__search input[type="text"] {
+                padding: 10px 20px;
+                border: none;
+                background: #f2f2f2;
+                border-radius: 20px;
+                outline: none;
+                width: 250px;
+                transition: width 0.4s ease-in-out;
+            }
+
+            .header__search input[type="text"]:focus {
+                width: 300px;
+            }
+
+            .header__search button {
+                border: none;
+                background: none;
+                cursor: pointer;
+                position: absolute;
+                right: 10px;
+            }
+
             /* Custom CSS for table */
             table {
                 width: 500px;
-                margin-top: 20px;
-                margin-bottom: 20px;
+                margin-top: 50px;
+                margin-bottom: 50px;
                 border-spacing: 0; /* Remove space between table cells */
                 border: none; /* Remove table border */
-                border-radius: 10px; /* Border radius for table */
+                border-radius: 12px; /* Border radius for table */
                 overflow: hidden; /* Ensure content inside table does not overflow rounded corners */
             }
 
@@ -82,6 +114,8 @@
             .btn-back:hover {
                 background-color: #f29e02; /* Darker background color on hover */
             }
+
+
         </style>
 
     </head>
@@ -191,7 +225,7 @@
             </div>
         </header>
         <!-- Header Section End -->
-
+        
         <!-- Hero Section Begin -->
         <section class="hero spad set-bg" data-setbg="img/hero.jpg">
             <div class="container">
@@ -202,23 +236,24 @@
                                 <div class="row g-3">
                                     <div class="container mt-5">
                                         <h1 style="color: white; font-size: 5rem">My Request</h1>
-                                        <form action="${pageContext.request.contextPath}/request" method="post">
+                                        <form action="${pageContext.request.contextPath}/response" method="post" id="exampleForm">
                                             <table border="1">
                                                 <tr style="background-color: #ffffff;">
-                                                    <td style="width: 150px"><label for="studentName" class="form-label" style="color: black">Title</label></td>
-                                                    <td><input type="text" class="form-control" id="studentName" name="studentName" value="${Req.request_type} - ${sessionScope.book.room_id}" readonly></td>
+                                                    <td style="width: 150px"><label for="studentName" class="form-label" style="color: black">Request ID</label></td>
+                                                    <td><input type="text" class="form-control" id="studentName" name="req_id" value="${reqid}" readonly></td>
                                                 </tr>
                                                 <tr style="background-color: #ffffff;">
-                                                    <td style="width: 150px"><label for="studentName" class="form-label" style="color: black">Student Name</label></td>
-                                                    <td><input type="text" class="form-control" id="studentName" name="studentName" value="${sessionScope.data.name}" readonly></td>
+                                                    <td style="width: 150px"><label for="studentName" class="form-label" style="color: black">Title</label></td>
+                                                    <td><input type="text" class="form-control" id="studentName" name="studentName" value="${Req.request_type} - ${Req.users_id}" readonly></td>
                                                 </tr>
+
                                                 <tr style="background-color: #ffffff;">
                                                     <td><label for="studentId" class="form-label" style="color: black">Student ID</label></td>
-                                                    <td><input type="text" class="form-control" id="studentId" name="studentId" value="${sessionScope.data.id}" readonly></td>
+                                                    <td><input type="text" class="form-control" id="studentId" name="studentId" value="${Req.users_id}" readonly></td>
                                                 </tr>
                                                 <tr style="background-color: #ffffff;">
                                                     <td><label for="roomId" class="form-label" style="color: black">Room ID</label></td>
-                                                    <td><input type="text" class="form-control" id="roomId" name="roomId" value="${sessionScope.book.room_id}" readonly></td>
+                                                    <td><input type="text" class="form-control" id="studentId" name="studentId" value="${Req.room_id}" readonly></td>
                                                 </tr>
                                                 <tr style="background-color: #ffffff;">
                                                     <td><label for="roomId" class="form-label" style="color: black">Type</label></td>
@@ -233,24 +268,34 @@
                                                     <td><input type="text" class="form-control" id="roomId" name="roomId" value="${Req.request_date}" readonly></td>
                                                 </tr>
                                                 <tr style="background-color: #ffffff;">
-                                                    <td><label for="roomId" class="form-label" style="color: black">Reply</label></td>
-                                                    <td><input type="text" class="form-control" id="roomId" name="roomId" value="${Req.response}" readonly></td>
+                                                    <td>
+                                                        <label for="roomId" class="form-label" style="color: black;">Reply</label>
+                                                    </td>
+                                                    <td>
+                                                        <div class="mb-3">
+                                                            <label for="description" class="form-label">Description</label>
+                                                            <textarea class="form-control" style="max-width: 1000px;font-size: 1.3rem;" id="description"  name="resp" rows="4" > ${Req.response}</textarea>
+                                                        </div>
+                                                    </td>
                                                 </tr>
+
                                                 <tr style="background-color: #ffffff;">
                                                     <td><label for="roomId" class="form-label" style="color: black">Status</label></td>
-
-                                                    <c:if test="${Req.request_status == null}">
-                                                        <td><a style="color: red">not reply yet</a></td>
-                                                    </c:if>
-                                                    <c:if test="${Req.request_status != null}">
-                                                        <td><input type="text" class="form-control" id="roomId" name="roomId" value="${Req.request_status}" readonly> </td>
-                                                        </c:if>
+                                                    <td style="padding-bottom: 150px">
+                                                        <select  class="form-select" name="res_status" style="width: 200px">
+                                                            <option value="pending" ${Req.request_status == 'pending' ? 'selected' : ''}>Pending</option>
+                                                            <option value="processing" ${Req.request_status ==  'processing' ? 'selected' : ''}>Processing</option>
+                                                            <option value="confirm" ${Req.request_status ==  'confirm' ? 'selected' : ''}>Confirm</option>
+                                                            <option value="reject" ${Req.request_status ==  'reject' ? 'selected' : ''}>Reject</option>
+                                                        </select>
+                                                    </td>
                                                 </tr>
 
                                             </table>
                                             <br>
-                                            <button type="submit" class="btn-back" name="other" value="back">Back to add Request</button>
-                                            <button type="submit" class="btn-back" name="mess" value="list">Back to list Request</button>
+                                            <input type="hidden" name="list" value="0"> 
+                                            <button type="submit" class="btn-back" name="response" value="back">List Response</button>
+                                            <button type="submit" class="btn-back" name="response" value="save">Save</button>
                                         </form>
                                     </div>
                                 </div>
@@ -344,6 +389,30 @@
         <script src="js/jquery.slicknav.js"></script>
         <script src="js/owl.carousel.min.js"></script>
         <script src="js/main.js"></script>
+        <script>
+            document.querySelectorAll('input').forEach(function (element) {
+                element.addEventListener('keypress', function (event) {
+                    if (event.key === 'Enter') {
+                        event.preventDefault();
+                    }
+                });
+            });
+
+        </script>
+        <script>
+            document.getElementById("searchInput").addEventListener("keypress", function (event) {
+                if (event.key === 'Enter') {
+                    event.preventDefault();
+                    var query = this.value.trim();
+                    if (query !== '') {
+                        // Redirect to search_results.jsp with query parameter
+                        window.location.href = "search_results.jsp?query=" + encodeURIComponent(query);
+                    }
+                }
+            });
+
+
+        </script>
     </body>
 
 </html>

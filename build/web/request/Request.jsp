@@ -58,12 +58,14 @@
                 color: white;
             }
             .form-label {
-                color: white;
+                color: black;
                 font-size: 2.2rem;
+                
             }
             .form-control {
                 font-size: 2rem;
-                max-width: 500px; /* Adjust the width of text inputs */
+                max-width: 450px;
+                border-radius: 10px;/* Adjust the width of text inputs */
             }
 
             .form-select {
@@ -198,64 +200,63 @@
             <!-- Header Section End -->
 
             <!-- Hero Section Begin -->
-            <section class="hero spad set-bg" data-setbg="img/hero.jpg">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <div class="col-xxl-8 mb-5 mb-xxl-0">
-                                <div class="bg-secondary-soft px-4 py-5 rounded">
-                                    <div class="row g-3">
-                                        <div class="container mt-5">
-                                            <h1  style="color: white ;
-                                                 font-size: 5rem">Student Request Form</h1>
-                                                 <form action="${pageContext.request.contextPath}/request" method="post">
-                                                     <div class="mb-3">
-                                                         <label for="studentName" class="form-label">Student Name</label>
-                                                         <input type="text" class="form-control" id="studentName" name="studentName" value="${sessionScope.data.name}" readonly>
-                                                     </div>
-                                                     <div class="mb-3">
-                                                         <label for="studentId" class="form-label">Student ID</label>
-                                                         <input type="text" class="form-control" id="studentId" name="studentId" value="${sessionScope.data.id}" readonly>
-                                                     </div>
-                                                     <div class="mb-3">
-                                                         <label for="roomId" class="form-label">Room ID</label>
-                                                         <input type="text" class="form-control" id="roomId" name="roomId" value="${sessionScope.book.room_id}" readonly>
-                                                     </div>
-                                                     <div class="mb-3">
-                                                         <label for="checkinDate" class="form-label">Check-in Date</label>
-                                                         <input type="text" class="form-control" id="checkinDate" name="checkinDate" value="${sessionScope.book.checkin}" readonly>
-                                                     </div>
-                                                     <div class="mb-3">
-                                                         <label for="checkoutDate" class="form-label">Check-out Date</label>
-                                                         <input type="text" class="form-control" id="checkoutDate" name="checkoutDate" value="${sessionScope.book.checkout}" readonly>
-                                                     </div>
-                                                     <div class="mb-3">
-                                                         <label for="totalPrice" class="form-label">Total Price</label>
-                                                         <input type="text" class="form-control" id="totalPrice" name="totalPrice" value="${sessionScope.book.total_price}" readonly>
-                                                     </div>
-                                                     <div class="mb-3">
-                                                         <label for="requestType" class="form-label">Request Type</label>
-                                                         <select class="form-select" id="requestType" name="requestType" required>
-                                                             <option value="maintenance">Maintenance</option>
-                                                             <option value="room_change">Room Change</option>
-                                                             <option value="complaint">Complaint</option>
-                                                             <option value="other">Other</option>
-                                                         </select>
-                                                     </div>
-                                                     <div class="mb-3">
-                                                         <label for="description" class="form-label">Description</label>
-                                                         <textarea class="form-control" style="max-width: 1000px;
-                                                         font-size: 1.3rem;" id="description" name="description" rows="4" required></textarea>
+
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="col-xxl-8 mb-5 mb-xxl-0">
+                            <div class="bg-secondary-soft px-4 py-5 rounded">
+                                <div class="row g-3">
+                                    <div class="container mt-5">
+                                        <h1  style="color: black ;
+                                             font-size: 5rem">Student Request Form</h1>
+                                             <form action="${pageContext.request.contextPath}/request" method="post">
+                                                 <div class="mb-3">
+                                                     <label for="studentName" class="form-label">Student Name</label>
+                                                     <input type="text" class="form-control" id="studentName" name="studentName" value="${sessionScope.data.name}" readonly>
                                                  </div>
-                                                 <button type="submit" name="mess" value="request" class="btn btn-primary">Submit Request</button>
-                                                 <button type="submit"name="mess" value="list" class="btn btn-primary" onclick="removeRequiredAttribute()" >List Request</button>
-                                            </form>
-                                        </div></div></div>
-                            </div>
+                                                 <div class="mb-3">
+                                                     <label for="studentId" class="form-label">Student ID</label>
+                                                     <input type="text" class="form-control" id="studentId" name="studentId" value="${sessionScope.data.id}" readonly>
+                                                 </div>
+                                                 <div class="mb-3">
+                                                     <label for="roomId" class="form-label">Room ID</label>
+                                                     <input type="text" class="form-control" id="roomId" name="roomId" value="${sessionScope.book.room_id}" readonly>
+                                                 </div>
+                                                 <div class="mb-3">
+                                                     <label for="checkinDate" class="form-label">Check-in Date</label>
+                                                     <input type="text" class="form-control" id="checkinDate" name="checkinDate" value="${sessionScope.book.checkin}" readonly>
+                                                 </div>
+                                                 <div class="mb-3">
+                                                     <label for="checkoutDate" class="form-label">Check-out Date</label>
+                                                     <input type="text" class="form-control" id="checkoutDate" name="checkoutDate" value="${sessionScope.book.checkout}" readonly>
+                                                 </div>
+                                                 <div class="mb-3">
+                                                     <label for="totalPrice" class="form-label">Total Price</label>
+                                                     <input type="text" class="form-control" id="totalPrice" name="totalPrice" value="${sessionScope.book.total_price}" readonly>
+                                                 </div>
+                                                 <div class="mb-3">
+                                                     <label for="requestType" class="form-label">Request Type</label>
+                                                     <select class="form-select" id="requestType" name="requestType" required>
+                                                         <option value="maintenance">Maintenance</option>
+                                                         <option value="room_change">Room Change</option>
+                                                         <option value="complaint">Complaint</option>
+                                                         <option value="other">Other</option>
+                                                     </select>
+                                                 </div>
+                                                 <div class="mb-3">
+                                                     <label for="description" class="form-label">Description</label>
+                                                     <textarea class="form-control" style="max-width: 1000px;
+                                                     font-size: 1.3rem;" id="description" name="description" rows="4" required></textarea>
+                                             </div>
+                                             <button type="submit" name="mess" value="request" class="btn btn-primary">Submit Request</button>
+                                             <button type="submit" name="mess" value="list" class="btn btn-primary" onclick="removeRequiredAttribute()" >List Request</button>
+                                        </form>
+                                    </div></div></div>
                         </div>
                     </div>
                 </div>
-            </section>
+            </div>
 
 
 
@@ -343,10 +344,10 @@
             <script src="js/owl.carousel.min.js"></script>
             <script src="js/main.js"></script>
             <script>
-                                                     function removeRequiredAttribute() {
-                                                         var textarea = document.getElementById('description');
-                                                         textarea.removeAttribute('required');
-                                                     }
+                                                 function removeRequiredAttribute() {
+                                                     var textarea = document.getElementById('description');
+                                                     textarea.removeAttribute('required');
+                                                 }
             </script>
         </body>
 

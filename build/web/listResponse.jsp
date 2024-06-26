@@ -20,70 +20,90 @@
         <link rel="stylesheet" href="css/slicknav.min.css" type="text/css">
         <link rel="stylesheet" href="css/style.css" type="text/css">
         <style>
-            /* Custom CSS for table */
             table {
-                width: 500px;
-                margin-top: 20px;
-                margin-bottom: 20px;
-                border-spacing: 0; /* Remove space between table cells */
-                border: none; /* Remove table border */
-                border-radius: 10px; /* Border radius for table */
-                overflow: hidden; /* Ensure content inside table does not overflow rounded corners */
+                width: 100%;
+                border-collapse: collapse;
             }
-
+            table, th, td {
+                border: 1px solid black;
+            }
             th, td {
                 padding: 8px;
                 text-align: left;
-                border-bottom: 1px solid #ddd; /* Bottom border for each cell */
-                border-top: none; /* Remove top border */
-                border-left: none; /* Remove left border */
-                border-right: none; /* Remove right border */
             }
-
             th {
-                background-color: #f0a500; /* Header background color */
-                color: white; /* Header text color */
+                background-color: #f0a500; /* Light orange background for headers */
+            }
+            .not-reply-yet {
+                color: red;
+            }
+            .action-link {
                 font-weight: bold;
+                text-decoration: none;
+                color: #000; /* Black color */
             }
-
-            tr:nth-child(even) {
-                background-color: #f2f2f2; /* Even rows background color */
+            .action-link:hover,
+            .action-link:active,
+            .action-link:visited {
+                color: #000; /* Ensure the color remains black when hovered, clicked, or visited */
             }
-
-            tr:hover {
-                background-color: #ddd; /* Hover row background color */
+            .profile__button {
+                display: inline-block;
+                padding: 12px 0 12px;
+                position: relative;
+                cursor: pointer;
             }
-
-            .form-label {
-                font-weight: bold;
+            .profile__button i {
+                display: inline-block;
+                font-size: 15px;
+                color: #1d1c1c;
+                font-weight: 500;
+            }
+            .profile__button--black a {
+                text-decoration: none;
                 color: black;
             }
-
-            .form-control {
-                width: 100%;
-                padding: 3px;
-                box-sizing: border-box;
-            }
-
-            .btn-back {
-                font-weight: bold;
-                background-color: #E9AD28;
-                color: white;
-                border: none;
-                padding: 12px 20px;
-                text-align: center;
+            .profile__button--white a {
                 text-decoration: none;
-                display: inline-block;
-                margin-top: 20px;
-                cursor: pointer;
-                border-radius: 4px;
+                color: white;
             }
-
-            .btn-back:hover {
-                background-color: #f29e02; /* Darker background color on hover */
+            .profile__button a:hover {
+                color: inherit;
+            }
+            .profile__button--black {
+                color: black;
+            }
+            .profile__button--white {
+                color: white;
+            }
+            .form-label {
+                color: white;
+                font-size: 2.2rem;
+            }
+            .form-control {
+                font-size: 2rem;
+                max-width: 500px; /* Adjust the width of text inputs */
+            }
+            .form-select {
+                font-size: 2rem;
+                max-width: 500px; /* Adjust the width of select inputs */
+            }
+            .btn-primary {
+                font-size: 2rem;
+            }
+            .form-container {
+                max-width: 700px; /* Adjust the width of the form container */
+                padding: 20px;
+                background-color: #343a40;
+                border-radius: 8px;
+            }
+            .centered-container {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
             }
         </style>
-
     </head>
     <body>
         <!-- Page Preloder -->
@@ -201,56 +221,43 @@
                             <div class="bg-secondary-soft px-4 py-5 rounded">
                                 <div class="row g-3">
                                     <div class="container mt-5">
-                                        <h1 style="color: white; font-size: 5rem">My Request</h1>
-                                        <form action="${pageContext.request.contextPath}/request" method="post">
+                                        <h1 style="color: white; font-size: 5rem">List Request</h1>
+                                        <form action="response" method="post">
                                             <table border="1">
-                                                <tr style="background-color: #ffffff;">
-                                                    <td style="width: 150px"><label for="studentName" class="form-label" style="color: black">Title</label></td>
-                                                    <td><input type="text" class="form-control" id="studentName" name="studentName" value="${Req.request_type} - ${sessionScope.book.room_id}" readonly></td>
+                                                <tr>
+                                                    <th>Student ID</th>
+                                                    <th>Room ID</th>
+                                                    <th>Create Date</th>
+                                                    <th>Request</th>
+                                                    <th>Response</th>
+                                                    <th>Status</th>
+                                                    <th>Request type</th>
+                                                    <th>Function</th>
                                                 </tr>
-                                                <tr style="background-color: #ffffff;">
-                                                    <td style="width: 150px"><label for="studentName" class="form-label" style="color: black">Student Name</label></td>
-                                                    <td><input type="text" class="form-control" id="studentName" name="studentName" value="${sessionScope.data.name}" readonly></td>
-                                                </tr>
-                                                <tr style="background-color: #ffffff;">
-                                                    <td><label for="studentId" class="form-label" style="color: black">Student ID</label></td>
-                                                    <td><input type="text" class="form-control" id="studentId" name="studentId" value="${sessionScope.data.id}" readonly></td>
-                                                </tr>
-                                                <tr style="background-color: #ffffff;">
-                                                    <td><label for="roomId" class="form-label" style="color: black">Room ID</label></td>
-                                                    <td><input type="text" class="form-control" id="roomId" name="roomId" value="${sessionScope.book.room_id}" readonly></td>
-                                                </tr>
-                                                <tr style="background-color: #ffffff;">
-                                                    <td><label for="roomId" class="form-label" style="color: black">Type</label></td>
-                                                    <td><input type="text" class="form-control" id="roomId" name="roomId" value="${Req.request_type}" readonly></td>
-                                                </tr>
-                                                <tr style="background-color: #ffffff;">
-                                                    <td><label for="roomId" class="form-label" style="color: black">Content</label></td>
-                                                    <td><input type="text" class="form-control" id="roomId" name="roomId" value="${Req.request}" readonly></td>
-                                                </tr>
-                                                <tr style="background-color: #ffffff;">
-                                                    <td><label for="roomId" class="form-label" style="color: black">Create Date</label></td>
-                                                    <td><input type="text" class="form-control" id="roomId" name="roomId" value="${Req.request_date}" readonly></td>
-                                                </tr>
-                                                <tr style="background-color: #ffffff;">
-                                                    <td><label for="roomId" class="form-label" style="color: black">Reply</label></td>
-                                                    <td><input type="text" class="form-control" id="roomId" name="roomId" value="${Req.response}" readonly></td>
-                                                </tr>
-                                                <tr style="background-color: #ffffff;">
-                                                    <td><label for="roomId" class="form-label" style="color: black">Status</label></td>
-
-                                                    <c:if test="${Req.request_status == null}">
-                                                        <td><a style="color: red">not reply yet</a></td>
-                                                    </c:if>
-                                                    <c:if test="${Req.request_status != null}">
-                                                        <td><input type="text" class="form-control" id="roomId" name="roomId" value="${Req.request_status}" readonly> </td>
+                                                <c:forEach var="request" items="${req}">
+                                                    <tr style="background-color: #ffffff;">
+                                                        <td>${request.users_id}</td>
+                                                        <td>${request.room_id}</td>
+                                                        <td>${request.request_date}</td>
+                                                        <td>${request.request}</td>
+                                                        <td>${request.Response}</td>
+                                                        <c:if test="${request.request_status == null}">
+                                                            <td><a style="color: red">not reply yet</a></td>
                                                         </c:if>
-                                                </tr>
+                                                        <c:if test="${request.request_status != null}">
+                                                            <td>${request.request_status}</td>
+                                                        </c:if>
 
+                                                        <td>
+                                                            
+                                                        </td>
+                                                    </tr>
+
+                                                   
+                                                </c:forEach>
                                             </table>
                                             <br>
-                                            <button type="submit" class="btn-back" name="other" value="back">Back to add Request</button>
-                                            <button type="submit" class="btn-back" name="mess" value="list">Back to list Request</button>
+                                            <button type="submit" class="btn btn-danger btn-lg" style="font-weight: bold;background-color: #E9AD28" name="other" value="back">Back to add Request</button>
                                         </form>
                                     </div>
                                 </div>

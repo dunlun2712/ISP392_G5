@@ -124,8 +124,6 @@
                                 </div> 
                             </div>
                         </div>
-
-
                     </div> 
 
                     <div class="gap-3 d-md-flex justify-content-md-end text-center" >
@@ -136,13 +134,13 @@
 
                 </div>
             </div>
-        </div>
 
-        <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-        <script type="text/javascript">
-            // Your JavaScript code
-        </script>
-    </form>
-</body>
+
+            <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+            <script type="text/javascript">
+                // Your JavaScript code
+            </script>
+        </form>
+    </body>
 </html>
