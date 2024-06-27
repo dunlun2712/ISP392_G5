@@ -114,10 +114,10 @@ public class NewDAO extends DBContext {
         }
         return newsList;
     }
-public News getNewsById(int id) {
+
+    public News getNewsById(int id) {
         String sql = "SELECT * FROM news WHERE news_id = ?";
-        try (Connection conn = connection;
-             PreparedStatement ps = conn.prepareStatement(sql)) {
+        try (Connection conn = connection; PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setInt(1, id);
             try (ResultSet rs = ps.executeQuery()) {
                 if (rs.next()) {
@@ -137,28 +137,80 @@ public News getNewsById(int id) {
         return null;
     }
 
-    public List<News> searchNewsByTitle(String title) {
+    public List<News> getNewsByDate(String date) {
         List<News> newsList = new ArrayList<>();
-        String sql = "SELECT * FROM news WHERE title LIKE ?";
-        try (Connection conn = connection;
-             PreparedStatement statement = connection.prepareStatement(sql)) {
-            statement.setString(1, "%" + title + "%");
-            ResultSet resultSet = statement.executeQuery();
-            while (resultSet.next()) {
-                News news = new News();
-                news.setNew_id(resultSet.getString("new_id"));
-                news.setTitle(resultSet.getString("title"));
-                news.setContent(resultSet.getString("content"));
-                news.setPublish_date(resultSet.getDate("publish_date"));
-                news.setCategory(resultSet.getString("category"));
-                news.setLink(resultSet.getString("link"));
+        String sql = "SELECT * FROM news WHERE publish_date = ?";
+
+        try (Connection conn = connection; PreparedStatement ps = conn.prepareStatement(sql)) {
+
+            ps.setString(1, date);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                News news = new News(
+                        rs.getString("news_id"),
+                        rs.getString("title"),
+                        rs.getString("content"),
+                        rs.getDate("publish_date"),
+                        rs.getString("category"),
+                        rs.getString("link")
+                );
                 newsList.add(news);
             }
-        } catch (Exception e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         return newsList;
     }
+
+    public List<News> getNewsByCategory(String category) {
+        List<News> newsList = new ArrayList<>();
+        String sql = "SELECT * FROM news WHERE category = ?";
+
+        try (Connection conn = connection; PreparedStatement ps = conn.prepareStatement(sql)) {
+
+            ps.setString(1, category);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                News news = new News(
+                        rs.getString("news_id"),
+                        rs.getString("title"),
+                        rs.getString("content"),
+                        rs.getDate("publish_date"),
+                        rs.getString("category"),
+                        rs.getString("link")
+                );
+                newsList.add(news);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return newsList;
+    }
+
+    public List<News> getNewsByTitle(String title) {
+        List<News> newsList = new ArrayList<>();
+        String sql = "SELECT * FROM news WHERE title LIKE ?";
+        try (Connection conn = connection; PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setString(1, "%" + title + "%");
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    News news = new News(
+                            rs.getString("news_id"),
+                            rs.getString("title"),
+                            rs.getString("content"),
+                            rs.getDate("publish_date"),
+                            rs.getString("category"),
+                            rs.getString("link")
+                    );
+                    newsList.add(news);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return newsList;
+    }
+
 }
-
-

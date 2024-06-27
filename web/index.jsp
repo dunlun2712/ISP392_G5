@@ -98,8 +98,8 @@
                             <div class="header__nav">
                                 <nav class="header__menu">
                                     <ul class="menu__class">
-                                        <li class="active"><a href="home">Home</a></li>
-                                        <li><a href="./rooms.html">Rooms</a></li>
+                                        <li class="active"><a href="homepage">Home</a></li>
+                                        <li><a href="./managementdorm">Dorm</a></li>
                                         <li><a href="./about.html">About Us</a></li>
                                         <li><a href="#">Pages</a>
                                             <ul class="dropdown">
@@ -108,7 +108,7 @@
                                                 <li><a href="./blog-details.html">Blog Details</a></li>
                                             </ul>
                                         </li>
-                                        <li><a href="./blog.html">News</a></li>
+                                        <li><a href="./blog">News</a></li>
                                         <li><a href="./contact.html">Contact</a></li>
                                     </ul>
                                 </nav>

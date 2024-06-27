@@ -52,6 +52,18 @@
         <servlet-name>ListNew</servlet-name>
         <servlet-class>Controller.ListNew</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Blog</servlet-name>
+        <servlet-class>Controller.Blog</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>NewDetail</servlet-name>
+        <servlet-class>Controller.NewDetail</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SearchNews</servlet-name>
+        <servlet-class>Controller.SearchNews</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>BookingController</servlet-name>
         <url-pattern>/booking</url-pattern>
@@ -103,5 +115,17 @@
     <servlet-mapping>
         <servlet-name>ListNew</servlet-name>
         <url-pattern>/listnew</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Blog</servlet-name>
+        <url-pattern>/blog</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>NewDetail</servlet-name>
+        <url-pattern>/newdetail</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SearchNews</servlet-name>
+        <url-pattern>/searchnew</url-pattern>
     </servlet-mapping>
 </web-app>

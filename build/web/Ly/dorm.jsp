@@ -72,8 +72,8 @@
             </div>
             <nav class="offcanvas__menu mobile-menu">
                 <ul>
-                    <li class="active"><a href="./index.html">Home</a></li>
-                    <li><a href="./rooms.html">Rooms</a></li>
+                    <li class="active"><a href="./homepage">Home</a></li>
+                    <li><a href="./managementdorm">Dorm</a></li>
                     <li><a href="./about.html">About Us</a></li>
                     <li><a href="#">Pages</a>
                         <ul class="dropdown">
@@ -82,7 +82,7 @@
                             <li><a href="./blog-details.html">Blog Details</a></li>
                         </ul>
                     </li>
-                    <li><a href="./blog.html">News</a></li>
+                    <li><a href="./blog">News</a></li>
                     <li><a href="./contact.html">Contact</a></li>
                 </ul>
             </nav>
@@ -159,8 +159,8 @@
                             <div class="header__nav">
                                 <nav class="header__menu">
                                     <ul>
-                                        <li><a href="./index.html">Home</a></li>
-                                        <li class="active"><a href="./rooms.html">Rooms</a></li>
+                                        <li><a href="./homepage">Home</a></li>
+                                        <li class="active"><a href="./managementdorm">Dorm</a></li>
                                         <li><a href="./about.html">About Us</a></li>
                                         <li><a href="#">Pages</a>
                                             <ul class="dropdown">
@@ -169,7 +169,7 @@
                                                 <li><a href="./blog-details.html">Blog Details</a></li>
                                             </ul>
                                         </li>
-                                        <li><a href="./blog.html">News</a></li>
+                                        <li><a href="./blog">News</a></li>
                                         <li><a href="./contact.html">Contact</a></li>
                                     </ul>
                                 </nav>
@@ -196,7 +196,7 @@
                             <h1>Dormitory</h1>
                             <div class="breadcrumb__links">
                                 <a href="./index.html">Home</a>
-                                <span>Rooms</span>
+                                <span>Dorm</span>
                             </div>
                         </div>
                     </div>
