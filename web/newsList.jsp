@@ -34,13 +34,13 @@
             .form-container table {
                 width: 100%;
                 border-collapse: separate;
-                border-spacing: 0 10px; /* Add spacing between rows */
+                border-spacing: 0 10px;
             }
 
             .form-container table th,
             .form-container table td {
-                padding: 15px 20px; /* Increase padding for more space */
-                text-align: left; /* Align text to the left */
+                padding: 15px 20px;
+                text-align: left;
             }
 
             .form-container table th {
@@ -51,17 +51,12 @@
             .form-container table td {
                 background-color: #fff;
                 vertical-align: top;
-                border-bottom: 1px solid #f2f2f2; /* Add a border to the bottom of each cell */
+                border-bottom: 1px solid #f2f2f2;
             }
 
             .form-container table td a {
                 color: #007bff;
                 text-decoration: none;
-            }
-
-            .scrollable-content {
-                max-height: 100px;
-                overflow-y: auto;
             }
 
             .search-container {
@@ -93,22 +88,22 @@
             }
 
             .title-column {
-                width: 15%; /* Reduced width */
+                width: 15%;
             }
 
             .content-column {
-                width: 48%; /* Increased width */
+                width: 48%;
             }
 
             .link-column {
-                width: 7%; /* Reduced width */
+                width: 7%;
             }
         </style>
         <style>
             .scrollable-content {
-                max-height: 100px; /* Set the max height */
-                overflow-y: auto; /* Enable vertical scrolling */
-                display: block; /* Ensure the content is a block element */
+                max-height: 100px;
+                overflow-y: auto;
+                display: block;
             }
         </style>
     </head>
@@ -238,8 +233,7 @@
                                     <option value="Room">Room</option>
                                     <option value="Other">Other</option>
                                 </select>
-                                <input type="date" name="date"  value="${param.date}">
-                                <!--id="dateInput"-->
+                                <input type="date" name="date" value="${param.date}">
                                 <input type="submit" name="search" value="Search">
                             </form>
                         </div>
@@ -260,17 +254,20 @@
                                     <tr>
                                         <td>${news.new_id}</td>
                                         <td class="title-column">${news.title}</td>
-                                        <td class="scrollable-content">${news.content}</td>
+                                        <td class="content-column">
+                                            <div class="scrollable-content" id="content${news.new_id}" style="display: none;">
+                                                ${news.content}
+                                            </div>
+                                            <button onclick="toggleContent(${news.new_id})">Show</button>
+                                        </td>
                                         <td>${news.publish_date}</td>
                                         <td>${news.category}</td>
-                                        <td><a href="${news.link}" target="_blank">${news.link}</a></td>
-                                        <td>
-                                            <form action="listnew" method="post">
+                                        <td class="link-column"><a href="${news.link}">Read more</a></td>
+                                        <td><form action="listnew" method="post">
                                                 <input type="hidden" name="action" value="delete">
                                                 <input type="hidden" name="new_id" value="${news.new_id}">
                                                 <input type="submit" value="Delete" onclick="return confirm('Are you sure you want to delete this news?');">
-                                            </form>
-                                        </td>
+                                            </form></td>
                                     </tr>
                                 </c:forEach>
                             </tbody>
@@ -280,128 +277,28 @@
             </div>
         </div>
 
-
-        <!-- Footer Section Begin -->
-        <footer class="footer set-bg" data-setbg="img/footer-bg.jpg">
-            <div class="container">
-                <div class="footer__content">
-
-                    <div class="col-lg-3 col-md-6 col-sm-6">
-                        <div class="footer__about">
-                            <div class="footer__logo">
-                                <a href="#"><img src="img/logo.png" alt=""></a>
-                            </div>
-                            <h4>0941384237</h4>
-                            <ul>
-                                <li>Khu Cong Nghe Cao Hoa Lac, km 29, Dai lo Thang Long, Ha Noi</li>
-                                <li>Info.colorlib@gmail.com</li>
-                            </ul>
-                            <div class="footer__social">
-                                <a href="#"><i class="fa fa-facebook"></i></a>
-                                <a href="#"><i class="fa fa-twitter"></i></a>
-                                <a href="#"><i class="fa fa-tripadvisor"></i></a>
-                                <a href="#"><i class="fa fa-instagram"></i></a>
-                                <a href="#"><i class="fa fa-youtube-play"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6 col-sm-6">
-                        <div class="footer__widget">
-                            <h6>Our Services</h6>
-                            <ul>
-                                <li>Free Wi-Fi</li>
-                                <li>Easy Booking</li>
-                                <li>Free Parking</li>
-                                <li>Swimming Pool</li>
-                                <li>Restaurant & Bar</li>
-                                <li>Hair Salon</li>
-                            </ul>
-                            <ul>
-                                <li>24/7 Reception</li>
-                                <li>Car Rental</li>
-                                <li>Gym & Yoga</li>
-                                <li>Spa & Massage</li>
-                                <li>Laundry Service</li>
-                                <li>Tour Guide</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-lg-3  col-sm-6">
-                        <div class="footer__widget">
-                            <h6>Travel News</h6>
-                            <ul>
-                                <li>Weekend in the forest</li>
-                                <li>Hiking in the mountains</li>
-                                <li>Sea and the beach</li>
-                                <li>Romantic trip</li>
-                                <li>Family Holidays</li>
-                                <li>Travel News</li>
-                            </ul>
-                            <ul>
-                                <li>Weekend in the forest</li>
-                                <li>Hiking in the mountains</li>
-                                <li>Sea and the beach</li>
-                                <li>Romantic trip</li>
-                                <li>Family Holidays</li>
-                                <li>Travel News</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6 col-sm-6">
-                        <div class="footer__widget">
-                            <h6>Subscribe</h6>
-                            <p>Subscribe to our newsletter to get the latest updates and offers.</p>
-                            <form action="#">
-                                <input type="email" placeholder="Email">
-                                <button type="submit"><i class="fa fa-send-o"></i></button>
-                            </form>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <div class="footer__copyright__text">
-                                <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                                    Copyright &copy;
-                                    <script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-                                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </footer>
-        <!-- Footer Section End -->
-
-        <!-- Search model Begin -->
-        <div class="search-model">
-            <div class="h-100 d-flex align-items-center justify-content-center">
-                <div class="search-close-switch"><i class="icon_close"></i></div>
-                <form class="search-model-form">
-                    <input type="text" id="search-input" placeholder="Search here.....">
-                </form>
-            </div>
-        </div>
-        <!-- Search model end -->
+        <!-- Hero Section End -->
 
         <!-- Js Plugins -->
         <script src="js/jquery-3.3.1.min.js"></script>
         <script src="js/bootstrap.min.js"></script>
-        <script src="js/jquery.magnific-popup.min.js"></script>
-        <script src="js/jquery-ui.min.js"></script>
         <script src="js/jquery.nice-select.min.js"></script>
+        <script src="js/jquery-ui.min.js"></script>
         <script src="js/jquery.slicknav.js"></script>
         <script src="js/owl.carousel.min.js"></script>
         <script src="js/main.js"></script>
+        <script>
+                                                        function toggleContent(id) {
+                                                            var content = document.getElementById('content' + id);
+                                                            var button = content.nextElementSibling;
+                                                            if (content.style.display === 'none') {
+                                                                content.style.display = 'block';
+                                                                button.textContent = 'Hide';
+                                                            } else {
+                                                                content.style.display = 'none';
+                                                                button.textContent = 'Show';
+                                                            }
+                                                        }
+        </script>
     </body>
-    <script>
-                                         // Hàm ?? ??nh d?ng l?i ngày tháng khi nh?p vào input
-                                         document.getElementById('dateInput').addEventListener('input', function (e) {
-                                             var inputDate = e.target.value;
-                                             if (inputDate.length === 4 || inputDate.length === 7) {
-                                                 e.target.value += '-';
-                                             }
-                                         });
-    </script>
 </html>
