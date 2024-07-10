@@ -3,8 +3,14 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/khanh/Máy%20tính/git/src/java/Controller/AddDorm.java</file>
-            <file>file:/C:/Users/khanh/Máy%20tính/git/src/java/Controller/AddRoom.java</file>
+            <file>file:/C:/Users/khanh/Máy%20tính/git/web/invoice.jsp</file>
+            <file>file:/C:/Users/khanh/Máy%20tính/git/web/addinvoice.jsp</file>
+            <file>file:/C:/Users/khanh/Máy%20tính/git/web/watererror.jsp</file>
+            <file>file:/C:/Users/khanh/Máy%20tính/git/src/java/Controller/ListNew.java</file>
+            <file>file:/C:/Users/khanh/Máy%20tính/git/src/java/Controller/AddNew.java</file>
+            <file>file:/C:/Users/khanh/Máy%20tính/git/src/java/Controller/AddInvoice.java</file>
+            <file>file:/C:/Users/khanh/Máy%20tính/git/src/java/Model/Invoice.java</file>
+            <file>file:/C:/Users/khanh/Máy%20tính/git/src/java/Dao/InvoiceDAO.java</file>
         </group>
     </open-files>
 </project-private>

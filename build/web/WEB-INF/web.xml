@@ -64,6 +64,14 @@
         <servlet-name>SearchNews</servlet-name>
         <servlet-class>Controller.SearchNews</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Invoice</servlet-name>
+        <servlet-class>Controller.InvoiceController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AddInvoice</servlet-name>
+        <servlet-class>Controller.AddInvoice</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>BookingController</servlet-name>
         <url-pattern>/booking</url-pattern>
@@ -127,5 +135,13 @@
     <servlet-mapping>
         <servlet-name>SearchNews</servlet-name>
         <url-pattern>/searchnew</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Invoice</servlet-name>
+        <url-pattern>/invoice</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddInvoice</servlet-name>
+        <url-pattern>/addinvoice</url-pattern>
     </servlet-mapping>
 </web-app>
