@@ -6,13 +6,18 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
+import java.sql.Date;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 /**
  * Servlet implementation class AddInvoice
  */
 public class AddInvoice extends HttpServlet {
+
     private static final long serialVersionUID = 1L;
 
     /**
@@ -23,7 +28,8 @@ public class AddInvoice extends HttpServlet {
     }
 
     /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
      *
      * @param request servlet request
      * @param response servlet response
@@ -47,6 +53,16 @@ public class AddInvoice extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        InvoiceDAO invoiceDAO = new InvoiceDAO();
+        int id = invoiceDAO.getID();
+        // Set the current date
+        LocalDate currentDate = LocalDate.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        String formattedDate = currentDate.format(formatter);
+        currentDate = LocalDate.now();
+
+        request.setAttribute("date", currentDate);
+        request.setAttribute("id", id);
         request.getRequestDispatcher("addinvoice.jsp").forward(request, response);
     }
 
@@ -59,27 +75,38 @@ public class AddInvoice extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        String invoice_id = request.getParameter("invoice_id");
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {
+
+       
         String users_id = request.getParameter("users_id");
         String room_id = request.getParameter("room_id");
         String createdDate = request.getParameter("createdDate");
         String description = request.getParameter("description");
         String paymentType = request.getParameter("paymentType");
-        String paymentDate = request.getParameter("paymentDate");
         String status = request.getParameter("status");
-        String paymentCode = request.getParameter("paymentCode");
-        String modifiedDate = request.getParameter("modifiedDate");
         String totalPayment = request.getParameter("totalPayment");
-        String paid = request.getParameter("paid");
-        String remaining = request.getParameter("remaining");
+        Date publishDate = null;
 
+        if (createdDate != null && !createdDate.isEmpty()) {
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            LocalDate localDate = LocalDate.parse(createdDate, formatter);
+            publishDate = Date.valueOf(localDate);
+        }
+
+        HttpSession session = request.getSession();
+        // Set the current date
+        LocalDate currentDate = LocalDate.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        String formattedDate = currentDate.format(formatter);
+        currentDate = LocalDate.now();
+
+        request.setAttribute("date", currentDate);
         // Tạo đối tượng Invoice và thêm vào cơ sở dữ liệu
-        Invoice invoice = new Invoice(invoice_id, room_id, users_id, createdDate, description, paymentType, paymentDate, status, paymentCode, modifiedDate, totalPayment, paid, remaining);
+        Invoice invoice = new Invoice("", room_id, users_id, createdDate, description, paymentType, "", status, totalPayment);
         InvoiceDAO invoiceDAO = new InvoiceDAO();
         invoiceDAO.addInvoice(invoice);
 
+        request.setAttribute("date", currentDate);
         // Đặt các thuộc tính để chuyển tiếp đến trang JSP
         request.setAttribute("invoice", invoice);
 

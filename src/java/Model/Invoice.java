@@ -4,8 +4,6 @@
  */
 package Model;
 
-import java.util.Date;
-
 /**
  *
  * @author khanh
@@ -19,16 +17,12 @@ public class Invoice {
     private String paymentType;
     private String paymentDate;
     private String status;
-    private String paymentCode;
-    private String modifiedDate;
     private String totalPayment;
-    private String paid;
-    private String remaining;
 
     public Invoice() {
     }
 
-    public Invoice(String invoice_id, String room_id, String users_id, String createdDate, String description, String paymentType, String paymentDate, String status, String paymentCode, String modifiedDate, String totalPayment, String paid, String remaining) {
+    public Invoice(String invoice_id, String room_id, String users_id, String createdDate, String description, String paymentType, String paymentDate, String status, String totalPayment) {
         this.invoice_id = invoice_id;
         this.room_id = room_id;
         this.users_id = users_id;
@@ -37,11 +31,7 @@ public class Invoice {
         this.paymentType = paymentType;
         this.paymentDate = paymentDate;
         this.status = status;
-        this.paymentCode = paymentCode;
-        this.modifiedDate = modifiedDate;
         this.totalPayment = totalPayment;
-        this.paid = paid;
-        this.remaining = remaining;
     }
 
     public String getInvoice_id() {
@@ -108,44 +98,12 @@ public class Invoice {
         this.status = status;
     }
 
-    public String getPaymentCode() {
-        return paymentCode;
-    }
-
-    public void setPaymentCode(String paymentCode) {
-        this.paymentCode = paymentCode;
-    }
-
-    public String getModifiedDate() {
-        return modifiedDate;
-    }
-
-    public void setModifiedDate(String modifiedDate) {
-        this.modifiedDate = modifiedDate;
-    }
-
     public String getTotalPayment() {
         return totalPayment;
     }
 
     public void setTotalPayment(String totalPayment) {
         this.totalPayment = totalPayment;
-    }
-
-    public String getPaid() {
-        return paid;
-    }
-
-    public void setPaid(String paid) {
-        this.paid = paid;
-    }
-
-    public String getRemaining() {
-        return remaining;
-    }
-
-    public void setRemaining(String remaining) {
-        this.remaining = remaining;
     }
 
     

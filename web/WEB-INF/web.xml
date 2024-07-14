@@ -72,6 +72,22 @@
         <servlet-name>AddInvoice</servlet-name>
         <servlet-class>Controller.AddInvoice</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ViewInvoice</servlet-name>
+        <servlet-class>Controller.ViewInvoice</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Water</servlet-name>
+        <servlet-class>Controller.Water</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeleteWater</servlet-name>
+        <servlet-class>Controller.DeleteWater</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>EditWater</servlet-name>
+        <servlet-class>Controller.EditWater</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>BookingController</servlet-name>
         <url-pattern>/booking</url-pattern>
@@ -143,5 +159,21 @@
     <servlet-mapping>
         <servlet-name>AddInvoice</servlet-name>
         <url-pattern>/addinvoice</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ViewInvoice</servlet-name>
+        <url-pattern>/viewinvoice</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Water</servlet-name>
+        <url-pattern>/water</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteWater</servlet-name>
+        <url-pattern>/deletewater</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EditWater</servlet-name>
+        <url-pattern>/editwater</url-pattern>
     </servlet-mapping>
 </web-app>

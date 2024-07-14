@@ -25,42 +25,35 @@
 <div class="container">
     <h2>Invoice Payment</h2>
     <div class="btn-create">
-        <a href="createInvoice.jsp" class="btn btn-primary">Tạo hóa đơn mới</a>
+        <a href="addinvoice.jsp" class="btn btn-primary">Create New Invoice</a>
     </div>
     <table class="table table-bordered">
         <thead>
         <tr>
-            <th>Sinh viên</th>
-            <th>Phòng/Giường</th>
-            <th>Ngày tạo</th>
-            <th>Mô tả</th>
-            <th>Dạng thanh toán</th>
-            <th>Ngày thanh toán</th>
-            <th>Trạng thái</th>
-            <th>Mã Thanh Toán</th>
-            <th>Ngày chỉnh sửa</th>
-            <th>Tổng Phí Thanh Toán</th>
-            <th>Đã thanh toán</th>
-            <th>Còn lại phải trả</th>
-            <th>Details</th>
+            <th>ID</th>
+            <th>Student ID</th>
+            <th>Room/Bed</th>
+            <th>Created Date</th>
+            <th>Description</th>
+            <th>Payment Type</th>
+            <th>Payment Date</th>
+            <th>Status</th>
+            <th>Total Payment</th>
         </tr>
         </thead>
         <tbody>
         <c:forEach var="invoice" items="${invoices}">
             <tr>
-                <td>${invoice.studentId}</td>
-                <td>${invoice.roomBed}</td>
+                <td>${invoice.invoice_id}</td>
+                <td>${invoice.users_id}</td>
+                <td>${invoice.room_id}</td>
                 <td>${invoice.createdDate}</td>
                 <td>${invoice.description}</td>
                 <td>${invoice.paymentType}</td>
                 <td>${invoice.paymentDate}</td>
                 <td>${invoice.status}</td>
-                <td>${invoice.paymentCode}</td>
-                <td>${invoice.modifiedDate}</td>
                 <td>${invoice.totalPayment}</td>
-                <td>${invoice.paid}</td>
-                <td>${invoice.remaining}</td>
-                <td><a href="details.jsp?id=${invoice.studentId}">Details</a></td>
+                <td><a href="details.jsp?id=${invoice.users_id}">Details</a></td>
             </tr>
         </c:forEach>
         </tbody>
