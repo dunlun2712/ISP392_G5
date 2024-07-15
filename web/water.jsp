@@ -111,14 +111,14 @@
     <body>
 
         <div class="header">Update waters numbers</div>
-
+        <div style="color: red">${mess}</div>
         <div class="container">
-            <!--            <div class="buttons">
-                            <button class="import-btn" onclick="location.href = 'readEx.jsp'">Import Data</button>
-                        </div>-->
+            <div class="buttons">
+                <button class="import-btn" onclick="location.href = 'readEx.jsp'">Import Data</button>
+            </div>
             <form class="filter" action="searchWater">
-                <input type="text" name="search" placeholder="Search for items..." value="${search}"/>
-                <button type="submit" class="button" >Search</button>
+                <input type="text" name="search" placeholder="Search for items..."/>
+                <button type="submit" class="button" value="${search}">Search</button>
             </form>
             <table>
                 <thead>
@@ -136,7 +136,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <c:forEach var="data" items="${rs}">
+                    <c:forEach var="data" items="${data1}">
                         <tr>
                             <td>${data.getWater_id()}</td>
                             <td>${data.getRoom_id()}</td>
@@ -152,9 +152,6 @@
                     </c:forEach>
                 </tbody>
             </table>
-            <div>
-                <a href="nuocSv">Back</a>
-            </div>
         </div>
     </body>
 </html>
