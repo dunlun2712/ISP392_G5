@@ -25,8 +25,23 @@
 <div class="container">
     <h2>Invoice Payment</h2>
     <div class="btn-create">
-        <a href="addinvoice.jsp" class="btn btn-primary">Create New Invoice</a>
+        <a href="/addinvoice" class="btn btn-primary">Create New Invoice</a>
     </div>
+    <form method="post" action="invoice" class="form-inline mb-3">
+        <div class="form-group mr-2">
+            <label for="user_id" class="mr-2">User ID:</label>
+            <input type="text" class="form-control" id="user_id" name="user_id">
+        </div>
+        <div class="form-group mr-2">
+            <label for="room_id" class="mr-2">Room ID:</label>
+            <input type="text" class="form-control" id="room_id" name="room_id">
+        </div>
+        <div class="form-group mr-2">
+            <label for="from_date" class="mr-2">Create Date:</label>
+            <input type="date" class="form-control" id="from_date" name="from_date">
+        </div>
+        <button type="submit" class="btn btn-primary">Search</button>
+    </form>
     <table class="table table-bordered">
         <thead>
         <tr>

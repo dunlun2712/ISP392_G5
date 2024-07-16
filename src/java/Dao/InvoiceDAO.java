@@ -129,4 +129,76 @@ public class InvoiceDAO extends DBContext{
             e.printStackTrace();
         }
      }
+      public List<Invoice> searchInvoices(String userId, String roomId, String fromDate) {
+        List<Invoice> invoices = new ArrayList<>();
+        StringBuilder sql = new StringBuilder("SELECT * FROM billService WHERE 1=1");
+
+        if (userId != null && !userId.isEmpty()) {
+            sql.append(" AND users_id = ?");
+        }
+        if (roomId != null && !roomId.isEmpty()) {
+            sql.append(" AND room_id = ?");
+        }
+        if (fromDate != null && !fromDate.isEmpty()) {
+            sql.append(" AND createdDate >= ?");
+        }
+
+        try {
+            conn = connection; // Assuming connection is properly initialized elsewhere
+            ps = conn.prepareStatement(sql.toString());
+
+            int index = 1;
+            if (userId != null && !userId.isEmpty()) {
+                ps.setString(index++, userId);
+            }
+            if (roomId != null && !roomId.isEmpty()) {
+                ps.setString(index++, roomId);
+            }
+            if (fromDate != null && !fromDate.isEmpty()) {
+                ps.setString(index++, fromDate);
+            }
+
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                String invoice_id = rs.getString("invoice_id");
+                String room_id = rs.getString("room_id");
+                String users_id = rs.getString("users_id");
+                String createdDate = rs.getString("createdDate");
+                String description = rs.getString("description");
+                String paymentType = rs.getString("paymentType");
+                String paymentDate = rs.getString("paymentDate");
+                String status = rs.getString("status");
+                String totalPayment = rs.getString("totalPayment");
+                invoices.add(new Invoice(invoice_id, room_id, users_id, createdDate, description, paymentType, paymentDate, status, totalPayment));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return invoices;
+    }
+      public boolean isUserExist(String userId) throws SQLException {
+        String query = "SELECT COUNT(*) FROM users WHERE users_id = ?";
+        try (PreparedStatement stmt = connection.prepareStatement(query)) {
+            stmt.setString(1, userId);
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    return rs.getInt(1) > 0;
+                }
+            }
+        }
+        return false;
+    }
+
+    public boolean isRoomExist(String roomId) throws SQLException {
+        String query = "SELECT COUNT(*) FROM room WHERE room_id = ?";
+        try (PreparedStatement stmt = connection.prepareStatement(query)) {
+            stmt.setString(1, roomId);
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    return rs.getInt(1) > 0;
+                }
+            }
+        }
+        return false;
+    }
 }

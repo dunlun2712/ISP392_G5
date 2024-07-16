@@ -4,6 +4,8 @@
  */
 package Model;
 
+import java.sql.Date;
+
 /**
  *
  * @author khanh
@@ -104,6 +106,10 @@ public class Invoice {
 
     public void setTotalPayment(String totalPayment) {
         this.totalPayment = totalPayment;
+    }
+
+    public void setDate(int i, Date valueOf) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     

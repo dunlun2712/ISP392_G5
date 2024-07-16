@@ -13,15 +13,20 @@
         <div class="form-group">
             <label for="invoice_id">Invoice ID:</label>
             <input type="text" class="form-control" id="invoice_id" name="invoice_id" value="${id}" required>
-   
         </div>
         <div class="form-group">
             <label for="users_id">User ID:</label>
             <input type="text" class="form-control" id="users_id" name="users_id" required>
+            <c:if test="${not empty userIdError}">
+                <small class="text-danger">${userIdError}</small>
+            </c:if>
         </div>
         <div class="form-group">
             <label for="room_id">Room ID:</label>
             <input type="text" class="form-control" id="room_id" name="room_id" required>
+            <c:if test="${not empty roomIdError}">
+                <small class="text-danger">${roomIdError}</small>
+            </c:if>
         </div>
         <div class="form-group">
             <label for="createdDate">Created Date:</label>
@@ -41,7 +46,7 @@
         </div>
         <div class="form-group">
             <label for="totalPayment">Total Payment:</label>
-        <input type="number" class="form-control" id="totalPayment" name="totalPayment" step="0.01" required>
+            <input type="number" class="form-control" id="totalPayment" name="totalPayment" step="0.01" required>
         </div>
         <button type="submit" class="btn btn-primary">Create Invoice</button>
     </form>

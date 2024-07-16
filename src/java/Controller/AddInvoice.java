@@ -10,6 +10,7 @@ import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
 import java.sql.Date;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
@@ -19,7 +20,7 @@ import java.time.format.DateTimeFormatter;
 public class AddInvoice extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
-
+private InvoiceDAO invoiceDAO = new InvoiceDAO();
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -92,7 +93,23 @@ public class AddInvoice extends HttpServlet {
             LocalDate localDate = LocalDate.parse(createdDate, formatter);
             publishDate = Date.valueOf(localDate);
         }
+ try {
+            boolean hasError = false;
 
+            if (!invoiceDAO.isUserExist(users_id)) {
+                request.setAttribute("userIdError", "User ID does not exist.");
+                hasError = true;
+            }
+
+            if (!invoiceDAO.isRoomExist(room_id)) {
+                request.setAttribute("roomIdError", "Room ID does not exist.");
+                hasError = true;
+            }
+
+            if (hasError) {
+                request.getRequestDispatcher("addinvoice.jsp").forward(request, response);
+                return;
+            }
         HttpSession session = request.getSession();
         // Set the current date
         LocalDate currentDate = LocalDate.now();
@@ -112,6 +129,9 @@ public class AddInvoice extends HttpServlet {
 
         // Chuyển tiếp đến trang JSP để hiển thị chi tiết hóa đơn
         request.getRequestDispatcher("addinvoice.jsp").forward(request, response);
+    }catch (SQLException e) {
+            throw new ServletException("Database error while checking user or room existence.", e);
+        }
     }
 
     /**

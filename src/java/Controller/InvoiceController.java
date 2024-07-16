@@ -77,7 +77,12 @@ public class InvoiceController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        processRequest(request, response);
+        String userId = request.getParameter("user_id");
+        String roomId = request.getParameter("room_id");
+        String fromDate = request.getParameter("from_date");
+        List<Invoice> invoices = invoiceDAO.searchInvoices(userId, roomId, fromDate);
+        request.setAttribute("invoices", invoices);
+        request.getRequestDispatcher("invoice.jsp").forward(request, response);
     }
 
     /** 
