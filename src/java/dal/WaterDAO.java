@@ -44,57 +44,39 @@ public class WaterDAO extends DBContext{
         }
         return wate;
     }
-    public void updateWater(water water) {
-        String query = "UPDATE Water SET room_id = ?, usage_type = ?, "
-                + "creation_date = ?, expiration_date = ?, semester = ?, meter_number = ?, "
-                + "new_reading = ?, old_reading = ?, consumption = ? WHERE water_id = ?";
-        try (PreparedStatement ps = connection.prepareStatement(query)) {
-            ps.setString(1, water.getRoom_id());
-            ps.setString(2, water.getUsage_type());
-            ps.setDate(3, new java.sql.Date(water.getCreation_date().getTime()));
-            ps.setDate(4, new java.sql.Date(water.getExpiration_date().getTime()));
-            ps.setString(5, water.getSemester());
-            ps.setString(6, water.getMeter_number());
-            ps.setDouble(7, water.getNew_reading());
-            ps.setDouble(8, water.getOld_reading());
-            ps.setDouble(9, water.getConsumption());
-            ps.setInt(10, water.getWater_id());
-            ps.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
+
+    public List<water> searchByNameWater(String roomId, String usageType, String semester, String meterNumber) {
+        List<water> elList = new ArrayList<>();
+        StringBuilder sql = new StringBuilder("SELECT * FROM Water WHERE 1=1");
+
+        if (roomId != null && !roomId.isEmpty()) {
+            sql.append(" AND room_id LIKE ?");
         }
-    }
-    public water getWaterById(int water_id) {
-        water water = null;
-        String query = "SELECT * FROM Water WHERE water_id = ?";
-        try (PreparedStatement ps = connection.prepareStatement(query)) {
-            ps.setInt(1, water_id);
-            try (ResultSet rs = ps.executeQuery()) {
-                if (rs.next()) {
-                    water = new water();
-                    water.setWater_id(rs.getInt("water_id"));
-                    water.setRoom_id(rs.getString("room_id"));
-                    water.setUsage_type(rs.getString("usage_type"));
-                    water.setCreation_date(rs.getDate("creation_date"));
-                    water.setExpiration_date(rs.getDate("expiration_date"));
-                    water.setSemester(rs.getString("semester"));
-                    water.setMeter_number(rs.getString("meter_number"));
-                    water.setNew_reading(rs.getDouble("new_reading"));
-                    water.setOld_reading(rs.getDouble("old_reading"));
-                    water.setConsumption(rs.getDouble("consumption"));
-                }
+        if (usageType != null && !usageType.isEmpty()) {
+            sql.append(" AND usage_type LIKE ?");
+        }
+        if (semester != null && !semester.isEmpty()) {
+            sql.append(" AND semester LIKE ?");
+        }
+        if (meterNumber != null && !meterNumber.isEmpty()) {
+            sql.append(" AND meter_number LIKE ?");
+        }
+
+        try (PreparedStatement stmt = dbContext.connection.prepareStatement(sql.toString())) {
+            int index = 1;
+            if (roomId != null && !roomId.isEmpty()) {
+                stmt.setString(index++, "%" + roomId + "%");
             }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return water;
-    }
-    public List<water> searchByName(String keyword) {
-        List<water> wa = new ArrayList<>();
-        String sql = "SELECT * FROM Water WHERE room_id like ?"; 
-        try (PreparedStatement stmt = dbContext.connection.prepareStatement(sql)) {
-            String likeKeyword = "%" + keyword + "%";
-            stmt.setString(1, likeKeyword);
+            if (usageType != null && !usageType.isEmpty()) {
+                stmt.setString(index++, "%" + usageType + "%");
+            }
+            if (semester != null && !semester.isEmpty()) {
+                stmt.setString(index++, "%" + semester + "%");
+            }
+            if (meterNumber != null && !meterNumber.isEmpty()) {
+                stmt.setString(index++, "%" + meterNumber + "%");
+            }
+
             try (ResultSet rs = stmt.executeQuery()) {
                 while (rs.next()) {
                     water wt = new water();
@@ -108,13 +90,59 @@ public class WaterDAO extends DBContext{
                     wt.setNew_reading(rs.getDouble("new_reading"));
                     wt.setOld_reading(rs.getDouble("old_reading"));
                     wt.setConsumption(rs.getDouble("consumption"));
-                    wa.add(wt);
+                    elList.add(wt);
                 }
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return wa;
+        return elList;
+    }
+
+    public List<String> getAllRooms() {
+        List<String> rooms = new ArrayList<>();
+        try (PreparedStatement stmt = connection.prepareStatement("SELECT DISTINCT room_id FROM Water"); 
+                ResultSet rs = stmt.executeQuery()) {
+            while (rs.next()) {
+                rooms.add(rs.getString("room_id"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return rooms;
+    }
+
+    public List<String> getAllSemesters() {
+        List<String> semesters = new ArrayList<>();
+        try (PreparedStatement stmt = connection.prepareStatement("SELECT DISTINCT semester FROM Water");
+                ResultSet rs = stmt.executeQuery()) {
+            while (rs.next()) {
+                semesters.add(rs.getString("semester"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return semesters;
+    }
+
+    public List<String> getAllMeters() {
+        List<String> meters = new ArrayList<>();
+        try (PreparedStatement stmt = connection.prepareStatement("SELECT DISTINCT meter_number FROM Water"); 
+                ResultSet rs = stmt.executeQuery()) {
+            while (rs.next()) {
+                meters.add(rs.getString("meter_number"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return meters;
     }
     
+    public void delete(int waterId) throws SQLException {
+        String query = "DELETE FROM Water WHERE water_id = ?";
+        try (PreparedStatement statement = dbContext.connection.prepareStatement(query)) {
+            statement.setInt(1, waterId);
+            statement.executeUpdate();
+        }
+    }
 }
