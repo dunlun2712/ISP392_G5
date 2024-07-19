@@ -13,15 +13,15 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.util.List;
+import java.sql.Date;
 import model.water;
 
 /**
  *
  * @author DELL
  */
-@WebServlet(name="searchWater", urlPatterns={"/searchW"})
-public class searchWater extends HttpServlet {
+@WebServlet(name="editWater", urlPatterns={"/editWater"})
+public class editWater extends HttpServlet {
    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -38,10 +38,10 @@ public class searchWater extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet searchWater</title>");  
+            out.println("<title>Servlet editWater</title>");  
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet searchWater at " + request.getContextPath () + "</h1>");
+            out.println("<h1>Servlet editWater at " + request.getContextPath () + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -58,7 +58,11 @@ public class searchWater extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        processRequest(request, response);
+        int id = Integer.parseInt(request.getParameter("water_id"));
+        WaterDAO dao = new WaterDAO();
+        water water = dao.getWaterById(id);
+        request.setAttribute("water", water);
+        request.getRequestDispatcher("ed.jsp").forward(request, response);
     } 
 
     /** 
@@ -68,15 +72,25 @@ public class searchWater extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+    
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        String search = request.getParameter("search");
-        WaterDAO ws = new WaterDAO();
-        List<water> w = ws.searchByName(search);
-        request.setAttribute("data", w);
-        request.setAttribute("search", search);      
-        request.getRequestDispatcher("listWater.jsp").forward(request, response);
+        water water = new water();
+        water.setWater_id(Integer.parseInt(request.getParameter("water_id")));
+        water.setRoom_id(request.getParameter("room_id"));
+        water.setUsage_type(request.getParameter("usage_type"));
+        water.setCreation_date(Date.valueOf(request.getParameter("creation_date")));
+        water.setExpiration_date(Date.valueOf(request.getParameter("expiration_date")));
+        water.setSemester(request.getParameter("semester"));
+        water.setMeter_number(request.getParameter("meter_number"));
+        water.setNew_reading(Double.valueOf(request.getParameter("new_reading")));
+        water.setOld_reading(Double.valueOf(request.getParameter("old_reading")));
+        water.setConsumption(Double.valueOf(request.getParameter("consumption")));
+
+        WaterDAO dao = new WaterDAO();
+        dao.updateWater(water);
+        response.sendRedirect("readWater");
     }
 
     /** 
