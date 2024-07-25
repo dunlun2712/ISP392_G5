@@ -2,35 +2,35 @@
 <web-app version="6.0" xmlns="https://jakarta.ee/xml/ns/jakartaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd">
     <servlet>
         <servlet-name>MangementDorm</servlet-name>
-        <servlet-class>Controller.MangementDorm</servlet-class>
+        <servlet-class>Controller.Admin.MangementDorm</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>ManagementRoom</servlet-name>
-        <servlet-class>Controller.ManagementRoom</servlet-class>
+        <servlet-class>Controller.Admin.ManagementRoom</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>AddDorm</servlet-name>
-        <servlet-class>Controller.AddDorm</servlet-class>
+        <servlet-class>Controller.Admin.AddDorm</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>DeleteDorm</servlet-name>
-        <servlet-class>Controller.DeleteDorm</servlet-class>
+        <servlet-class>Controller.Admin.DeleteDorm</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>UpdateDorm</servlet-name>
-        <servlet-class>Controller.UpdateDorm</servlet-class>
+        <servlet-class>Controller.Admin.UpdateDorm</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>AddRoom</servlet-name>
-        <servlet-class>Controller.AddRoom</servlet-class>
+        <servlet-class>Controller.Admin.AddRoom</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>UpdateRoom</servlet-name>
-        <servlet-class>Controller.UpdateRoom</servlet-class>
+        <servlet-class>Controller.Admin.UpdateRoom</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>DeleteRoom</servlet-name>
-        <servlet-class>Controller.DeleteRoom</servlet-class>
+        <servlet-class>Controller.Admin.DeleteRoom</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>Home</servlet-name>
@@ -46,7 +46,7 @@
     </servlet>
     <servlet>
         <servlet-name>AddNew</servlet-name>
-        <servlet-class>Controller.AddNew</servlet-class>
+        <servlet-class>Controller.Admin.AddNew</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>ListNew</servlet-name>
@@ -66,11 +66,11 @@
     </servlet>
     <servlet>
         <servlet-name>Invoice</servlet-name>
-        <servlet-class>Controller.InvoiceController</servlet-class>
+        <servlet-class>Controller.Admin.InvoiceController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>AddInvoice</servlet-name>
-        <servlet-class>Controller.AddInvoice</servlet-class>
+        <servlet-class>Controller.Admin.AddInvoice</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>PassAcc</servlet-name>

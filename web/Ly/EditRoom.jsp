@@ -61,7 +61,12 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Room_Type</label>
-                                    <input value="${details.room_type}" name="room_type" type="text" class="form-control"  required>
+                                      <select class="form-control" name="room_type">
+                                    <option value="4 bed" <c:if test="${details.room_type == '4 bed'}">selected</c:if>>4 bed</option>
+                                    <option value="6 bed" <c:if test="${details.room_type == '6 bed'}">selected</c:if>>6 bed</option>
+                                  
+                                </select>
+                                    
                                 </div>
 
                                 <div class="form-group">

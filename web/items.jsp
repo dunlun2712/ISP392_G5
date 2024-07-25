@@ -204,8 +204,8 @@
     </head>
     <body>
         <div class="content">
-            <div class="no-underline">
-                <a href="admin">Menu</a>
+           <div class="no-underline">
+                <a href="dormmanager">Menu</a>
             </div>
             <h1>Items List</h1>
             <form method="post" action="searchItem">

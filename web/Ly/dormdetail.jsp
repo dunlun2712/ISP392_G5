@@ -191,7 +191,7 @@
 
 
 
-            
+
             <table>
                 <thead>
                     <tr>
@@ -201,7 +201,7 @@
                         <th>Price</th>
                         <th>Status</th>
                         <th>Update</th>
-                       
+
                     </tr>
                 </thead>
                 <tbody>
@@ -227,7 +227,14 @@
                     <input type="text" name="room_id" placeholder="Room ID" required>
                     <input type="hidden" name="dorm_id" placeholder="Dorm ID"  value="${pid}"  required>
                     <input type="text" name="floor" placeholder="Floor" required>
-                    <input type="text" name="room_type" placeholder="Room Type" required>
+
+
+                    <select  name="room_type">
+                        <option  placeholder="Room Type">Room Type</option>
+                        <option value="4 bed" >4 bed</option>
+                        <option value="6 bed" >6 bed</option>
+
+                    </select>
                     <input type="text" name="price" placeholder="Price" required>
                     <select name="room_status">
                         <option value="Available">Available</option>

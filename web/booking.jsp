@@ -128,7 +128,7 @@
             .booking-form button[type="button"]:last-of-type {
                 background-color: #007bff;
             }
-              .menu__class {
+            .menu__class {
                 display: flex;
                 justify-content: space-around;
                 list-style: none;
@@ -241,9 +241,9 @@
                                         <li ><a href="${pageContext.request.contextPath}/homeservlet">Home</a></li>
                                         <li><a href="${pageContext.request.contextPath}/homeroom">Dorms</a></li>
                                         <li class="active"><a href="${pageContext.request.contextPath}/booking">Booking</a></li>
-                                         <li ><a href="${pageContext.request.contextPath}/history-booking">History Booking</a></li>
-                                          <li ><a href="${pageContext.request.contextPath}/bookinghistory">Service</a></li>
-                                         <li ><a href="${pageContext.request.contextPath}/viewinvoice">Invoice</a></li>
+                                        <li ><a href="${pageContext.request.contextPath}/history-booking">History Booking</a></li>
+                                        <li ><a href="${pageContext.request.contextPath}/bookinghistory">Service</a></li>
+                                        <li ><a href="${pageContext.request.contextPath}/viewinvoice">Invoice</a></li>
 
                                         <li><a>Electric and Water</a>
                                             <ul class="dropdown">
@@ -270,9 +270,9 @@
             </div>
         </header>
         <!-- Header Section End -->
-        
-        
-        
+
+
+
         <!-- Breadcrumb Begin -->
         <!-- Breadcrumb Begin -->
         <div class="breadcrumb-option set-bg" data-setbg="img/hero.jpg">
@@ -316,25 +316,20 @@
                                 <button type="button">See available rooms</button>
                             </a>
 
-                            <label>Dorm</label>
-                            <select >
-                                <c:forEach items="${dorms}" var="dorm">
-                                    <option>${dorm.dorm_name}</option>
-                                </c:forEach>
-                            </select>
-                            
-                            
-                            
+
+
+
+
                             <label for="dom">Room</label>
                             <select id="dom" name="dom" onchange="redirectToPage()">
                                 <c:forEach items="${details}" var="d">
                                     <option data-url="?pid=${d.room_id}" value="${d.room_id}" ${detail.room_id eq d.room_id ? 'selected' : ''}>${d.room_id}</option>
                                 </c:forEach>
                             </select>
-                            
-                            
-                            
-                            
+
+
+
+
                             <label for="month">Month</label>
                             <select id="month" name="month" onchange="countTotalCost()">
                                 <option data-cost="${detail.price * 6}" value="6">6</option>
