@@ -349,4 +349,85 @@ public class DAO extends DBContext {
         return null;
     }
 
+    
+    
+    
+    
+    
+     public List<Room> getRoomByStatusFemale() {
+        List<Room> list = new ArrayList<>();
+        String query = "SELECT room_id, dorm_id, floor, room_type, price, room_status\n"
+                + "FROM [dbo].[Room]\n"
+                + "WHERE room_status LIKE '%Available%' and (dorm_id  % 2<> 0)"  ;
+
+        try {
+            conn = connection;
+            ps = conn.prepareStatement(query);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                Room room = new Room(
+                        rs.getString("room_id"),
+                        rs.getInt("dorm_id"),
+                        rs.getInt("floor"),
+                        rs.getString("room_type"), // Change this to getString
+                        rs.getInt("price"),
+                        rs.getString("room_status") // Get the actual room status from the result set
+                );
+                list.add(room);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (ps != null) {
+                    ps.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return list;
+    }
+     
+     
+      public List<Room> getRoomByStatusMale() {
+        List<Room> list = new ArrayList<>();
+        String query = "SELECT room_id, dorm_id, floor, room_type, price, room_status\n"
+                + "FROM [dbo].[Room]\n"
+                + "WHERE room_status LIKE '%Available%' and (dorm_id  % 2 = 0)";
+
+        try {
+            conn = connection;
+            ps = conn.prepareStatement(query);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                Room room = new Room(
+                        rs.getString("room_id"),
+                        rs.getInt("dorm_id"),
+                        rs.getInt("floor"),
+                        rs.getString("room_type"), // Change this to getString
+                        rs.getInt("price"),
+                        rs.getString("room_status") // Get the actual room status from the result set
+                );
+                list.add(room);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (ps != null) {
+                    ps.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return list;
+    }
 }

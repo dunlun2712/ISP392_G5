@@ -36,8 +36,20 @@ public class BookingController extends HttpServlet {
         List<Room> p = dao.getRoomByStatus();
         List<Dorminatory> dorm = dao.getAllDorm();
         Student student = (Student) session.getAttribute("data");
+       
+        
         if (student == null) {
             request.getRequestDispatcher("Login.jsp").forward(request, response);
+        } 
+        String gender = student.getGender();
+        if(gender!=null){
+            if(gender.equals("Nam")){
+                p = dao.getRoomByStatusFemale();
+            }
+            if(gender.equals("Nữ")){
+                p = dao.getRoomByStatusMale();
+            }
+           
         }
         request.setAttribute("dorms", dorm);
         request.setAttribute("details", p);

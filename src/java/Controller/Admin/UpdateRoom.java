@@ -22,32 +22,7 @@ import Dao.LDao;
  */
 public class UpdateRoom extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try ( PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet Home</title>");
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet Home at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
-    }
-
+ 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
@@ -72,14 +47,7 @@ public class UpdateRoom extends HttpServlet {
 
     }
 
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
+  
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -88,12 +56,19 @@ public class UpdateRoom extends HttpServlet {
         int dorm_id = Integer.parseInt(request.getParameter("dorm_id"));
         int floor = Integer.parseInt(request.getParameter("floor"));
         String room_type = request.getParameter("room_type");
+        String usage =null;
+        if(room_type.equals("4 bed")){
+             usage = "4";
+        }
+        if(room_type.equals("6 bed")){
+              usage = "6";
+        }
         int price = Integer.parseInt(request.getParameter("price"));
         String room_status = request.getParameter("room_status");
 
         LDao dao = new LDao();
 
-        dao.updateRoom(room_id, dorm_id, floor, room_type, price, room_status);
+        dao.updateRoom(room_id, dorm_id, floor, room_type, price, room_status,usage);
         response.sendRedirect("managementdorm");
     }
 

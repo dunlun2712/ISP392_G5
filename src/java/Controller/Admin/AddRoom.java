@@ -22,31 +22,7 @@ import Dao.LDao;
  */
 public class AddRoom extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try ( PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet Home</title>");
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet Home at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
-    }
+
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -60,20 +36,30 @@ public class AddRoom extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
+ LDao dao = new LDao();
         request.setCharacterEncoding("UTF-8");
         String pid = request.getParameter("pid");
         String room_id = request.getParameter("room_id");
         int dorm_id = Integer.parseInt(request.getParameter("dorm_id"));
         int floor = Integer.parseInt(request.getParameter("floor"));
         String room_type = request.getParameter("room_type");
+        String usage =null;
+        if(room_type.equals("4 bed")){
+             usage = "4";
+            
+        }
+        if(room_type.equals("6 bed")){
+              usage = "6";
+           
+        }
+       
         int price = Integer.parseInt(request.getParameter("price"));
 
         String room_status = request.getParameter("room_status");
-        LDao dao = new LDao();
+       
         request.setAttribute("pid", pid);
 
-        dao.addRoom(room_id, dorm_id, floor, room_type, price, room_status);
+        dao.addRoom(room_id, dorm_id, floor, room_type, price, room_status,usage);
         response.sendRedirect("managementdorm");
     }
 
@@ -85,11 +71,7 @@ public class AddRoom extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        processRequest(request, response);
-    }
+
 
     /**
      * Returns a short description of the servlet.

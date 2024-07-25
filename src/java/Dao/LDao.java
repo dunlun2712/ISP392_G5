@@ -179,10 +179,10 @@ public class LDao extends DBContext {
         return null;
     }
 
-    public boolean addRoom(String room_id, int dorm_id, int floor, String room_type, int price, String room_status) {
+    public boolean addRoom(String room_id, int dorm_id, int floor, String room_type, int price, String room_status, String usage) {
         boolean status = false;
-        String query = "INSERT [dbo].[Room] ( room_id,dorm_id, floor, room_type, price, room_status)\n"
-                + "                VALUES (?,?,?,?,?,?)";
+        String query = "INSERT [dbo].[Room] ( room_id,dorm_id, floor, room_type, price, room_status,room_usage)\n"
+                + "                VALUES (?,?,?,?,?,?,?)";
         try {
             conn = connection;
             ps = conn.prepareStatement(query);
@@ -192,6 +192,7 @@ public class LDao extends DBContext {
             ps.setString(4, room_type);
             ps.setInt(5, price);
             ps.setString(6, room_status);
+            ps.setString(7, usage);
             rs = ps.executeQuery();
 //            ps.executeUpdate();
 
@@ -248,14 +249,15 @@ public class LDao extends DBContext {
         return list;
     }
 
-    public boolean updateRoom(String room_id, int dorm_id, int floor, String room_type, int price, String room_status) {
+    public boolean updateRoom(String room_id, int dorm_id, int floor, String room_type, int price, String room_status, String usage) {
         String query = "UPDATE [dbo].[Room] "
                 + "SET [room_id] = ?, "
                 + "[dorm_id] = ?, "
                 + "[floor] = ?, "
                 + "[room_type] = ?, "
                 + "[price] = ?, "
-                + "[room_status] = ? "
+                + "[room_status] = ? ,"
+                + "[room_usage] = ? "
                 + "WHERE [room_id] = ?";
         try ( Connection conn = connection;  PreparedStatement ps = conn.prepareStatement(query)) {
             ps.setString(1, room_id);
@@ -264,7 +266,8 @@ public class LDao extends DBContext {
             ps.setString(4, room_type);
             ps.setInt(5, price);
             ps.setString(6, room_status);
-            ps.setString(7, room_id); // Đặt giá trị cho tham số WHERE
+            ps.setInt(7, Integer.parseInt(usage));
+            ps.setString(8, room_id); // Đặt giá trị cho tham số WHERE
 
             return ps.executeUpdate() > 0;
         } catch (Exception e) {
@@ -335,4 +338,6 @@ public class LDao extends DBContext {
             System.out.println("No Dormitory found with ID: " + testDormId);
         }
     }
+
+  
 }
