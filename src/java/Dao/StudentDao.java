@@ -71,11 +71,9 @@ public class StudentDao extends DBContext {
                 String phone_num = rs.getString(14);
                 String relative_name = rs.getString(15);
                 String relative_contact = rs.getString(16);
-                String createDate = String.valueOf(rs.getDate(17));
-                String updateDate = String.valueOf(rs.getDate(18));
-                String status = rs.getString(19);
+                String status = rs.getString(17);
 
-                student = new Student(userID, pass, name, role, email, dob, cccd, major, course, address, gender, ethnicity, nation, phone_num, relative_name, relative_contact, createDate, updateDate, status);
+                student = new Student(userID, pass, name, role, email, dob, cccd, major, course, address, gender, ethnicity, nation, phone_num, relative_name, relative_contact,  status);
             }
         } catch (Exception e) {
             System.out.println("getUsers:" + e.getMessage());
@@ -153,11 +151,9 @@ public class StudentDao extends DBContext {
                 String phone_num = rs.getString(14);
                 String relative_name = rs.getString(15);
                 String relative_contact = rs.getString(16);
-                String createDate = String.valueOf(rs.getDate(17));
-                String updateDate = String.valueOf(rs.getDate(18));
-                String status = rs.getString(19);
+                String status = rs.getString(17);
 
-                student = new Student(userID, pass, name, role, email, dob, cccd, major, course, address, gender, ethnicity, nation, phone_num, relative_name, relative_contact, createDate, updateDate, status);
+                student = new Student(userID, pass, name, role, email, dob, cccd, major, course, address, gender, ethnicity, nation, phone_num, relative_name, relative_contact,  status);
                 data.add(student);
             }
         } catch (Exception e) {

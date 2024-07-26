@@ -225,8 +225,6 @@
                                     <option value="phone_num">Phone Number</option>
                                     <option value="relative_name">Relative Name</option>
                                     <option value="relative_contact">Relative Contact</option>
-                                    <option value="create_date">Create Date</option>
-                                    <option value="update_date">Update Date</option>
                                     <option value="status">Status</option>
                                 </select>
                             </div>
@@ -257,8 +255,6 @@
                                         <th>Phone Number</th>
                                         <th>Relative Name</th>
                                         <th>Relative Contact</th>
-                                        <th>Create Date</th>
-                                        <th>Update Date</th>
                                         <th>Status</th>
                                     </tr>
                                 </thead>
@@ -280,8 +276,6 @@
                                             <td>${student.phone_num}</td>
                                             <td>${student.relative_name}</td>
                                             <td>${student.relative_contact}</td>
-                                            <td>${student.create_date}</td>
-                                            <td>${student.update_date}</td>
                                             <td>
                                                 <select class="form-select" name="status_${student.id}">
                                                     <option value="booking" ${student.status == 'booking' ? 'selected' : ''}>Booking</option>

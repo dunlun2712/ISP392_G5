@@ -204,9 +204,15 @@
     </head>
     <body>
         <div class="content">
+            
+            <c:if test="${user.role==1}">
+           <div class="no-underline">
+                <a href="admin">Menu</a>
+            </div></c:if>
+               <c:if test="${user.role!=1}">
            <div class="no-underline">
                 <a href="dormmanager">Menu</a>
-            </div>
+            </div></c:if>
             <h1>Items List</h1>
             <form method="post" action="searchItem">
 

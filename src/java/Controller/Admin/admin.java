@@ -56,8 +56,6 @@ public class admin extends HttpServlet {
                                     || s.getPhone_num().toLowerCase().contains(searchQueryLower)
                                     || s.getRelative_name().toLowerCase().contains(searchQueryLower)
                                     || s.getRelative_contact().toLowerCase().contains(searchQueryLower)
-                                    || s.getCreate_date().toLowerCase().contains(searchQueryLower)
-                                    || s.getUpdate_date().toLowerCase().contains(searchQueryLower)
                                     || s.getStatus().toLowerCase().contains(searchQueryLower);
                         } else {
                             switch (searchColumn) {
@@ -89,10 +87,7 @@ public class admin extends HttpServlet {
                                     return s.getRelative_name().toLowerCase().contains(searchQueryLower);
                                 case "relative_contact":
                                     return s.getRelative_contact().toLowerCase().contains(searchQueryLower);
-                                case "create_date":
-                                    return s.getCreate_date().toLowerCase().contains(searchQueryLower);
-                                case "update_date":
-                                    return s.getUpdate_date().toLowerCase().contains(searchQueryLower);
+                     
                                 case "status":
                                     return s.getStatus().toLowerCase().contains(searchQueryLower);
                                 default:

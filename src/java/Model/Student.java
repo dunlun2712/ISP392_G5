@@ -11,12 +11,12 @@ package Model;
 public class Student {
     String id,pass,name,role,email,dob,cccd,major,course;
     String address,gender,ethnicity,nation,phone_num,relative_name;
-    String relative_contact,create_date,update_date,status;
+    String relative_contact,status;
 
     public Student() {
     }
 
-    public Student(String id, String pass, String name, String role, String email, String dob, String cccd, String major, String course, String address, String gender, String ethnicity, String nation, String phone_num, String relative_name, String relative_contact, String create_date, String update_date, String status) {
+    public Student(String id, String pass, String name, String role, String email, String dob, String cccd, String major, String course, String address, String gender, String ethnicity, String nation, String phone_num, String relative_name, String relative_contact, String status) {
         this.id = id;
         this.pass = pass;
         this.name = name;
@@ -33,8 +33,7 @@ public class Student {
         this.phone_num = phone_num;
         this.relative_name = relative_name;
         this.relative_contact = relative_contact;
-        this.create_date = create_date;
-        this.update_date = update_date;
+ 
         this.status = status;
     }
 
@@ -166,21 +165,6 @@ public class Student {
         this.relative_contact = relative_contact;
     }
 
-    public String getCreate_date() {
-        return create_date;
-    }
-
-    public void setCreate_date(String create_date) {
-        this.create_date = create_date;
-    }
-
-    public String getUpdate_date() {
-        return update_date;
-    }
-
-    public void setUpdate_date(String update_date) {
-        this.update_date = update_date;
-    }
 
     public String getStatus() {
         return status;
