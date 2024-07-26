@@ -2,15 +2,14 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
-package Controller.Admin;
+
+package Controller.DormMana;
 
 import Dao.RoomDao;
-import Model.Booking;
 import Model.Req;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -23,15 +22,13 @@ import java.util.ArrayList;
  *
  * @author tranm
  */
-@WebServlet(name = "Response", urlPatterns = {"/response"})
-public class Response extends HttpServlet {
-
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+public class AccResponse extends HttpServlet {
+   @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {
         HttpSession session = request.getSession();
         RoomDao rdao = new RoomDao();
         ArrayList<Req> req_data = null;
+        System.out.println("a");
         req_data = rdao.getAllRequest();
         String check = request.getParameter("list");
         if (check != null) {
@@ -40,10 +37,10 @@ public class Response extends HttpServlet {
         String byDorm = request.getParameter("byDorm");
         if (byDorm != null) {
             request.setAttribute("req_data", req_data);
-            response.sendRedirect("studentMana/responseByDorm.jsp");
+            response.sendRedirect("studentMana/request.jsp");
 //            request.getRequestDispatcher("studentMana/responseByDorm.jsp").forward(request, response);
         } else {
-            request.getRequestDispatcher("studentMana/response.jsp").forward(request, response);
+            request.getRequestDispatcher("studentMana/request.jsp").forward(request, response);
         }
 //        
     }
@@ -69,7 +66,7 @@ public class Response extends HttpServlet {
                         session.setAttribute("req_data", req_data);
                     }
 
-                    request.getRequestDispatcher("studentMana/response.jsp").forward(request, response);
+                    request.getRequestDispatcher("studentMana/request.jsp").forward(request, response);
                     break;
                 case "save":
                     String req_status = request.getParameter("res_status");
@@ -81,7 +78,7 @@ public class Response extends HttpServlet {
                     rdao.updateResponse(req_status, resp, currentDate, req_id);
                     req_data = rdao.getAllRequest();
                     session.setAttribute("req_data", req_data);
-                    request.getRequestDispatcher("studentMana/response.jsp").forward(request, response);
+                    request.getRequestDispatcher("studentMana/request.jsp").forward(request, response);
                     break;
             }
 
@@ -107,5 +104,4 @@ public class Response extends HttpServlet {
         }
 
     }
-
 }

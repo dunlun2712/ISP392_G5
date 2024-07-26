@@ -37,7 +37,7 @@
                                             <input type="text" class="form-control" style="background-color: whitesmoke" name="name" value="${sessionScope.data.name}">
                                         </div>
 
-                                        <div class="col-md-6">
+<!--                                        <div class="col-md-6">
                                             <label class="form-label" style="color: black; font-weight: bold;">Gender</label>
                                             <select class="form-control" style="background-color: whitesmoke" name="gender">
 
@@ -45,7 +45,7 @@
                                                 <option value="Nữ" ${sessionScope.data.gender == 'Nữ' ? 'selected' : ''}>Nữ</option> 
                                                 <option value="Khác" ${sessionScope.data.gender == 'Khác' ? 'selected' : ''}>Khác</option>
                                             </select>
-                                        </div>
+                                        </div>-->
 
                                         <div class="col-md-6">
                                             <label class="form-label" style="color: black; font-weight: bold;">Date of birth</label>

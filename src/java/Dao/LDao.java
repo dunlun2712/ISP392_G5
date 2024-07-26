@@ -291,7 +291,8 @@ public class LDao extends DBContext {
                         rs.getInt("floor"),
                         rs.getString("room_type"),
                         rs.getInt("price"),
-                        rs.getString("room_status")
+                        rs.getString("room_status"),
+                        rs.getString("room_usage")
                 );
             }
         } catch (SQLException e) {

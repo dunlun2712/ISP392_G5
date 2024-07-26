@@ -46,11 +46,9 @@ public class RegisterTicketServlet extends HttpServlet {
             String formattedDate = currentDate.format(formatter);
             currentDate = LocalDate.now();
 
-             LocalDate hethan = currentDate.plusMonths(1);
-        
-        // Định dạng ngày hết hạn thành chuỗi
-        
-            
+            LocalDate hethan = currentDate.plusMonths(1);
+
+            // Định dạng ngày hết hạn thành chuỗi
             request.setAttribute("date", currentDate);
             request.setAttribute("date1", hethan);
             session.setAttribute("data", student);
@@ -66,11 +64,9 @@ public class RegisterTicketServlet extends HttpServlet {
         String userId = request.getParameter("userId");
         String vehicleNumber = request.getParameter("vehicleNumber");
         String cccd = request.getParameter("cccd");
-    
+
         String price = request.getParameter("price");
-     
-        
-        
+
 /////date
         String publishDateStr = request.getParameter("issueDate");
         java.sql.Date issueDate = null;
@@ -86,9 +82,7 @@ public class RegisterTicketServlet extends HttpServlet {
             LocalDate localDate = LocalDate.parse(hethandate, formatter);
             expiryDate = java.sql.Date.valueOf(localDate);
         }
-        
-        
-        
+
         HttpSession session = request.getSession();
         // Set the current date
         LocalDate currentDate = LocalDate.now();
@@ -96,41 +90,41 @@ public class RegisterTicketServlet extends HttpServlet {
         String formattedDate = currentDate.format(formatter);
         currentDate = LocalDate.now();
         request.setAttribute("date", currentDate);
-         LocalDate hethan = currentDate.plusMonths(1);
-         request.setAttribute("date1", hethan);
-   
-        
+        LocalDate hethan = currentDate.plusMonths(1);
+        request.setAttribute("date1", hethan);
+
         TicketDAO dao = new TicketDAO();
         try {
-           if (!dao.isValidVehicleNumber(vehicleNumber)) {
+            if (!dao.isValidVehicleNumber(vehicleNumber)) {
                 request.setAttribute("errorMessage", "Invalid vehicle number format. Please follow the format: 00-A\"A\"000.00");
                 request.getRequestDispatcher("profile/RegisterTicket.jsp").forward(request, response);
             } else if (dao.isVehicleNumberExists(vehicleNumber)) {
                 // If vehicle number already registered, redirect to an error page
                 request.setAttribute("errorMessage", "Vehicle number already registered");
                 request.getRequestDispatcher("profile/RegisterTicket.jsp").forward(request, response);
-            } 
-            else {
-                 Date currentDateAsDate = Date.from(currentDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
-                Ticket ticket = new Ticket();
-                ticket.setUsersId(userId);
-                ticket.setCccd(cccd);
-                ticket.setVehicleNumber(vehicleNumber);
-                ticket.setIssueDate(issueDate);
-                ticket.setExpiryDate(expiryDate);
-                ticket.setPrice(price);
-                if(ticket.getExpiryDate().after(currentDateAsDate)){
-                   request.setAttribute("errorMessage", "Vehicle number already registered in the time given.");
-                request.getRequestDispatcher("profile/RegisterTicket.jsp").forward(request, response);
-                }
-
-                boolean success = dao.registerTicket(ticket);
-                if (success) {
-                    response.sendRedirect("index.jsp");
-                } else {
-                    response.sendRedirect("error.jsp"); // Redirect to an error page if registration fails
-                }
             }
+
+            Date currentDateAsDate = Date.from(currentDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
+            Ticket ticket = new Ticket();
+            ticket.setUsersId(userId);
+            ticket.setCccd(cccd);
+            ticket.setVehicleNumber(vehicleNumber);
+            ticket.setIssueDate(issueDate);
+            ticket.setExpiryDate(expiryDate);
+            ticket.setPrice(price);
+            if (ticket.getExpiryDate().after(currentDateAsDate)) {
+                request.setAttribute("errorMessage", "Vehicle number already registered in the time given.");
+                request.getRequestDispatcher("profile/RegisterTicket.jsp").forward(request, response);
+                
+            }
+             request.setAttribute("errorMessage", "Vehicle registed ccnfirmed.");
+            boolean success = dao.registerTicket(ticket);
+            if (success) {
+                response.sendRedirect("index.jsp");
+            } else {
+                response.sendRedirect("error.jsp"); // Redirect to an error page if registration fails
+            }
+
         } catch (Exception e) {
             e.printStackTrace();
             response.sendRedirect("error.jsp"); // Redirect to an error page if any other exception occurs

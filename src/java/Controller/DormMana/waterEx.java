@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
-package Controller.Admin;
+package Controller.DormMana;
 
 import dal.DBContext;
 import java.io.IOException;
@@ -54,8 +54,8 @@ public class waterEx extends HttpServlet {
                     continue;
                 }
                 water ex = new water();
-                ex.setUsage_type(row.getCell(0).getStringCellValue());
-                ex.setRoom_id(row.getCell(1).getStringCellValue());
+                ex.setUsage_type(row.getCell(1).getStringCellValue());
+                ex.setRoom_id(row.getCell(0).getStringCellValue());
                 ex.setCreation_date(new Date(row.getCell(2).getDateCellValue().getTime()));
                 ex.setExpiration_date(new Date(row.getCell(3).getDateCellValue().getTime()));
                 ex.setSemester(row.getCell(4).getStringCellValue());

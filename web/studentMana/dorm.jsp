@@ -305,7 +305,7 @@
                 <th>DOB</th>
                 <th>Phone number</th>
                 <th>Gender</th>
-                <th>Dorm ID</th>
+                <th>Room ID</th>
                 <th>Booking date</th>
                 <th>Expiry Date</th>
                 <th>Price</th>

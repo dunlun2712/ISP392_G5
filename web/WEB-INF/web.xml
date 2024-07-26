@@ -78,11 +78,11 @@
     </servlet>
     <servlet>
         <servlet-name>DormManager</servlet-name>
-        <servlet-class>Controller.StudentMana.DormManager</servlet-class>
+        <servlet-class>Controller.DormMana.DormManager</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>AccResponse</servlet-name>
-        <servlet-class>Controller.StudentMana.AccResponse</servlet-class>
+        <servlet-class>Controller.DormMana.AccResponse</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>BookingController</servlet-name>

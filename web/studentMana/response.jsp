@@ -217,7 +217,7 @@
                                 <th>Response</th>
                                 <th>Status</th>
                                 <th>Request Type</th>
-                                <th>Detail</th>
+                              
                                
 
                             </tr>
@@ -237,13 +237,7 @@
                                     </c:if>
                                     <td>${req.request_status}</td>
                                     <td>${req.request_type}</td>
-                                    <td>
-                                        <!-- Detail -->
-                                        <a href="javascript:void(0);" onclick="submitForm('${req.request_id}', 'detail')" class="btn btn-danger btn-lg" style="font-weight: bold; background-color: #E9AD28">Detail</a>
-
-                                        <!-- Delete -->
-        <!--                                                            <a href="javascript:void(0);" onclick="submitForm('${req.request_id}', 'reply')" class="btn btn-danger btn-lg" style="font-weight: bold; background-color: #E9AD28">Delete</a>-->
-                                    </td>
+                                  
                                  
                                 </tr>
 

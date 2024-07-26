@@ -219,7 +219,7 @@
                         <div class="hero__text">
                             <div class="text-background">
                                 <h2><a>Oops! You cannot enter this page?</a></h2>
-                                <p>Sorry, the page you are looking for needs to login first to assign to this page.</p>
+                                <p>Sorry, the page you are looking for needs to booking.</p>
                             </div>
                         </div>
 

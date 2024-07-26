@@ -89,9 +89,9 @@
                     <table>
                         
                         <tr><td>Meter Number:</td><td><input type="text" name="meter_number" value="${water.meter_number}" readonly=""></td></tr>
-                        <tr><td>Consumption:</td><td><input type="text" name="consumption" value="${water.consumption}"></td></tr>
-                        <tr><td>Old Number:</td><td><input type="text" name="old_reading" value="${water.old_reading}"></td></tr>
-                        <tr><td>New Number:</td><td><input type="text" name="new_reading" value="${water.new_reading}"></td></tr>
+                        <tr><td>Consumption:</td><td><input type="number" pattern="^[0-9]*\.?[0-9]+$" min="0" name="consumption" value="${water.consumption}"></td></tr>
+                        <tr><td>Old Number:</td><td><input type="number" pattern="^[0-9]*\.?[0-9]+$" min="0" name="old_reading" value="${water.old_reading}"></td></tr>
+                        <tr><td>New Number:</td><td><input type="number" pattern="^[0-9]*\.?[0-9]+$" min="0" name="new_reading" value="${water.new_reading}"></td></tr>
                     </table>
                 </div>
             </div>

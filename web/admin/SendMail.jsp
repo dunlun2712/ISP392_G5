@@ -168,13 +168,7 @@
                         <label for="message">Message</label>
                         <textarea class="form-control" id="message" name="message" rows="5" placeholder="Enter your message" required></textarea>
                     </div>
-                    <div class="form-group">
-                        <label for="recipient">Recipient</label>
-                        <select class="form-control" id="recipient" name="recipient">
-                            <option value="all">All Students</option>
-                            <option value="specific">Specific Student</option>
-                        </select>
-                    </div>
+
                     <div class="form-group" id="specific-student-group">
                         <label for="studentEmail">Student Email</label>
                         <input type="email" class="form-control" id="studentEmail" name="studentEmail" placeholder="Enter student's email">

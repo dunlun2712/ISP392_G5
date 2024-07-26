@@ -32,21 +32,26 @@ public class AccDao extends DBContext {
     public ArrayList<Account> searchAccounts(String keyword, String status) {
         ArrayList<Account> data = new ArrayList<>();
         try {
-            
-            String strSQL = "SELECT * FROM Account WHERE (acc_username LIKE ? OR acc_email LIKE ?) AND status LIKE ?";
+            String strSQL = "SELECT * FROM Account WHERE (acc_username LIKE ? OR acc_email LIKE ?)";
+
+            if (status != null && !status.isEmpty()) {
+                strSQL += " AND status = ?";
+            }
+
             stm = cnn.prepareStatement(strSQL);
             stm.setString(1, "%" + keyword + "%");
             stm.setString(2, "%" + keyword + "%");
-            stm.setString(3, "%" + status + "%");
-            rs = stm.executeQuery();
 
+            if (status != null && !status.isEmpty()) {
+                stm.setString(3, status);
+            }
+            rs = stm.executeQuery();
             while (rs.next()) {
                 String acc = rs.getString(1);
                 String pass = rs.getString(2);
                 String role = String.valueOf(rs.getInt(3));
                 String email = rs.getString(4);
                 String accountStatus = rs.getString(5);
-
                 Account account = new Account(acc, pass, role, email, accountStatus);
                 data.add(account);
             }

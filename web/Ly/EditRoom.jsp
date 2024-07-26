@@ -39,10 +39,10 @@
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <form action="updateroom" method="post" >
-                            <input type="hidden" value="${back}" name="back">
+                            <input type="hidden" value="1" name="back">
                             <div class="modal-header">						
                                 <h4 class="modal-title"></h4>
-                                <a href="${back}" >
+                                <a href="${pageContext.request.contextPath}/managementroom?pid=${details.dorm_id}" >
                                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true" >&times;</button>
                                 </a> 
                             </div>
@@ -61,14 +61,16 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Room_Type</label>
-                                      <select class="form-control" name="room_type">
-                                    <option value="4 bed" <c:if test="${details.room_type == '4 bed'}">selected</c:if>>4 bed</option>
-                                    <option value="6 bed" <c:if test="${details.room_type == '6 bed'}">selected</c:if>>6 bed</option>
-                                  
-                                </select>
-                                    
-                                </div>
+                                    <select class="form-control" name="room_type">
+                                        <option value="4 bed" <c:if test="${details.room_type == '4 bed'}">selected</c:if>>4 bed</option>
+                                        <option value="6 bed" <c:if test="${details.room_type == '6 bed'}">selected</c:if>>6 bed</option>
+                                        </select>
 
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Usage</label>
+                                        <input value="${details.room_usage}" name="usage" type="text" class="form-control"  required>
+                                </div>
                                 <div class="form-group">
                                     <label>Price</label>
                                     <input value="${details.price}" name="price" type="text" class="form-control"  required>

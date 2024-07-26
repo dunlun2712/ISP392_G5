@@ -113,7 +113,7 @@
                     <select name="term" class="form-control" >
                          <option value="">No Filter</option>
                         <option value="available">Available</option>
-                        <option value="under-maintenance">Under Maintenance</option>
+                        <option value="Under Maintenance">Under Maintenance</option>
                         <option value="occupied">Occupied</option>
                     </select>
                     <button class="btn" type="submit">Search</button>

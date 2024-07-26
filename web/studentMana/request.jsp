@@ -229,7 +229,7 @@
         </div>
 
         <div class="content">
-            <div class="container">
+        
                 <!-- Hero Section Begin -->
 
                 <br>
@@ -329,7 +329,7 @@
                                                                                     <button type="submit" class="btn btn-danger btn-lg" style="font-weight: bold; background-color: #E9AD28" name="other" value="save">Save</button>-->
                 </form>
             </div>
-        </div>
+    s
         <script src="js/jquery-3.3.1.min.js"></script>
         <script src="js/bootstrap.min.js"></script>
         <script src="js/jquery.nice-select.min.js"></script>

@@ -1,4 +1,4 @@
-package Controller;
+package Controller.Admin;
 
 import Dao.RoomBookingDAO;
 import Dao.RoomDao;
@@ -55,10 +55,7 @@ public class SendServlet extends HttpServlet {
         }
 
         // Validate emails before sending
-        emails = emails.stream()
-                .filter(this::isValidFptEmail)
-                .filter(this::isEmailInDatabase)
-                .collect(Collectors.toList());
+        emails = emails.stream().filter(this::isValidFptEmail).filter(this::isEmailInDatabase).collect(Collectors.toList());
 
         if (emails.isEmpty()) {
             request.setAttribute("errorMessage", "No valid email addresses to send.");

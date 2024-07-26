@@ -179,7 +179,6 @@
                                                     <td><label for="roomId" class="form-label" style="color: black">Status</label></td>
                                                     <td style="padding-bottom: 150px">
                                                         <select  class="form-select" name="res_status" style="width: 200px">
-                                                            <option value="pending" ${Req.request_status == 'pending' ? 'selected' : ''}>Pending</option>
                                                             <option value="processing" ${Req.request_status ==  'processing' ? 'selected' : ''}>Processing</option>
                                                             <option value="confirm" ${Req.request_status ==  'confirm' ? 'selected' : ''}>Confirm</option>
                                                             <option value="reject" ${Req.request_status ==  'reject' ? 'selected' : ''}>Reject</option>

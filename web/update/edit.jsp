@@ -89,9 +89,9 @@
                     <table>
                         
                         <tr><td>Meter Number:</td><td><input type="text" name="meter_number" value="${electric.meter_number}" readonly=""></td></tr>
-                        <tr><td>Consumption:</td><td><input type="text" name="consumption" value="${electric.consumption}"></td></tr>
-                        <tr><td>Old Number:</td><td><input type="text" name="old_number" value="${electric.old_number}"></td></tr>
-                        <tr><td>New Number:</td><td><input type="text" name="new_number" value="${electric.new_number}"></td></tr>
+                        <tr><td>Consumption:</td><td><input type="number" pattern="^[0-9]*\.?[0-9]+$" min="0" name="consumption" value="${electric.consumption}"></td></tr>
+                        <tr><td>Old Number:</td><td><input type="number" pattern="^[0-9]*\.?[0-9]+$" min="0" name="old_number" value="${electric.old_number}"></td></tr>
+                        <tr><td>New Number:</td><td><input type="number" pattern="^[0-9]*\.?[0-9]+$" min="0" name="new_number" value="${electric.new_number}"></td></tr>
                     </table>
                 </div>
             </div>

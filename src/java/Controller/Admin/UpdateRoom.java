@@ -23,15 +23,6 @@ import Dao.LDao;
 public class UpdateRoom extends HttpServlet {
 
  
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -56,13 +47,7 @@ public class UpdateRoom extends HttpServlet {
         int dorm_id = Integer.parseInt(request.getParameter("dorm_id"));
         int floor = Integer.parseInt(request.getParameter("floor"));
         String room_type = request.getParameter("room_type");
-        String usage =null;
-        if(room_type.equals("4 bed")){
-             usage = "4";
-        }
-        if(room_type.equals("6 bed")){
-              usage = "6";
-        }
+        String usage =request.getParameter("usage");
         int price = Integer.parseInt(request.getParameter("price"));
         String room_status = request.getParameter("room_status");
 
@@ -72,14 +57,5 @@ public class UpdateRoom extends HttpServlet {
         response.sendRedirect("managementdorm");
     }
 
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
 
 }
